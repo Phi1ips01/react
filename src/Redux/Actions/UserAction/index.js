@@ -1,28 +1,28 @@
 import {
-    SHOW_BUS_FAILED,
-    SHOW_BUS_STARTED,
-    SHOW_BUS_SUCCESS,
-    POST_BUS_FAILED,
-    POST_BUS_STARTED,
-    POST_BUS_SUCCESS,
+    SHOW_USER_FAILED,
+    SHOW_USER_STARTED,
+    SHOW_USER_SUCCESS,
+    POST_USER_FAILED,
+POST_USER_STARTED,
+POST_USER_SUCCESS,
 } from '../../Redux.constants';
-import { addBus, showAllBus } from '../../../api/busAPI';
+import { addUser, showAllUser } from '../../../api/userAPI';
 
-export function postBus(payload) {
+export function postUser(payload) {
     return async (dispatch) => {
         dispatch({
-            type: POST_BUS_STARTED,
+            type: POST_USER_STARTED,
             payload: {},
         });
         try {
-            const data = await addBus(payload);
+            const data = await addUser(payload);
             dispatch({
-                type: POST_BUS_SUCCESS,
+                type: POST_USER_SUCCESS,
                 payload: data,
             });
         } catch (error) {
             dispatch({
-                type: POST_BUS_FAILED,
+                type: POST_USER_FAILED,
                 payload: error,
             });
         }
@@ -30,21 +30,21 @@ export function postBus(payload) {
 }
 
 
-export function showBus(payload) {
+export function showUser(payload) {
     return async (dispatch) => {
         dispatch({
-            type: SHOW_BUS_STARTED,
+            type: SHOW_USER_STARTED,
             payload: {},
         });
         try {
-            const data = await showAllBus();
+            const data = await showAllUser();
             dispatch({
-                type: SHOW_BUS_SUCCESS,
+                type: SHOW_USER_SUCCESS,
                 payload: data,
             });
         } catch (error) {
             dispatch({
-                type: SHOW_BUS_FAILED,
+                type: SHOW_USER_FAILED,
                 payload: error,
             });
         }

@@ -6,6 +6,7 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom';
+import { createRoot } from 'react-dom/client'
 import 'bootstrap/dist/css/bootstrap.css';
 import ReduxProvider from './configureRedux';
 import reportWebVitals from './reportWebVitals';
@@ -22,8 +23,9 @@ function render(View) {
     <Redirect to="/" /> :
     View;
 };
-
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(
   <React.StrictMode>
     <ReduxProvider>
       <Router>
@@ -35,7 +37,7 @@ ReactDOM.render(
       </Router>
     </ReduxProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  
 );
 
 

@@ -8,7 +8,7 @@ import {
 import Home from '../Home';
 import Details from '../Details';
 import BusOperator from '../BusOperator'
-import Bus from '../Bus';
+import Bus from '../Bus/Bus';
 import OperatorUpdate from '../OperatorUpdate'
 import User from '../User'
 import PrivateRoute from '../../utils/PrivateRoute';

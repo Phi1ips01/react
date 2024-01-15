@@ -2,18 +2,19 @@
 import { APIInstance } from './apiInstance';
 
 export const instance = new APIInstance({
-    baseURL: '/bus/showAll'
+    baseURL: '/operatorUpdate/showAll'
 });
 export const postInstance = new APIInstance({
-    baseURL: '/bus/add'
+    baseURL: '/operatorUpdate/add'
 });
 
 const api = instance.api;
 const postApi = postInstance.api
 
-export const showAllBus = (payload) => {
+export const showAllOperatorUpdate = (payload) => {
     return api.get(api.baseURL);
 };
-export const addBus = (payload) => {
-    return postApi.post(api.baseURL,payload)
+export const addOperatorUpdate = (payload) =>{
+    return postApi.post(postApi.baseURL,payload)
 }
+

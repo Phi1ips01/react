@@ -1,20 +1,20 @@
 
-export function showBusStarted(state, payload) {
+export function showTripStarted(state, payload) {
   return {
     ...state,
-    showBus: {
+    showTrip: {
       loading: true,
       error: false
     }
   };
 }
 
-export function showBusSuccess(state, payload) {
+export function showTripSuccess(state, payload) {
   console.log('reached inside reducer');
   
   return {
     ...state,
-    showBus: {
+    showTrip: {
       loading: false,
       error: false,
       data: payload
@@ -23,10 +23,10 @@ export function showBusSuccess(state, payload) {
 }
 
 
-export function showBusFailed(state, payload) {
+export function showTripFailed(state, payload) {
   return {
     ...state,
-    showBus: {
+    showTrip: {
       loading: false,
       error: payload
     }
