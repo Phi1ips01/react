@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="travel.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div class="sidenav">
+        <a href="bus_operator.html">Bus Operator</a>
+        <a href="bus.html">Bus</a>
+        <a href="trip.html">Trip</a>
+        <a href="user.html">User</a>
+        <a href="operator_update.html">Operator Update</a>
+      </div> -->
+      <!-- <div class="sidenav">
+        <ul>
+            <br><br>
+            <li><a href="bus.html">Bus</a></li>
+            <li><a href="bus_operator.html">Bus Operator</a></li>
+            <li><a href="user.html">User</a></li>
+            <li><a href="operator_update.html">Operator Update</a></li>
+        </ul> -->
+      <!-- <div class="dropdown">
+        <button class="dropdown-btn">&#9776;</button>
+        <div class="dropdown-content">
+          <a href="./trip.html">Trip Details</a>
+          <a href="./settings/user.html">Settings</a>
+          <a href="#">Log Out</a>
+        </div>
+      </div> -->
+      <div class="header">
+        <div class="dropdown">
+          <button class="dropdown-btn">&#9776;</button>
+          <div class="dropdown-content">
+            <a href="./trip.html">Trip Details</a>
+            <a href="./user.html">Settings</a>
+            <a href="#">Log Out</a>
+          </div>
+        </div>
+        <ul class="topnav">
+          <li class="topnav-list"><a href="#why"> <img src="./images/bus.svg"></a></li>
+          <li class="topnav-list"><a href="#about"> <img src="./images/train.svg"></a></li>
+          <li class="topnav-list"><a href="#contact"> <img src="./images/airplane.svg"></a></li>
+      </ul>
+      </div>
+
+    </div>
+
+   
+
+       
+    
+        <div class="trip-main">
+            <form action="/" class="trip-form">
+              <h3>Enter the Trip details here</h3>
+                <input type="text" id="operator_id" name="operator_id"  class="trip-form-input" placeholder="Enter the bus operator ID..">
+                <input type="text" id="bus_id" name="bus_id" class="trip-form-input" placeholder="Enter the bus ID..">
+                <input type="text" id="trip_id" name="trip_id" class="trip-form-input" placeholder="Enter the trip ID..">
+                <input type="text" id="CName" name="CName" class="trip-form-input" placeholder="Enter the Customer Name">
+                <input type="text" id="contact" name="contact" class="trip-form-input" placeholder="Enter the contact">
+                <input type="text" id="acontact" name="acontact" class="trip-form-input" placeholder="Enter the alternate contact">
+                <input type="text" id="age" name="age" class="trip-form-input" placeholder="Enter the age">
+
+              <input type="text" id="starting_point" name="starting_point" class="trip-form-input" placeholder="Enter the starting point...">
+              <input type="text" id="destination" name="destination" class="trip-form-input" placeholder="Enter the Destination...">
+                <input type="text" id="address" name="address" class="trip-form-input" placeholder="Enter the Address"/>
+                <input type="text" id="num_tickets" name="num_tickets" class="trip-form-input" placeholder="Enter the Number of Tickets">
+                
+                
+
+                <input type="text" id="total_amount" name="total_amount" class="trip-form-input" placeholder="Enter the total amount..">
+                
+                <input type="text" id="paid" name="paid" class="trip-form-input" placeholder="Enter the paid amount..">
+            
+                <input type="submit" class="trip-form-submit" value="Submit">
+            </form>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-dark table-striped w-75 container">
+              <thead>
+                  <tr>
+                      <th>Operator ID</th>
+                      <th>Trip ID</th>
+                      <th>Bus ID</th>
+                      <th>Customer Name</th>
+                      <th>Contact</th>
+                      <th>Alternate Contact</th>
+                      
+                      <th>Starting Point</th>
+                      <th>Destination</th>
+                      <th>Address</th>
+                      <th>Age</th>
+                      <th>No. of tickets</th>
+                      <th>Total Amount</th>
+                      <th>Paid</th>
+                      <th>Edit/Delete</th>
+                  </tr>
+              </thead>
+             
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                      <button type="button" class="btn btn-primary btn-sm">
+                          <img src="./images/edit.png" alt="Edit">
+                      </button>
+                      <button type="button" class="btn btn-danger btn-sm">
+                          <img src="./images/delete.png" alt="Delete">
+                      </button>
+                  </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-sm">
+                        <img src="./images/edit.png" alt="Edit">
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm">
+                        <img src="./images/delete.png" alt="Delete">
+                    </button>
+                </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                  <button type="button" class="btn btn-primary btn-sm">
+                      <img src="./images/edit.png" alt="Edit">
+                  </button>
+                  <button type="button" class="btn btn-danger btn-sm">
+                      <img src="./images/delete.png" alt="Delete">
+                  </button>
+              </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm">
+                    <img src="./images/edit.png" alt="Edit">
+                </button>
+                <button type="button" class="btn btn-danger btn-sm">
+                    <img src="./images/delete.png" alt="Delete">
+                </button>
+            </td>
+        </tr>
+              
+              </tbody>
+          </table>
+      </div>
+      
+
+    
+</body>
+</html>

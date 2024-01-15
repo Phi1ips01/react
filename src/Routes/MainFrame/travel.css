@@ -1,0 +1,205 @@
+
+  body{
+    background-image: url("../../images/background.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  .dropdown {
+    position: fixed; /* Position the dropdown absolutely */
+    top: 3%;
+    right: 7%;
+    z-index: 5;
+  }
+  .dropdown-btn {
+    position: sticky;
+    top: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 0px;
+    padding: 5px;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    width: 120px; /* Set a specific width if needed */
+    border:solid 3px white;
+    border-radius: 9px;
+  }
+  .dropdown-content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+  }
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+    text-decoration: none;
+    color: blueviolet;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  .clear {clear: both;}
+  .sidenav {
+    width: 15%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    padding-top: 20px;
+  }
+  .sidenav ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 100px;;
+    text-align: center;
+  }
+  .sidenav li {
+    margin-bottom: 25px;
+  }
+  .sidenav a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+  }
+  .sidenav a:hover {
+    color: #00bcd4;
+  }
+  .header{
+    width: 100%;
+    height: 75px;
+    background-color: white;
+    border-radius: 6px;
+    padding-top: 1%;
+    margin-bottom: 3%;
+    position: sticky;
+    top:0;
+  }
+  .topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 6px;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-evenly;
+    z-index: 1; /* Add z-index to ensure the navbar stays on top */
+  }
+  .topnav .topnav-list {
+    float: none;
+    display: inline-block;
+    align-items: center;
+  }
+  .topnav .topnav-list a {
+    display: block;
+    text-align: center;
+    padding: 5px 10px;
+    text-decoration: none;
+    background-color: rgb(255, 255, 255);
+    margin: 5px 10px;
+    border-radius: 10px;
+  }
+  .topnav .topnav-list a img {
+    padding-top: 0;
+    z-index: 2;
+    height: 30px;  }
+  .topnav .topnav-list a:hover {
+    background-color: #cccccc;
+    color: aliceblue;
+  }
+  .clear {clear: both;}
+  .default-main {
+    margin-left: 16%;
+    margin-top: 12%;
+    width: 80%;
+  }
+  .trip-main {
+    width: 99%; /* Adjust the width as needed */
+    margin: auto; /* Center the form */
+    background-color: rgba(56, 56, 56, 0.4); /* Transparent white background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Optional: Add a subtle box shadow */
+  }
+  .trip-form h3{
+    color: rgb(255, 234, 234,.8);
+  }
+  .trip-form-input {
+    width: 20%; 
+    padding: 8px;
+    margin: 10px 2%; 
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: rgba(255, 243, 243, 0.7);
+  }
+  .trip-form-submit {
+    width: 20%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    margin: 8px 2%;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .trip-form-submit:hover {
+    background-color: #45a049;
+  }
+  .default-form
+  {
+    
+    
+    background-color: rgba(56, 56, 56, 0.4); /* Transparent white background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  .default-form h3{
+    color: rgb(255, 234, 234,.8);
+  }
+  .default-form-input,.select {
+    width: 24%; /* Adjust the width as needed */
+    padding: 8px;
+    margin: 10px 4%; /* Add a small margin between input fields */
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: rgba(255, 243, 243, 0.7);
+  }
+  .default-form-submit {
+    width: 24%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    margin: 8px 4%;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .default-form-submit:hover {
+    background-color: #45a049;
+  }
+  .table {
+    margin-top: 20px;
+    overflow-x: auto;
+    font-size: x-small;
+    text-align: center;
+  }
+  button img
+  {
+    max-height: 15px;
+    padding: 0;
+    margin: 0;
+  }
