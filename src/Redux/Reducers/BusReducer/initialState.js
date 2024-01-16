@@ -3,5 +3,10 @@ export const INITIAL_STATE = {
     loading: false,
     error: false,
     data: {}
+  },
+  postBus:{
+    loading:false,
+    error:false,
+    data:{}
   }
 };

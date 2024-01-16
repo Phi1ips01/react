@@ -11,13 +11,13 @@ export default class TopNav extends Component {
   render() {
     return (
       <div>
-        <div class="header">
+        <div className="header">
         <DropDown/>
 
-        <ul class="topnav">
-          <li class="topnav-list"><a href="#about"> <img src={train} alt='train'/></a></li>
-          <li class="topnav-list"><a href="/home"> <img src={bus} alt='bus'/></a></li>
-          <li class="topnav-list"><a href="#contact"> <img src={flight} alt='flight'/></a></li>
+        <ul className="topnav">
+          <li className="topnav-list"><a href="#about"> <img src={train} alt='train'/></a></li>
+          <li className="topnav-list"><a href="/home"> <img src={bus} alt='bus'/></a></li>
+          <li className="topnav-list"><a href="#contact"> <img src={flight} alt='flight'/></a></li>
       </ul>
       </div>
       </div>

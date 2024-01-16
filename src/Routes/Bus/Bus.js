@@ -14,16 +14,42 @@ class Bus extends Component {
       componentDidMount() {
         this.fetchBus();
       }
-      fetchBus = async () => {
+      async fetchBus() {
         try {
-            const data = await showBus;
-            console.log(data)
+            await this.props.showBus();
+            const busData = this.props.showBus.data; // Access data correctly
+            console.log(busData);
         } catch (error) {
-          /* Derive proper parse error logic based on context */
-          
+            console.error(error);
+            // Handle error here
         }
-      }
+    }
+    handleSubmit(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        this.props.postBus(formData); // Dispatch the action
+        console.log(formData,".,.,.,.,")
+    }
+    //  handleSubmit =(e)=>{
+    //   e.preventDefault()
+    //   const formData = {
+    //     operator_id: e.target.operator_id.value,
+    //     bus_id:e.target.bus_id.value,
+    //     name: e.target.name.value,
+    //     type: e.target.type.value,
+    //     share: e.target.share.value,
+    //   };
+
+    //   this.props.postBus(formData)
+    
         render() {
+            const { loading, error } = this.props.showBus;
+    const busData = this.props.showBus.data || []; // Handle potential empty data
+            console.log(busData)
+    //         const data = Array.isArray(this.props.data) ? this.props.data : [];
+    //   const allColumns = data.length > 0 ? Object.keys(data[0]).map(key => ({ Header: key, accessor: key })) : [];
+    //   const columns = allColumns.slice(1, -2);
+      // const { userList, loading, error } = this.state;
             console.log(this.props)
             // const { loading, error, data } = this.props.showBus;
     return (
@@ -32,7 +58,7 @@ class Bus extends Component {
             <SideBar/>
             <DropDown/>
            <div className="default-main">
-        <form action="/" className="default-form">
+        <form action="/" onSubmit={this.handleSubmit} className="default-form">
           <h3>Enter the Bus details here</h3>
           <InputField type="text" id="operator_id" name="operator_id"  className="default-form-input" placeholder="Enter the bus operator ID.."/>
           <InputField type="text" id="bus_id" name="bus_id" className="default-form-input" placeholder="Enter the bus ID.."/>
@@ -49,7 +75,8 @@ class Bus extends Component {
             
             
 
-        
+        {/* <TableComponent columns={columns} data={data} /> */}
+
         <div className="table-responsive">
             <table className="table table-dark table-striped w-75 container">
                 <thead>

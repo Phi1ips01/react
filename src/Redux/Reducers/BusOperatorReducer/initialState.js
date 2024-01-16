@@ -3,5 +3,10 @@ export const INITIAL_STATE = {
     loading: false,
     error: false,
     data: {}
-  }
-};
+  },
+  postBusOperator: {
+    loading: false,
+    error: false,
+    data: {}
+}
+}

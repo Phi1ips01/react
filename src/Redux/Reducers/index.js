@@ -1,16 +1,16 @@
 import {combineReducers} from 'redux';
 
 import Login from './Login';
-import ShowBus from './BusReducer';
-import ShowBusOperator from './BusOperatorReducer'
-import ShowOperatorUpdate from './BusOperatorReducer'
-import ShowTrip from './TripReducer'
-import ShowUser from './UserReducer';
+import {ShowBus,PostBus} from './BusReducer';
+import {ShowBusOperator,PostBusOperator} from './BusOperatorReducer'
+import {ShowOperatorUpdate,PostOperatorUpdate} from './OperatorUpdateReducer'
+import {ShowTrip,PostTrip} from './TripReducer'
+import {ShowUser,PostUser} from './UserReducer';
 export default combineReducers({
   Login,
-  ShowBus,
-  ShowBusOperator,
-  ShowOperatorUpdate,
-  ShowTrip,
-  ShowUser
+  ShowBus,PostBus,
+  ShowBusOperator,PostBusOperator,
+  ShowOperatorUpdate,PostOperatorUpdate,
+  ShowTrip,PostTrip,
+  ShowUser,PostUser,
 });

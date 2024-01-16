@@ -1,5 +1,10 @@
 export const INITIAL_STATE = {
-  showTrip: {
+  showUser: {
+    loading: false,
+    error: false,
+    data: {}
+  },
+  postUser: {
     loading: false,
     error: false,
     data: {}

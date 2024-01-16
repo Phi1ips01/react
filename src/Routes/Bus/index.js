@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Bus from './Bus';
 
-import { showBus } from '../../Redux/Actions';
+import { showBus,postBus } from '../../Redux/Actions';
 
 import { SelectState } from './Selector';
 
@@ -14,7 +14,10 @@ function mapDispatchToProps(dispatch) {
   return {
     showBus: (params) => {
       dispatch(showBus(params));
-    }
+    },
+    // postBus: (params) =>{
+    //   dispatch(postBus(params))
+    // }
   };
 }
 

@@ -9,6 +9,7 @@ function mergeReducer(showBus) {
     };
 }
 
+
 export const SelectState = createSelector(
     [getBusPageReducer],
     mergeReducer

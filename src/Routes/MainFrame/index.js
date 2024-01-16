@@ -5,12 +5,12 @@ import {
     Redirect
 } from 'react-router-dom';
 
-import Home from '../Home';
+import Home from '../Home/Home';
 import Details from '../Details';
-import BusOperator from '../BusOperator'
+import BusOperator from '../BusOperator/Bus_Operator'
 import Bus from '../Bus/Bus';
-import OperatorUpdate from '../OperatorUpdate'
-import User from '../User'
+import OperatorUpdate from '../OperatorUpdate/Operator_Update'
+import User from '../User/user'
 import PrivateRoute from '../../utils/PrivateRoute';
 import './travel.css'
 // import { Instances } from '../../api';

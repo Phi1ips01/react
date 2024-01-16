@@ -2,22 +2,41 @@ import {
   SHOW_USER_FAILED,
   SHOW_USER_STARTED,
   SHOW_USER_SUCCESS,
+  POST_USER_FAILED,
+  POST_USER_STARTED,
+  POST_USER_SUCCESS,
 } from '../../Redux.constants';
 import {
-  showTripFailed,
-  showTripStarted,
-  showTripSuccess
+  showUserFailed,
+  showUserStarted,
+  showUserSuccess,
+  postUserFailed,
+postUserStarted,
+postUserSuccess
 } from './Helper';
 import { INITIAL_STATE } from './initialState';
 
-export default function ShowTrip(state = INITIAL_STATE, action) {
+export function PostUser(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case POST_USER_SUCCESS:
+      return postUserSuccess(state, action.payload);
+    case POST_USER_STARTED:
+      return postUserStarted(state, action.payload);
+    case POST_USER_FAILED:
+      return postUserFailed(state, action.payload);
+    default:
+      return { ...state };
+  }
+}
+
+export function ShowUser(state = INITIAL_STATE, action) {
   switch (action.type) {
     case SHOW_USER_SUCCESS:
-      return showTripSuccess(state, action.payload);
+      return showUserSuccess(state, action.payload);
     case SHOW_USER_STARTED:
-      return showTripStarted(state, action.payload);
+      return showUserStarted(state, action.payload);
     case SHOW_USER_FAILED:
-      return showTripFailed(state, action.payload);
+      return showUserFailed(state, action.payload);
     default:
       return { ...state };
   }

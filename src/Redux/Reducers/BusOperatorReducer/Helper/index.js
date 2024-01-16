@@ -32,3 +32,37 @@ export function showBusOperatorFailed(state, payload) {
     }
   };
 }
+
+export function postBusOperatorStarted(state, payload) {
+  return {
+    ...state,
+    postBusOperator: {
+      loading: true,
+      error: false
+    }
+  };
+}
+
+export function postBusOperatorSuccess(state, payload) {
+  console.log('reached inside reducer');
+  
+  return {
+    ...state,
+    postBusOperator: {
+      loading: false,
+      error: false,
+      data: payload
+    },
+  };
+}
+
+
+export function postBusOperatorFailed(state, payload) {
+  return {
+    ...state,
+    postBusOperator: {
+      loading: false,
+      error: payload
+    }
+  };
+}

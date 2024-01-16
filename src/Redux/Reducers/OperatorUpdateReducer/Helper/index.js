@@ -32,3 +32,38 @@ export function showOperatorUpdateFailed(state, payload) {
     }
   };
 }
+
+
+export function postOperatorUpdateStarted(state, payload) {
+  return {
+    ...state,
+    postOperatorUpdate: {
+      loading: true,
+      error: false
+    }
+  };
+}
+
+export function postOperatorUpdateSuccess(state, payload) {
+  console.log('reached inside reducer');
+  
+  return {
+    ...state,
+    postOperatorUpdate: {
+      loading: false,
+      error: false,
+      data: payload
+    },
+  };
+}
+
+
+export function postOperatorUpdateFailed(state, payload) {
+  return {
+    ...state,
+    postOperatorUpdate: {
+      loading: false,
+      error: payload
+    }
+  };
+}
