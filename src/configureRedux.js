@@ -5,7 +5,9 @@ import rootReducer from './Redux/Reducers';
 import logger from 'redux-logger';
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    rootReducer:rootReducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false, // Ensure compatibility with redux-logger

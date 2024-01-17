@@ -3,6 +3,7 @@ export const ROUTES = {
   HOME: '/home',
   DETAILS: '/details',
   INDEX: '/',
+  LANDING_PAGE:'/index',
   BUS:'/bus',
   BUS_OPERATOR:'/busOperator',
   USER:'/user',

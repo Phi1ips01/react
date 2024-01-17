@@ -16,6 +16,7 @@ import './travel.css'
 // import { Instances } from '../../api';
 
 import { ROUTES } from '../../Routes.constants';
+import LandingPage from '../landingPage/LandingPage';
 
 class MainFrame extends Component {
     componentDidUpdate(prevProps, prevState) {
@@ -37,7 +38,9 @@ class MainFrame extends Component {
                         <PrivateRoute path={ROUTES.BUS_OPERATOR} component={BusOperator} />
                         <PrivateRoute path={ROUTES.USER} component={User} />
                         <PrivateRoute path={ROUTES.OPERATOR_UPDATE} component={OperatorUpdate} />
-                        <Redirect from={ROUTES.INDEX} to={ROUTES.HOME} />
+                        <PrivateRoute path={ROUTES.LANDING_PAGE} component={LandingPage} />
+
+                        <Redirect from={ROUTES.INDEX} to={ROUTES.LANDING_PAGE} />
                     </Switch>
                 </div>
             </Fragment>

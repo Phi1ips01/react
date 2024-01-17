@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 // import { ROUTES } from '../../Routes.constants';
 // import PropType from 'prop-types';
 // import style from './style.module.scss';
-import train from '../../images/train.svg'
-import bus from "../../images/bus.svg"
-import flight from "../../images/airplane.svg"
+import train from '../../images/train.png'
+import bus from "../../images/bus.png"
+import flight from "../../images/airplane.png"
 import DropDown from '../DropDown'
+import Logo from '../Logo';
 export default class TopNav extends Component {
   render() {
     return (
@@ -15,9 +16,9 @@ export default class TopNav extends Component {
         <DropDown/>
 
         <ul className="topnav">
-          <li className="topnav-list"><a href="#about"> <img src={train} alt='train'/></a></li>
-          <li className="topnav-list"><a href="/home"> <img src={bus} alt='bus'/></a></li>
-          <li className="topnav-list"><a href="#contact"> <img src={flight} alt='flight'/></a></li>
+          <li className="topnav-list"><a href="#about"> <img src={train} className='topnav-image' alt='train'/></a></li>
+          <li className="topnav-list"><a href="/home"> <img src={bus} className='topnav-image' alt='bus'/></a></li>
+          <li className="topnav-list"><a href="#contact"> <img src={flight} className='topnav-image' alt='flight'/></a></li>
       </ul>
       </div>
       </div>
