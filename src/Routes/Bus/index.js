@@ -15,9 +15,9 @@ function mapDispatchToProps(dispatch) {
     showBus: (params) => {
       dispatch(showBus(params));
     },
-    // postBus: (params) =>{
-    //   dispatch(postBus(params))
-    // }
+    postBus: (params) =>{
+      dispatch(postBus(params))
+    }
   };
 }
 
