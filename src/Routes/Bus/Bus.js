@@ -9,15 +9,20 @@ class Bus extends Component {
     state = {
         loading: false,
         error: false,
-        showBus: []
+      }
+      constructor (props){
+        super(props);
+        this.fetchBus=this.fetchBus.bind(this);
+        this.handleSubmit=this.handleSubmit.bind(this);
       }
       componentDidMount() {
         this.fetchBus();
       }
-      async fetchBus() {
+       fetchBus() {
         try {
-            await this.props.showBus();
-            const busData = this.props.showBus.data; // Access data correctly
+            console.log(this.props)
+            this.props.showBus();
+            const busData = this.props.showBus; // Access data correctly
             console.log(busData);
         } catch (error) {
             console.error(error);
@@ -30,27 +35,15 @@ class Bus extends Component {
         this.props.postBus(formData); // Dispatch the action
         console.log(formData,".,.,.,.,")
     }
-    //  handleSubmit =(e)=>{
-    //   e.preventDefault()
-    //   const formData = {
-    //     operator_id: e.target.operator_id.value,
-    //     bus_id:e.target.bus_id.value,
-    //     name: e.target.name.value,
-    //     type: e.target.type.value,
-    //     share: e.target.share.value,
-    //   };
-
-    //   this.props.postBus(formData)
     
         render() {
-            const { loading, error } = this.props.showBus;
-    const busData = this.props.showBus.data || []; // Handle potential empty data
+            const { loading, error } = this.props;
+            const busData = this.props.data || []; // Handle potential empty data
             console.log(busData)
     //         const data = Array.isArray(this.props.data) ? this.props.data : [];
     //   const allColumns = data.length > 0 ? Object.keys(data[0]).map(key => ({ Header: key, accessor: key })) : [];
     //   const columns = allColumns.slice(1, -2);
       // const { userList, loading, error } = this.state;
-            console.log(this.props)
             // const { loading, error, data } = this.props.showBus;
     return (
         <div>
