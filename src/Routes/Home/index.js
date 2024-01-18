@@ -15,7 +15,7 @@ function mapDispatchToProps(dispatch) {
     showTrip: (params) => {
       dispatch(showTrip(params));
     }
-  };
+  }; 
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Trip);

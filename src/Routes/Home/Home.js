@@ -32,13 +32,14 @@ class Home extends Component {
     showTrip: []
   }
   componentDidMount() {
+    console.log("this.state componentDId",this.state)
     this.fetchTrip();
   }
   async fetchTrip() {
     try {
-        await this.props.showTrip();
-        const tripData = this.props.showTrip.data; // Access data correctly
-        console.log(tripData);
+        await this.props.showTrip;
+        // const tripData = this.props.showTrip.data; // Access data correctly
+        console.log(this.props);
     } catch (error) {
         console.error(error);
         // Handle error here
@@ -58,6 +59,7 @@ handleSubmit(event) {
         <div className="trip-main">
             <form action="/" className="trip-form">
               <h3>Enter the Trip details here</h3>
+                <InputField type="text" id="PNR" name="PNR" className="trip-form-input" placeholder="Enter the PNR Number"/>
                 <InputField type="text" id="operator_id" name="operator_id"  className="trip-form-input" placeholder="Enter the bus operator ID.."/>
                 <InputField type="text" id="bus_id" name="bus_id" className="trip-form-input" placeholder="Enter the bus ID.."/>
                 <InputField type="text" id="trip_id" name="trip_id" className="trip-form-input" placeholder="Enter the trip ID.."/>
@@ -68,10 +70,19 @@ handleSubmit(event) {
 
               <InputField type="text" id="starting_point" name="starting_point" className="trip-form-input" placeholder="Enter the starting point..."/>
               <InputField type="text" id="destination" name="destination" className="trip-form-input" placeholder="Enter the Destination..."/>
+              <InputField type="text" id="bording_point" name="bording_point" className="trip-form-input" placeholder="Enter the Bording Point"/>
+              <InputField type="text" id="seat_number" name="seat_number" className="trip-form-input" placeholder="Enter the Seat Number"/>
+              <select className='trip-select'>
+                <option>Bus</option>
+                <option>bus kallada</option>
+              </select>
                 <InputField type="text" id="address" name="address" className="trip-form-input" placeholder="Enter the Address"/>
                 <InputField type="text" id="num_tickets" name="num_tickets" className="trip-form-input" placeholder="Enter the Number of Tickets"/>
                 <InputField type="text" id="total_amount" name="total_amount" className="trip-form-input" placeholder="Enter the total amount.."/>
                 <InputField type="text" id="paid" name="paid" className="trip-form-input" placeholder="Enter the paid amount.."/>
+                <InputField type="text" id="remarks" name="remarks" className="trip-form-input" placeholder="Any Remarks.."/>
+                <InputField type="text" id="agent" name="agent" className="trip-form-input" placeholder="Enter if any agents present.."/>
+
                 <InputButton className="trip-form-submit" onSubmit={this.handleSubmit} value="Submit"/>
             </form>
         </div>
