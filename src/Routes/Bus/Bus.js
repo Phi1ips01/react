@@ -16,8 +16,8 @@ class Bus extends Component {
       }
       async fetchBus() {
         try {
-            await this.props.showBus();
-            const busData = this.props.showBus.data; // Access data correctly
+            await this.props.showBus;
+            const busData = this.props; // Access data correctly
             console.log(busData);
         } catch (error) {
             console.error(error);
@@ -43,8 +43,8 @@ class Bus extends Component {
     //   this.props.postBus(formData)
     
         render() {
-            const { loading, error } = this.props.showBus;
-    const busData = this.props.showBus.data || []; // Handle potential empty data
+            const { loading, error } = this.props;
+    const busData = this.props || []; // Handle potential empty data
             console.log(busData)
     //         const data = Array.isArray(this.props.data) ? this.props.data : [];
     //   const allColumns = data.length > 0 ? Object.keys(data[0]).map(key => ({ Header: key, accessor: key })) : [];
@@ -60,15 +60,27 @@ class Bus extends Component {
            <div className="default-main">
         <form action="/" onSubmit={this.handleSubmit} className="default-form">
           <h3>Enter the Bus details here</h3>
-          <InputField type="text" id="operator_id" name="operator_id"  className="default-form-input" placeholder="Enter the bus operator ID.."/>
+          {/* <InputField type="text" id="operator_id" name="operator_id"  className="default-form-input" placeholder="Enter the bus operator ID.."/> */}
           <InputField type="text" id="bus_id" name="bus_id" className="default-form-input" placeholder="Enter the bus ID.."/>
+          <select className='default-select' id="operator_id">
+                <option value="" disabled selected>
+                  Enter the Operator
+                  </option>
+                  <option>
+                    bus operator name
+                  </option>
+                </select>
           <InputField type="text" id="name" name="name" className="default-form-input" placeholder="Enter the Name"/>
-          <InputField type="text" id="share" name="share" className="default-form-input" placeholder="Enter the share in %"/>
-          <select name="type" id="type" className="select">
+          {/* <select name="type" id="type" className="default-select">
                 <option value="volvo">Volvo</option>
                 <option value="Full AC">FUll AC</option>
                 <option value="Second Seater">Second Seater</option>
-            </select>
+            </select> */}
+            <InputField type="text" id="share" name="share" className="default-form-input" placeholder="Enter the share in %"/>
+            <InputField type="text" id="bus_total_payment" name="bus_total_payment" className="default-form-input" placeholder="Enter the Total amount" disabled/>
+            <InputField type="text" id="bus_paid" name="bus_paid" className="default-form-input" placeholder="paid amount" disabled/>
+            <InputField type="text" id="remaining_payment" name="remaining_payment" className="default-form-input" placeholder="remaining payment" disabled/>
+
             <InputButton className="default-form-submit" value="Submit"/>
         </form>
             

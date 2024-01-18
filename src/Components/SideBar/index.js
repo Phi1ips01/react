@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
+import logo from '../../images/logo.png'
+
+
 export default class ButtonElement extends Component {
   render() {
     return (
       <div>
         
         <div className="sidenav">
+        <a href='/'>
+        <div className="logo-topnav">
+        <img className="logo-topnav-img" src={logo} alt='logo'/>
+        <h3>Logo</h3>
+        </div>
+        </a>
           <ul>
             <br/><br/>
             <li><a href="/bus">Bus</a></li>

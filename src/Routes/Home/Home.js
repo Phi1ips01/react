@@ -51,6 +51,16 @@ handleSubmit(event) {
     this.props.postTrip(formData); // Dispatch the action
     console.log(formData,".,.,.,.,")
 }
+handleDate(){
+  const today = new Date();
+    const year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    let day = today.getDate();
+    month = month < 10 ? `0${month}` : month;
+    day = day < 10 ? `0${day}` : day;
+
+    return `${year}/${month}/${day}`;
+}
   render() {
     // const { userList, loading, error } = this.state;
     return (
@@ -60,23 +70,39 @@ handleSubmit(event) {
             <form action="/" className="trip-form">
               <h3>Enter the Trip details here</h3>
                 <InputField type="text" id="PNR" name="PNR" className="trip-form-input" placeholder="Enter the PNR Number"/>
-                <InputField type="text" id="operator_id" name="operator_id"  className="trip-form-input" placeholder="Enter the bus operator ID.."/>
-                <InputField type="text" id="bus_id" name="bus_id" className="trip-form-input" placeholder="Enter the bus ID.."/>
-                <InputField type="text" id="trip_id" name="trip_id" className="trip-form-input" placeholder="Enter the trip ID.."/>
+                <select className='trip-select' id="operator_id">
+                <option value="" disabled selected>
+                  Enter the Operator
+                  </option>
+                  <option value="" disabled selected>
+                  Enter the Operator
+                  </option>
+                  <option>
+                    bus operator name
+                  </option>
+                </select>
+                {/* <InputField type="text" id="operator_id" name="operator_id"  className="trip-form-input" placeholder="Enter the bus operator ID.."/> */}
+                <select className='trip-select' id="bus_id">
+                <option value="" disabled selected>
+                  Enter the Bus
+                  </option>
+                  <option>
+                    bus name
+                  </option>
+                </select>
+                {/* <InputField type="text" id="bus_id" name="bus_id" className="trip-form-input" placeholder="Enter the bus ID.."/> */}
                 <InputField type="text" id="CName" name="CName" className="trip-form-input" placeholder="Enter the Customer Name"/>
                 <InputField type="text" id="contact" name="contact" className="trip-form-input" placeholder="Enter the contact"/>
                 <InputField type="text" id="acontact" name="acontact" className="trip-form-input" placeholder="Enter the alternate contact"/>
                 <InputField type="text" id="age" name="age" className="trip-form-input" placeholder="Enter the age"/>
-
+                <InputField type="text" id="address" name="address" className="trip-form-input" placeholder="Enter the Address"/>
+                <InputField type="date" id="bookingDate" name="bookingDate" className="trip-form-input"  placeholder="Enter todays date" required="required"/>
+                <InputField type="date" id="journeyDate" name="journeyDate" className="trip-form-input" placeholder="Enter journey date" required="required"/>
+                {/* value={} */}
               <InputField type="text" id="starting_point" name="starting_point" className="trip-form-input" placeholder="Enter the starting point..."/>
               <InputField type="text" id="destination" name="destination" className="trip-form-input" placeholder="Enter the Destination..."/>
               <InputField type="text" id="bording_point" name="bording_point" className="trip-form-input" placeholder="Enter the Bording Point"/>
               <InputField type="text" id="seat_number" name="seat_number" className="trip-form-input" placeholder="Enter the Seat Number"/>
-              <select className='trip-select'>
-                <option>Bus</option>
-                <option>bus kallada</option>
-              </select>
-                <InputField type="text" id="address" name="address" className="trip-form-input" placeholder="Enter the Address"/>
                 <InputField type="text" id="num_tickets" name="num_tickets" className="trip-form-input" placeholder="Enter the Number of Tickets"/>
                 <InputField type="text" id="total_amount" name="total_amount" className="trip-form-input" placeholder="Enter the total amount.."/>
                 <InputField type="text" id="paid" name="paid" className="trip-form-input" placeholder="Enter the paid amount.."/>

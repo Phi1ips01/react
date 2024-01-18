@@ -12,6 +12,9 @@ export default class InputField extends Component {
           onChange={this.props.onChange}
           id={this.props.id}
           className={this.props.className}
+          value={this.props.value}
+          required={this.props.required}
+          disabled={this.props.disabled}
         />
     )
   }
