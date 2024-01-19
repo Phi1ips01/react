@@ -20,10 +20,10 @@ class Bus extends Component {
       }
        fetchBus() {
         try {
-            console.log(this.props)
+            console.log("fetchbus",this.props)
             this.props.showBus();
             const busData = this.props.showBus; // Access data correctly
-            console.log(busData);
+            console.log("fetchbus busadata",busData);
         } catch (error) {
             console.error(error);
             // Handle error here
@@ -38,6 +38,7 @@ class Bus extends Component {
     
         render() {
             const { loading, error } = this.props;
+            console.log(this.props)
             const busData = this.props.data || []; // Handle potential empty data
             console.log(busData)
     //         const data = Array.isArray(this.props.data) ? this.props.data : [];
@@ -56,7 +57,7 @@ class Bus extends Component {
           {/* <InputField type="text" id="operator_id" name="operator_id"  className="default-form-input" placeholder="Enter the bus operator ID.."/> */}
           <InputField type="text" id="bus_id" name="bus_id" className="default-form-input" placeholder="Enter the bus ID.."/>
           <select className='default-select' id="operator_id">
-                <option value="" disabled selected>
+                <option value=""  defaultValue>
                   Enter the Operator
                   </option>
                   <option>

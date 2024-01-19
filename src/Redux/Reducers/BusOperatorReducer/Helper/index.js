@@ -10,15 +10,17 @@ export function showBusOperatorStarted(state, payload) {
 }
 
 export function showBusOperatorSuccess(state, payload) {
-  console.log('reached inside reducer');
+  console.log('reached inside reducer1');
   
   return {
     ...state,
     showBusOperator: {
       loading: false,
       error: false,
-      data: payload
+      data: payload,
+      
     },
+    
   };
 }
 

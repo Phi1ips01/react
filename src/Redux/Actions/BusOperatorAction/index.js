@@ -15,6 +15,7 @@ export function postBusOperator(payload) {
             payload: {},
         });
         try {
+            console.log("try bus operator action")
             const data = await addBusOperator(payload);
             dispatch({
                 type: POST_BUS_OPERATOR_SUCCESS,
@@ -31,12 +32,13 @@ export function postBusOperator(payload) {
 
 
 export function showBusOperator(payload) {
-    return async (dispatch) => {
+    return  async (dispatch) => {
         dispatch({
             type: SHOW_BUS_OPERATOR_STARTED,
             payload: {},
         });
         try {
+            console.log("busoperatoraction success")
             const data = await showAllBusOperator();
             dispatch({
                 type: SHOW_BUS_OPERATOR_SUCCESS,

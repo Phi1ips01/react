@@ -26,7 +26,6 @@ function render(View) {
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
-  <React.StrictMode>
     <ReduxProvider>
       <Router>
         <Switch>
@@ -36,7 +35,6 @@ root.render(
         </Switch>
       </Router>
     </ReduxProvider>
-  </React.StrictMode>,
   
 );
 

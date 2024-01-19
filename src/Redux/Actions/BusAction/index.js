@@ -37,6 +37,7 @@ export function showBus(payload) {
             payload: {},
         });
         try {
+            console.log("reachred action")
             const data = await showAllBus();
             dispatch({
                 type: SHOW_BUS_SUCCESS,

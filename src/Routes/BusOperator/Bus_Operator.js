@@ -16,9 +16,10 @@ class BusOperator extends Component  {
       }
       async fetchBusOperator() {
         try {
-            await this.props.showBus();
-            const busOperatorData = this.props.showBusOperator.data; // Access data correctly
-            console.log(busOperatorData);
+            console.log("busoperator fech",this.props)
+            await this.props.showBusOperator();
+            const busOperatorData = this.props.showBusOperator; // Access data correctly
+            console.log("busOperatorData",busOperatorData);
         } catch (error) {
             console.error(error);
             // Handle error here

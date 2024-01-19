@@ -71,10 +71,7 @@ handleDate(){
               <h3>Enter the Trip details here</h3>
                 <InputField type="text" id="PNR" name="PNR" className="trip-form-input" placeholder="Enter the PNR Number"/>
                 <select className='trip-select' id="operator_id">
-                <option value="" disabled selected>
-                  Enter the Operator
-                  </option>
-                  <option value="" disabled selected>
+                  <option value=""  defaultValue>
                   Enter the Operator
                   </option>
                   <option>
@@ -83,7 +80,7 @@ handleDate(){
                 </select>
                 {/* <InputField type="text" id="operator_id" name="operator_id"  className="trip-form-input" placeholder="Enter the bus operator ID.."/> */}
                 <select className='trip-select' id="bus_id">
-                <option value="" disabled selected>
+                <option value=""  defaultValue>
                   Enter the Bus
                   </option>
                   <option>
