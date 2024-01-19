@@ -2,7 +2,7 @@
 export function showUserStarted(state, payload) {
   return {
     ...state,
-    showTrip: {
+    showUser: {
       loading: true,
       error: false
     }
@@ -11,13 +11,13 @@ export function showUserStarted(state, payload) {
 
 export function showUserSuccess(state, payload) {
   console.log('reached inside reducer');
-  
+  console.log(payload.data)
   return {
     ...state,
-    showTrip: {
+    showUser: {
       loading: false,
       error: false,
-      data: payload
+      data: payload.data.response
     },
   };
 }
@@ -26,7 +26,7 @@ export function showUserSuccess(state, payload) {
 export function showUserFailed(state, payload) {
   return {
     ...state,
-    showTrip: {
+    showUser: {
       loading: false,
       error: payload
     }

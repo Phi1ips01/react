@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // import { users } from '../../api/users';
-
+import DynamicTable from '../../Components/TableComponent'
 import ModifyTableButton from '../../Components/ModifyTableButton';
 import InputButton from '../../Components/InputButton';
 import InputField from '../../Components/InputField';
@@ -31,15 +31,20 @@ class Home extends Component {
     error: false,
     showTrip: []
   }
+  // constructor (props){
+  //   super(props);
+  //   this.fetchBus=this.fetchBus.bind(this);
+  //   this.handleSubmit=this.handleSubmit.bind(this);
+  // }
   componentDidMount() {
     console.log("this.state componentDId",this.state)
     this.fetchTrip();
   }
   async fetchTrip() {
     try {
-        await this.props.showTrip;
+        await this.props.showTrip();
         // const tripData = this.props.showTrip.data; // Access data correctly
-        console.log(this.props);
+        // console.log(tripData);
     } catch (error) {
         console.error(error);
         // Handle error here
@@ -62,6 +67,12 @@ handleDate(){
     return `${year}/${month}/${day}`;
 }
   render() {
+    console.log("thisprops",this.props)
+    
+    const testData = this.props.data.data.response
+        const data = Array.isArray(testData) ? testData : [];
+    const allColumns = data.length > 0 ? Object.keys(data[0]).map(key => ({ Header: key, accessor: key })) : [];
+    console.log("data,columns",data,allColumns)
     // const { userList, loading, error } = this.state;
     return (
       <div>
@@ -109,6 +120,8 @@ handleDate(){
                 <InputButton className="trip-form-submit" onSubmit={this.handleSubmit} value="Submit"/>
             </form>
         </div>
+        <DynamicTable columns={allColumns} data={data}/>
+
         <div className="table-responsive">
           <table className="table table-dark table-striped w-75 container">
               <thead>

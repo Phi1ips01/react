@@ -17,7 +17,7 @@ export function showBusSuccess(state, payload) {
     showBus: {
       loading: false,
       error: false,
-      data: payload
+      data: payload.data.response
     },
   };
 }

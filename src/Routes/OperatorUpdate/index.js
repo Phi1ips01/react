@@ -12,9 +12,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    showOperatorUpdate: (params) => {
-      dispatch(showOperatorUpdate(params));
-    }
+    showOperatorUpdate: (params) => dispatch(showOperatorUpdate(params))
+    
   };
 }
 

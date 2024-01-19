@@ -13,7 +13,7 @@ const postApi = postInstance.api
 
 export const showAllBus = (payload) => {
     console.log("showallbus");
-    return api.get(api.baseURL);
+    return api.get(api.baseURL)
 };
 export const addBus = (payload) => {
     return postApi.post(api.baseURL,payload)

@@ -1,29 +1,30 @@
 import React, { Component } from 'react';
 import InputField from '../../Components/InputField';
 import InputButton from '../../Components/InputButton';
-import ModifyTableButton from '../../Components/ModifyTableButton';
+import DynamicTable from '../../Components/TableComponent';
 import SideBar from '../../Components/SideBar'
 import DropDown from '../../Components/DropDown'
-import { showBus } from '.././../Redux/Actions';
 class Bus extends Component {
     state = {
         loading: false,
         error: false,
+        showBus:[]
       }
-      constructor (props){
-        super(props);
-        this.fetchBus=this.fetchBus.bind(this);
-        this.handleSubmit=this.handleSubmit.bind(this);
-      }
+    //   constructor (props){
+    //     super(props);
+    //     this.fetchBus=this.fetchBus.bind(this);
+    //     this.handleSubmit=this.handleSubmit.bind(this);
+    //   }
       componentDidMount() {
         this.fetchBus();
       }
-       fetchBus() {
+       async fetchBus() {
         try {
+            await this.props.showBus();
             console.log("fetchbus",this.props)
-            this.props.showBus();
-            const busData = this.props.showBus; // Access data correctly
-            console.log("fetchbus busadata",busData);
+
+            // const busData = this.props.showBus; // Access data correctly
+            // console.log("fetchbus busadata",busData);
         } catch (error) {
             console.error(error);
             // Handle error here
@@ -37,10 +38,12 @@ class Bus extends Component {
     }
     
         render() {
-            const { loading, error } = this.props;
-            console.log(this.props)
-            const busData = this.props.data || []; // Handle potential empty data
-            console.log(busData)
+            // const { loading, error } = this.props;
+            // console.log("render",this.props)
+            const testData = this.props.data
+            const data = Array.isArray(testData) ? testData : [];
+        const allColumns = data.length > 0 ? Object.keys(data[0]).map(key => ({ Header: key, accessor: key })) : [];
+        console.log("data,columns",data,allColumns)
     //         const data = Array.isArray(this.props.data) ? this.props.data : [];
     //   const allColumns = data.length > 0 ? Object.keys(data[0]).map(key => ({ Header: key, accessor: key })) : [];
     //   const columns = allColumns.slice(1, -2);
@@ -81,46 +84,8 @@ class Bus extends Component {
             
             
 
-        {/* <TableComponent columns={columns} data={data} /> */}
-
-        <div className="table-responsive">
-            <table className="table table-dark table-striped w-75 container">
-                <thead>
-                    <tr>
-                        <th>Operator ID</th>
-                        <th>Bus ID</th>
-                        <th>Name</th>
-                        <th>Share</th>
-                        <th>Type</th>
-                        <th>Edit/Delete</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-            <td>
-                <ModifyTableButton/>
-            </td>
-        </tr>
-        <tr>
-            
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-        <td>
-        <ModifyTableButton/>
-        </td>
-        </tr>
-        </tbody>
-        </table>
-        </div>
-    </div>
+        <DynamicTable columns={allColumns} data={data}/>
+</div>
         </div>
         
     );

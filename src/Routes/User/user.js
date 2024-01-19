@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ModifyTableButton from '../../Components/ModifyTableButton'
+import DynamicTable from '../../Components/TableComponent'
 import SideBar from '../../Components/SideBar'
 import DropDown from '../../Components/DropDown'
 import InputField from '../../Components/InputField'
@@ -17,8 +17,9 @@ import InputButton from '../../Components/InputButton'
           async fetchUser() {
             try {
                 await this.props.showUser();
-                const userData = this.props.showUser.data; // Access data correctly
-                console.log(userData);
+                console.log("fetchuser ",this.props)
+                // const userData = this.props.showUser.data; // Access data correctly
+                // console.log(userData);
             } catch (error) {
                 console.error(error);
                 // Handle error here
@@ -31,7 +32,11 @@ import InputButton from '../../Components/InputButton'
             console.log(formData,".,.,.,.,")
         }
     render(){
-        
+        console.log("render",this.props)
+            const testData = this.props.data
+        const data = Array.isArray(testData) ? testData : [];
+    const allColumns = data.length > 0 ? Object.keys(data[0]).map(key => ({ Header: key, accessor: key })) : [];
+    console.log("data,columns",data,allColumns)
     return (
         
         <div>
@@ -48,42 +53,7 @@ import InputButton from '../../Components/InputButton'
             
             <InputButton type="submit" className="default-form-submit" onSubmit={this.handleSubmit} value="Submit"/>
         </form>
-        <div className="table-responsive">
-            <table className="table table-dark table-striped w-75 container">
-                <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Password</th>
-                        <th>Role</th>
-                        <th>Edit/Delete</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                
-            <td>
-                <ModifyTableButton/>
-            </td>
-        </tr>
-        <tr>
-            
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-        <td>
-        <ModifyTableButton/>
-
-        </td>
-        </tr>
-        </tbody>
-        </table>
-        </div>
+        <DynamicTable columns={allColumns} data={data}/>
     </div>
         </div>
     );

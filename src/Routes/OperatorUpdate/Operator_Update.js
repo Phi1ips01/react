@@ -11,13 +11,18 @@ import DropDown from '../../Components/DropDown'
             error: false,
             showOperatorUpdate: []
           }
+        //   constructor (props){
+        //     super(props);
+        //     this.fetchBus=this.fetchBus.bind(this);
+        //     this.handleSubmit=this.handleSubmit.bind(this);
+        //   }
           componentDidMount() {
             this.fetchOperatorUpdate();
           }
           async fetchOperatorUpdate() {
             try {
                 await this.props.showOperatorUpdate();
-                const operatorUpdateData = this.props.showOperatorUpdate.data; // Access data correctly
+                const operatorUpdateData = this.props.showOperatorUpdate; // Access data correctly
                 console.log(operatorUpdateData);
             } catch (error) {
                 console.error(error);

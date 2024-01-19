@@ -16,6 +16,7 @@ export function postUser(payload) {
         });
         try {
             const data = await addUser(payload);
+            
             dispatch({
                 type: POST_USER_SUCCESS,
                 payload: data,
@@ -38,6 +39,7 @@ export function showUser(payload) {
         });
         try {
             const data = await showAllUser();
+            console.log("data",data)
             dispatch({
                 type: SHOW_USER_SUCCESS,
                 payload: data,

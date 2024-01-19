@@ -17,7 +17,7 @@ export function showBusOperatorSuccess(state, payload) {
     showBusOperator: {
       loading: false,
       error: false,
-      data: payload,
+      data: payload.data.response,
       
     },
     

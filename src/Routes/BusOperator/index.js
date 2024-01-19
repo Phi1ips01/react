@@ -12,10 +12,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    showBusOperator: (params) => {
-      dispatch(showBusOperator(params));
+    showBusOperator: (params) => dispatch(showBusOperator(params))
     }
   };
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(BusOperator);
+ 

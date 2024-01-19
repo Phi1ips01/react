@@ -40,6 +40,7 @@ export function showBusOperator(payload) {
         try {
             console.log("busoperatoraction success")
             const data = await showAllBusOperator();
+            console.log("data", data)
             dispatch({
                 type: SHOW_BUS_OPERATOR_SUCCESS,
                 payload: data,

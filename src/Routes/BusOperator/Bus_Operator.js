@@ -1,25 +1,31 @@
 import React from 'react';
 import InputField from '../../Components/InputField';
 import InputButton from '../../Components/InputButton';
-import ModifyTableButton from '../../Components/ModifyTableButton';
 import SideBar from '../../Components/SideBar'
 import DropDown from '../../Components/DropDown'
 import { Component } from 'react';
+import DynamicTable from '../../Components/TableComponent'
 class BusOperator extends Component  {
     state = {
         loading: false,
         error: false,
         showBusOperator: []
       }
+    //   constructor (props){
+    //     super(props);
+    //     this.fetchBus=this.fetchBus.bind(this);
+    //     this.handleSubmit=this.handleSubmit.bind(this);
+    //   }
       componentDidMount() {
         this.fetchBusOperator();
       }
       async fetchBusOperator() {
         try {
-            console.log("busoperator fech",this.props)
             await this.props.showBusOperator();
-            const busOperatorData = this.props.showBusOperator; // Access data correctly
-            console.log("busOperatorData",busOperatorData);
+            console.log("this.props",this.props)
+            // const busOperatorData = this.props.data.data.response; // Access data correctly
+            // console.log("busOperatorData",busOperatorData);
+
         } catch (error) {
             console.error(error);
             // Handle error here
@@ -32,6 +38,11 @@ class BusOperator extends Component  {
         console.log(formData,".,.,.,.,")
     }
     render(){
+      console.log("render",this.props)
+            const testData = this.props.data
+        const data = Array.isArray(testData) ? testData : [];
+    const allColumns = data.length > 0 ? Object.keys(data[0]).map(key => ({ Header: key, accessor: key })) : [];
+    console.log("data,columns",data,allColumns)
     return (
         <div>
              <DropDown/>
@@ -50,37 +61,8 @@ class BusOperator extends Component  {
 
             <InputButton type="submit" onSubmit={this.handleSubmit} className="default-form-submit" value="Submit"/>
         </form>
-        <div className="table-responsive">
-            <table className="table table-dark table-striped w-75 container">
-                <thead>
-                    <tr>
-                        <th>Operator ID</th>
-                        <th>Name</th>
-                        <th>Contact</th>
-                        <th>Edit/Delete</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-            <td>
-            <ModifyTableButton/>
-            </td>
-        </tr>
-        <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-        <td>
-            <ModifyTableButton/>
-        </td>
-        </tr>
-        </tbody>
-        </table>
+        <DynamicTable columns={allColumns} data={data}/>
         </div>
-    </div>
         </div>
     );
 };

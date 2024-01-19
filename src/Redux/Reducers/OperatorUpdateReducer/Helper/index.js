@@ -17,7 +17,7 @@ export function showOperatorUpdateSuccess(state, payload) {
     showOperatorUpdate: {
       loading: false,
       error: false,
-      data: payload
+      data: payload.data.response
     },
   };
 }

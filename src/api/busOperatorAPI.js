@@ -13,14 +13,7 @@ const postApi = postInstance.api
 
 export const showAllBusOperator = () => {
     console.log("busoperatorAPI model")
-    return api.get(api.baseURL).then((response) => {
-        console.log("Response:", response.data);
-        return response.data; // Assuming data is within response.data
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        throw error; // Re-throw to handle in calling code
-      });
+    return api.get(api.baseURL)
 };
 export const addBusOperator = (payload) =>{
     return postApi.post(postApi.baseURL,payload)

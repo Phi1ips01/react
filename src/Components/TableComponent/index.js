@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTable } from 'react-table';
-
+import ModifyTableButton from '../ModifyTableButton'
 const DynamicTable = ({ columns, data }) => {
   const {
     getTableProps,
@@ -11,17 +11,19 @@ const DynamicTable = ({ columns, data }) => {
   } = useTable({ columns, data });
 
   return (
-    <div>
-      <h1>Your Dynamic Table</h1>
-      <table {...getTableProps()} style={{ borderSpacing: '0', border: '1px solid black' }}>
+
+    <div className="table-responsive ">
+      <table {...getTableProps()} className="table table-dark table-striped w-75 container">
+      
         <thead>
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps()} style={{ borderBottom: '2px solid black', background: 'aliceblue', padding: '8px' }}>
+                <th {...column.getHeaderProps()} className='trip-table-th'>
                   {column.render('Header')}
                 </th>
               ))}
+              <th>Edit/Delete</th>
             </tr>
           ))}
         </thead>
@@ -29,13 +31,16 @@ const DynamicTable = ({ columns, data }) => {
           {rows.map(row => {
             prepareRow(row);
             return (
+              
               <tr {...row.getRowProps()} style={{ borderBottom: '1px solid black' }}>
                 {row.cells.map(cell => (
                   <td {...cell.getCellProps()} style={{ padding: '8px' }}>
                     {cell.render('Cell')}
-                  </td>
-                ))}
+                  </td>))}
+                  <td><ModifyTableButton/></td>
+                
               </tr>
+         
             );
           })}
         </tbody>
