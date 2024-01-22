@@ -103,7 +103,7 @@
     /* justify-content: space-evenly; */
     /* align-items: center; */
   }
-  .topnav .topnav-list a {
+  .topnav .topnav-list button, .topnav .topnav-list a {
     display: block;
     text-align: center;
     padding: 5px 10px;
@@ -226,6 +226,11 @@
     overflow-x: auto;
     font-size: x-small;
     text-align: center;
+    max-width:100%
+  }
+  .trip-table{
+    table-layout: fixed;
+    width: 100%;
   }
   button img
   {

@@ -52,7 +52,26 @@ class Home extends Component {
 }
 handleSubmit(event) {
     event.preventDefault();
-    const formData = new FormData(event.target);
+    const formData = {
+      operator_id:event.target.bus_operator_id.value ,
+            bus_id:event.target.bus_id.value ,
+            trip_id: event.target.trip_id.value,
+            customer_name:event.target.customer_name.value,
+            contact:event.target.contact.value,
+            alternate_contact: event.target.alternate_contact.value,
+            starting_point:event.target.starting_point.value ,
+            boarding_point:event.target.boarding_point.value,
+            destination_point: event.target.destination_point.value,
+            seat_numbers:event.target.seat_numbers.value,
+            address:event.target.address.value,
+            date_of_journey:event.target.date_of_journey.value,
+            age: event.target.age.value,
+            number_of_tickets:event.target.number_of_tickets.value ,
+            total_amount: event.target.total_amount.value,
+            paid: event.target.paid.value,
+            remarks: event.target.remarks.value,
+            agents: event.target.agents.value,
+    }
     this.props.postTrip(formData); // Dispatch the action
     console.log(formData,".,.,.,.,")
 }
@@ -116,110 +135,10 @@ handleDate(){
                 <InputField type="text" id="paid" name="paid" className="trip-form-input" placeholder="Enter the paid amount.."/>
                 <InputField type="text" id="remarks" name="remarks" className="trip-form-input" placeholder="Any Remarks.."/>
                 <InputField type="text" id="agent" name="agent" className="trip-form-input" placeholder="Enter if any agents present.."/>
-
                 <InputButton className="trip-form-submit" onSubmit={this.handleSubmit} value="Submit"/>
             </form>
         </div>
-        <DynamicTable columns={allColumns} data={data}/>
-
-        <div className="table-responsive">
-          <table className="table table-dark table-striped w-75 container">
-              <thead>
-                  <tr>
-                      <th>Operator ID</th>
-                      <th>Trip ID</th>
-                      <th>Bus ID</th>
-                      <th>Customer Name</th>
-                      <th>Contact</th>
-                      <th>Alternate Contact</th>
-                      <th>Starting Point</th>
-                      <th>Destination</th>
-                      <th>Address</th>
-                      <th>Age</th>
-                      <th>No. of tickets</th>
-                      <th>Total Amount</th>
-                      <th>Paid</th>
-                      <th>Edit/Delete</th>
-                  </tr>
-              </thead>
-             <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                  <ModifyTableButton/>
-
-                  </td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                <ModifyTableButton/>
-                </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-              <ModifyTableButton/>
-              </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <ModifyTableButton/>
-            </td>
-        </tr>
-              
-              </tbody>
-          </table>
-      </div>
+        <DynamicTable columns={allColumns} data={data} className="trip-table"/>
       </div>
     );
   }

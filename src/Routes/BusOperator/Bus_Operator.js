@@ -33,7 +33,11 @@ class BusOperator extends Component  {
     }
     handleSubmit(event) {
         event.preventDefault();
-        const formData = new FormData(event.target);
+        const formData = {
+          bus_operator_id:event.target.bus_operator_id.value,
+          name:event.target.name.value,
+          contact:event.target.type.value,
+        }
         this.props.postBus(formData); // Dispatch the action
         console.log(formData,".,.,.,.,")
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTable } from 'react-table';
 import ModifyTableButton from '../ModifyTableButton'
-const DynamicTable = ({ columns, data }) => {
+const DynamicTable = ({ columns, data,className }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -11,9 +11,10 @@ const DynamicTable = ({ columns, data }) => {
   } = useTable({ columns, data });
 
   return (
-
-    <div className="table-responsive ">
-      <table {...getTableProps()} className="table table-dark table-striped w-75 container">
+<div className="grid grid-cols-1">
+  <div className="grid-item">
+    {/* <div className={`table-responsive`}> */}
+      <table {...getTableProps()} className={` table table-dark table-striped container w-100`} >
       
         <thead>
           {headerGroups.map(headerGroup => (
@@ -34,7 +35,7 @@ const DynamicTable = ({ columns, data }) => {
               
               <tr {...row.getRowProps()} style={{ borderBottom: '1px solid black' }}>
                 {row.cells.map(cell => (
-                  <td {...cell.getCellProps()} style={{ padding: '8px' }}>
+                  <td {...cell.getCellProps()} style={{ padding: '1px' }}>
                     {cell.render('Cell')}
                   </td>))}
                   <td><ModifyTableButton/></td>
@@ -46,6 +47,8 @@ const DynamicTable = ({ columns, data }) => {
         </tbody>
       </table>
     </div>
+    </div>
+    // </div>
   );
 };
 

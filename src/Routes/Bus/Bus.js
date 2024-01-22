@@ -32,7 +32,14 @@ class Bus extends Component {
     }
     handleSubmit(event) {
         event.preventDefault();
-        const formData = new FormData(event.target);
+        const formData = {
+          bus_operator_id:event.target.bus_operator_id.value,
+        bus_id:event.target.bus_id.value,//bus name should be converted to bus id
+        name:event.target.name.value,
+        type:event.target.type.value,
+        share:event.target.share.value,
+        
+        }
         this.props.postBus(formData); // Dispatch the action
         console.log(formData,".,.,.,.,")
     }
