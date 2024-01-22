@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import User from './user';
 
-import { showUser } from '../../Redux/Actions';
+import { showUser,postUser } from '../../Redux/Actions';
 
 import { SelectState } from './Selector';
 
@@ -14,6 +14,9 @@ function mapDispatchToProps(dispatch) {
   return {
     showUser: (params) => {
       dispatch(showUser(params));
+    },
+    postUser: (params)=>{
+      dispatch(postUser(params))
     }
   };
 }

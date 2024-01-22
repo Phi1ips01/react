@@ -69,7 +69,7 @@ handleDate(){
   render() {
     console.log("thisprops",this.props)
     
-    const testData = this.props.data.data.response
+    const testData = this.props.data
         const data = Array.isArray(testData) ? testData : [];
     const allColumns = data.length > 0 ? Object.keys(data[0]).map(key => ({ Header: key, accessor: key })) : [];
     console.log("data,columns",data,allColumns)

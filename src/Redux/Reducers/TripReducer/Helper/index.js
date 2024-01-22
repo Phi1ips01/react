@@ -18,7 +18,7 @@ export function showTripSuccess(state, payload) {
       loading: false,
       error: false,
       data: payload.data.response
-    },
+    }, 
   };
 }
 

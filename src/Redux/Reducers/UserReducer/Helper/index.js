@@ -45,8 +45,8 @@ export function postUserStarted(state, payload) {
 }
 
 export function postUserSuccess(state, payload) {
-  console.log('reached inside reducer');
-  
+  console.log('reached inside reducer11');
+  console.log("helper post",payload)
   return {
     ...state,
     postTrip: {

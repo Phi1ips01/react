@@ -17,4 +17,3 @@ export const showAllUser = (payload) => {
 export const addUser = (payload) =>{
     return postApi.post(postApi.baseURL,payload)
 }
-

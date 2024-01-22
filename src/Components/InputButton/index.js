@@ -9,7 +9,7 @@ export default class InputButton extends Component {
           type="submit"
           value={this.props.value}
           className={this.props.className}
-          onChange={this.props.onChange}
+          onSubmit={this.props.onSubmit}
         />
     )
   }
