@@ -30,14 +30,17 @@ class Bus extends Component {
             // Handle error here
         }
     }
-    handleSubmit(event) {
+    handleSubmit=(event) => {
         event.preventDefault();
         const formData = {
-          bus_operator_id:event.target.bus_operator_id.value,
+        // bus_operator_id:event.target.bus_operator_id.value,
+        bus_operator_id:1,
         bus_id:event.target.bus_id.value,//bus name should be converted to bus id
         name:event.target.name.value,
         type:event.target.type.value,
         share:event.target.share.value,
+        total_amount: event.target.bus_total_payment.value,
+        share_deducted_amount: event.target.share_deduced_amount.value,
         
         }
         this.props.postBus(formData); // Dispatch the action
@@ -62,32 +65,30 @@ class Bus extends Component {
             <SideBar/>
             <DropDown/>
            <div className="default-main">
-        <form action="/" onSubmit={this.handleSubmit} className="default-form">
+        <form  onSubmit={this.handleSubmit} className="default-form">
           <h3>Enter the Bus details here</h3>
           {/* <InputField type="text" id="operator_id" name="operator_id"  className="default-form-input" placeholder="Enter the bus operator ID.."/> */}
-          <InputField type="text" id="bus_id" name="bus_id" className="default-form-input" placeholder="Enter the bus ID.."/>
-          <select className='default-select' id="operator_id">
-                <option value=""  defaultValue>
+          <InputField type="text" id="bus_id" name="bus_id" className="default-form-input" placeholder="Enter the bus ID.." required/>
+          <select className='default-select' id="operator_id" required>
+                <option value=""  disabled>
                   Enter the Operator
                   </option>
                   <option>
                     bus operator name
                   </option>
                 </select>
-          <InputField type="text" id="name" name="name" className="default-form-input" placeholder="Enter the Name"/>
-          {/* <select name="type" id="type" className="default-select">
+          <InputField type="text" id="name" name="name" className="default-form-input" placeholder="Enter the Name" required/>
+          <select name="type" id="type" className="default-select">
                 <option value="volvo">Volvo</option>
                 <option value="Full AC">FUll AC</option>
                 <option value="Second Seater">Second Seater</option>
-            </select> */}
-            <InputField type="text" id="share" name="share" className="default-form-input" placeholder="Enter the share in %"/>
-            <InputField type="text" id="bus_total_payment" name="bus_total_payment" className="default-form-input" placeholder="Enter the Total amount" disabled/>
-            <InputField type="text" id="bus_paid" name="bus_paid" className="default-form-input" placeholder="paid amount" disabled/>
-            <InputField type="text" id="remaining_payment" name="remaining_payment" className="default-form-input" placeholder="remaining payment" disabled/>
+            </select>
+            <InputField type="text" id="share" name="share" className="default-form-input" placeholder="Enter the share in %" required/>
+            <InputField type="text" id="bus_total_payment" name="bus_total_payment" className="default-form-input" placeholder="Enter the Total amount disbaled" />
+            <InputField type="text" id="share_deduced_amount" name="share_deduced_amount" className="default-form-input" placeholder="Share deduced amount disbaled" />
 
             <InputButton className="default-form-submit" value="Submit"/>
         </form>
-            
             
             
 

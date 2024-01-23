@@ -50,8 +50,12 @@ class User extends Component {
     console.log("render", this.props);
     const testData = this.props.data;
     const data = Array.isArray(testData) ? testData : [];
-    const allColumns = data.length > 0 ? Object.keys(data[0]).map(key => ({ Header: key, accessor: key })) : [];
-    console.log("data,columns", data, allColumns);
+    const allColumns = data.length > 0 ? Object.keys(data[0]) : [];
+    
+    const columns = allColumns.map(column => ({
+      Header: column.charAt(0).toUpperCase() + column.slice(1).replace(/_/g, ' '), // Convert underscore to space and capitalize
+      accessor: column,
+    }));
     return (
       <div>
         <DropDown />
@@ -65,7 +69,7 @@ class User extends Component {
             <InputField type="text" id="role" name="role" className="default-form-input" placeholder="Enter the role"/>
             <InputButton type="submit" className="default-form-submit"  value="Submit"/>
           </form>
-          <DynamicTable columns={allColumns} data={data}/>
+          <DynamicTable columns={columns} data={data}/>
         </div>
       </div>
     );

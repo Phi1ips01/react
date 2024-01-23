@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Trip from './Home';
 
-import { showTrip } from '../../Redux/Actions';
+import { showTrip,postTrip } from '../../Redux/Actions';
 
 import { SelectState } from './Selector';
 
@@ -14,6 +14,9 @@ function mapDispatchToProps(dispatch) {
   return {
     showTrip: (params) => {
       dispatch(showTrip(params));
+    },
+    postTrip: (params)=>{
+      dispatch(postTrip(params))
     }
   }; 
 }
