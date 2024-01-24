@@ -37,7 +37,7 @@ export function showUserFailed(state, payload) {
 export function postUserStarted(state, payload) {
   return {
     ...state,
-    postTrip: {
+    postUser: {
       loading: true,
       error: false
     }
@@ -49,7 +49,7 @@ export function postUserSuccess(state, payload) {
   console.log("helper post",payload)
   return {
     ...state,
-    postTrip: {
+    postUser: {
       loading: false,
       error: false,
       data: payload
@@ -61,7 +61,7 @@ export function postUserSuccess(state, payload) {
 export function postUserFailed(state, payload) {
   return {
     ...state,
-    postTrip: {
+    postUser: {
       loading: false,
       error: payload
     }

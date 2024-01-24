@@ -8,16 +8,22 @@ class Bus extends Component {
     state = {
         loading: false,
         error: false,
-        showBus:[]
+        showBus:[],
+        postBus:[],
+        showBusOperator:[]
       }
     //   constructor (props){
     //     super(props);
     //     this.fetchBus=this.fetchBus.bind(this);
     //     this.handleSubmit=this.handleSubmit.bind(this);
     //   }
-      componentDidMount() {
-        this.fetchBus();
-      }
+    componentDidMount() {
+      
+        this.props.showBusOperator();
+      
+      this.fetchBus();
+    }
+
        async fetchBus() {
         try {
             await this.props.showBus();
@@ -30,6 +36,7 @@ class Bus extends Component {
             // Handle error here
         }
     }
+
     handleSubmit=(event) => {
         event.preventDefault();
         const formData = {
@@ -49,15 +56,22 @@ class Bus extends Component {
     
         render() {
             // const { loading, error } = this.props;
-            // console.log("render",this.props)
-            const testData = this.props.data
+            console.log("render1",this.props)
+            const { showBusOperatorData } = this.props || [];
+            console.log("showBUsOperaotrData",showBusOperatorData)
+            const testData = this.props.busData
+            if (!showBusOperatorData || !testData) {
+              // Render a loading state or return null until the data is available
+              return (
+                <div>Loading...</div>
+              );
+            }
+            else
+            {
             const data = Array.isArray(testData) ? testData : [];
         const allColumns = data.length > 0 ? Object.keys(data[0]).map(key => ({ Header: key, accessor: key })) : [];
         console.log("data,columns",data,allColumns)
-    //         const data = Array.isArray(this.props.data) ? this.props.data : [];
-    //   const allColumns = data.length > 0 ? Object.keys(data[0]).map(key => ({ Header: key, accessor: key })) : [];
-    //   const columns = allColumns.slice(1, -2);
-      // const { userList, loading, error } = this.state;
+
             // const { loading, error, data } = this.props.showBus;
     return (
         <div>
@@ -67,16 +81,25 @@ class Bus extends Component {
            <div className="default-main">
         <form  onSubmit={this.handleSubmit} className="default-form">
           <h3>Enter the Bus details here</h3>
-          {/* <InputField type="text" id="operator_id" name="operator_id"  className="default-form-input" placeholder="Enter the bus operator ID.."/> */}
           <InputField type="text" id="bus_id" name="bus_id" className="default-form-input" placeholder="Enter the bus ID.." required/>
+          
           <select className='default-select' id="operator_id" required>
-                <option value=""  disabled>
-                  Enter the Operator
-                  </option>
-                  <option>
-                    bus operator name
-                  </option>
-                </select>
+          <option value="" disabled selected>Select the Operator</option>
+          {Array.isArray(showBusOperatorData) &&
+  showBusOperatorData.map(operator => {
+    console.log("Operator ID:", operator.bus_operator_id);
+    console.log("Operator Name:", operator.name);
+
+    return (
+      <option key={operator.id} value={operator.id}>
+        {operator.name}
+      </option>
+    );
+  })}
+
+
+
+        </select>
           <InputField type="text" id="name" name="name" className="default-form-input" placeholder="Enter the Name" required/>
           <select name="type" id="type" className="default-select">
                 <option value="volvo">Volvo</option>
@@ -84,8 +107,8 @@ class Bus extends Component {
                 <option value="Second Seater">Second Seater</option>
             </select>
             <InputField type="text" id="share" name="share" className="default-form-input" placeholder="Enter the share in %" required/>
-            <InputField type="text" id="bus_total_payment" name="bus_total_payment" className="default-form-input" placeholder="Enter the Total amount disbaled" />
-            <InputField type="text" id="share_deduced_amount" name="share_deduced_amount" className="default-form-input" placeholder="Share deduced amount disbaled" />
+            {/* <InputField type="text" id="bus_total_payment" name="bus_total_payment" className="default-form-input" placeholder="Enter the Total amount disbaled" />
+            <InputField type="text" id="share_deduced_amount" name="share_deduced_amount" className="default-form-input" placeholder="Share deduced amount disbaled" /> */}
 
             <InputButton className="default-form-submit" value="Submit"/>
         </form>
@@ -97,6 +120,7 @@ class Bus extends Component {
         </div>
         
     );
+          }
 };
 }
 export default Bus

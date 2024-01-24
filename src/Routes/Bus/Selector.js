@@ -1,7 +1,10 @@
 import { createSelector } from 'reselect';
 
 function getBusPageReducer(state) {
-    return state.ShowBus.showBus;
+    return {
+        showBus: state.ShowBus.showBus,
+        showBusOperator: state.ShowBusOperator.showBusOperator
+    }
 }
 function mergeReducer(showBus) {
     return {
