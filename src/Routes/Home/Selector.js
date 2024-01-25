@@ -1,7 +1,13 @@
 import { createSelector } from 'reselect';
 
 function getTripPageReducer(state) {
-    return state.ShowTrip.showTrip;
+    console.log("satte",state)
+    return {
+        showTrip: state.ShowTrip.showTrip,
+        showBus: state.ShowBus.showBus,
+        showBusOperator: state.ShowBusOperator.showBusOperator,
+        selectedOperatorID: state.selectedOperatorID
+    }
 }
 function mergeReducer(showTrip) {
     return {

@@ -5,6 +5,7 @@ import {
   POST_TRIP_FAILED,
   POST_TRIP_STARTED,
   POST_TRIP_SUCCESS,
+  UPDATE_SELECTED_OPERATOR
 } from '../../Redux.constants';
 import {
   showTripFailed,
@@ -29,6 +30,18 @@ export function PostTrip(state = INITIAL_STATE, action) {
       return { ...state };
   }
 }
+export function UpdateSelectedOperatorID(state = INITIAL_STATE,action){
+    switch (action.type) {
+      case UPDATE_SELECTED_OPERATOR:
+        return {
+          ...state,
+          selectedOperatorId: action.payload,
+        };
+      // handle other action types if needed
+      default:
+        return state;
+    }
+  };
 
 
 export function ShowTrip(state = INITIAL_STATE, action) {

@@ -9,7 +9,8 @@ class BusOperator extends Component  {
     state = {
         loading: false,
         error: false,
-        showBusOperator: []
+        showBusOperator: [],
+        postBusOperator:[]
       }
     //   constructor (props){
     //     super(props);
@@ -37,10 +38,10 @@ class BusOperator extends Component  {
           bus_operator_id:event.target.operator_id.value,
           name:event.target.name.value,
           contact:event.target.contact.value,
-          total_amount: event.target.bus_operator_total_payment.value,
-          profit:event.target.bus_operator_profit.value,
-          paid:event.target.bus_operator_paid.value,
-          remaining_payment: event.target.remaining_payment.value,
+          // total_amount: event.target.bus_operator_total_payment.value,
+          // profit:event.target.bus_operator_profit.value,
+          // paid:event.target.bus_operator_paid.value,
+          // remaining_payment: event.target.remaining_payment.value,
         }
         console.log("this.props",this.props)
         this.props.postBusOperator(formData); // Dispatch the action
@@ -67,10 +68,10 @@ class BusOperator extends Component  {
             <InputField type="text" id="trip_id" name="operator_id"  className="default-form-input" placeholder="Enter the bus operator ID.." required/>
             <InputField type="text" id="name" name="name" className="default-form-input" placeholder="Enter the Name" required/>
             <InputField type="text" id="contact" name="contact" className="default-form-input" placeholder="Enter the contact" required/>
-            <InputField type="text" id="bus_operator_total_payment" name="bus_operator_total_payment" className="default-form-input" placeholder="Total bus operator amount disabled"  />
+            {/* <InputField type="text" id="bus_operator_total_payment" name="bus_operator_total_payment" className="default-form-input" placeholder="Total bus operator amount disabled"  />
             <InputField type="text" id="bus_operator_profit" name="bus_operator_profit" className="default-form-input" placeholder="Profit recieved disabled" />
             <InputField type="text" id="bus_operator_paid" name="bus_operator_paid" className="default-form-input" placeholder="Amount paid disabled" />
-            <InputField type="text" id="remaining_payment" name="remaining_payment" className="default-form-input" placeholder="remaining payment disabled" />
+            <InputField type="text" id="remaining_payment" name="remaining_payment" className="default-form-input" placeholder="remaining payment disabled" /> */}
 
             <InputButton type="submit" className="default-form-submit" value="Submit"/>
         </form>

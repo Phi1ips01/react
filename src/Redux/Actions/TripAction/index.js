@@ -5,6 +5,7 @@ import {
     POST_TRIP_FAILED,
 POST_TRIP_STARTED,
 POST_TRIP_SUCCESS,
+UPDATE_SELECTED_OPERATOR
 } from '../../Redux.constants';
 import { addTrip, showAllTrip } from '../../../api/tripAPI';
 
@@ -28,7 +29,14 @@ export function postTrip(payload) {
         }
     };
 }
-
+export function updateSelectedOperator(selectedOperatorId)
+{
+    return async (dispatch)=>{
+    dispatch({
+        type: UPDATE_SELECTED_OPERATOR,
+        payload: selectedOperatorId,
+    })}
+  };
 
 export function showTrip(payload) {
     return async (dispatch) => {

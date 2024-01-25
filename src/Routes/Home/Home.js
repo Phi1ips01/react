@@ -29,7 +29,9 @@ class Home extends Component {
     loading: false,
     error: false,
     showTrip: [],
-    postTrip:[]
+    postTrip:[],
+    showBus:[],
+    showBusOperator:[]
   }
   // constructor (props){
   //   super(props);
@@ -38,6 +40,9 @@ class Home extends Component {
   // }
   componentDidMount() {
     console.log("this.state componentDId",this.state)
+    this.props.showBusOperator()
+    this.props.showBus()
+
     this.fetchTrip();
   }
   async fetchTrip() {
@@ -50,13 +55,18 @@ class Home extends Component {
         // Handle error here
     }
 }
+handleOperatorChange = (event) => {
+  const selectedOperatorId = event.target.value;
+  console.log("this.props handle",this.props)
+  this.props.updateSelectedOperator(selectedOperatorId);
+  // Fetch buses based on the selected operator (you may need to implement this)
+  // this.props.fetchBusesByOperator(selectedOperatorId);
+};
 handleSubmit = (event)=> {
     event.preventDefault();
     const formData = {
-            // operator_id:event.target.operator_id.value ,
-            // bus_id:event.target.bus_id.value ,
-            operator_id:1,
-            bus_id:2,
+            operator_id:event.target.operator_id.value ,
+            bus_id:event.target.bus_id.value ,
             trip_id: event.target.trip_id.value,
             customer_name:event.target.customer_name.value,
             contact:event.target.contact.value,
@@ -90,8 +100,10 @@ handleSubmit = (event)=> {
 // }
   render() {
     console.log("thisprops",this.props)
-    
-    const testData = this.props.data
+    const { busOperatorData, busData, selectedOperatorId } = this.props || [];
+
+
+    const testData = this.props.tripData
         const data = Array.isArray(testData) ? testData : [];
     const allColumns = data.length > 0 ? Object.keys(data[0]) : [];
     const columns = allColumns.map(column => ({
@@ -107,22 +119,36 @@ handleSubmit = (event)=> {
             <form className="trip-form" onSubmit={this.handleSubmit}>
               <h3>Enter the Trip details here</h3>
                 <InputField type="text" id="trip_id" name="trip_id" className="trip-form-input" placeholder="Enter the PNR Number"/>
-                <select className='trip-select' id="operator_id" name="operator_id">
-                  <option value=""  defaultValue>
-                  Enter the Operator
+                <select
+                    className='trip-select'
+                    id='operator_id'
+                    name='operator_id'
+                    onChange={this.handleOperatorChange}
+                >
+                  <option value='' disabled selected>
+                    Enter the Operator
                   </option>
-                  <option>
-                    bus operator name
-                  </option>
-                </select>
+                      {Array.isArray(busOperatorData) &&
+                        busOperatorData.map((operator) => (
+                        <option key={operator.bus_operator_id} value={operator.bus_operator_id}>
+                            {operator.name}
+                        </option>
+                        ))}
+                 </select>
                 {/* <InputField type="text" id="operator_id" name="operator_id"  className="trip-form-input" placeholder="Enter the bus operator ID.."/> */}
-                <select className='trip-select' id="bus_id" name="bus_id">
-                <option value=""  defaultValue>
-                  Enter the Bus
+                <select className='trip-select' id='bus_id' name='bus_id'>
+                  <option value='' disabled selected>
+                    Enter the Bus
                   </option>
-                  <option>
-                    bus name
-                  </option>
+                  {Array.isArray(busData) &&
+                    busData
+                      .filter((bus) => bus.operator_id === selectedOperatorId)
+                      .map((bus) => (
+                        
+                        <option key={bus.bus_id} value={bus.bus_id}>
+                          {bus.name}
+                        </option>
+                      ))}
                 </select>
                 {/* <InputField type="text" id="bus_id" name="bus_id" className="trip-form-input" placeholder="Enter the bus ID.."/> */}
                 <InputField type="text" id="customer_name" name="customer_name" className="trip-form-input" placeholder="Enter the Customer Name" required/>
@@ -131,11 +157,11 @@ handleSubmit = (event)=> {
                 <InputField type="text" id="age" name="age" className="trip-form-input" placeholder="Enter the age" required/>
                 <InputField type="text" id="address" name="address" className="trip-form-input" placeholder="Enter the Address" required/>
                 <InputField type="date" id="date_of_journey" name="date_of_journey" className="trip-form-input" placeholder="Enter journey date" required="required"/>
-              <InputField type="text" id="starting_point" name="starting_point" className="trip-form-input" placeholder="Enter the starting point..." required/>
-              <InputField type="text" id="destination_point" name="destination_point" className="trip-form-input" placeholder="Enter the Destination..." required/>
-              <InputField type="text" id="boarding_point" name="boarding_point" className="trip-form-input" placeholder="Enter the Bording Point" required/>
-              <InputField type="text" id="number_of_tickets" name="number_of_tickets" className="trip-form-input" placeholder="Enter the Number of Tickets" required/>
-              <InputField type="text" id="seat_numbers" name="seat_numbers" className="trip-form-input" placeholder="Enter the Seat Number" required/>
+                <InputField type="text" id="starting_point" name="starting_point" className="trip-form-input" placeholder="Enter the starting point..." required/>
+                <InputField type="text" id="destination_point" name="destination_point" className="trip-form-input" placeholder="Enter the Destination..." required/>
+                <InputField type="text" id="boarding_point" name="boarding_point" className="trip-form-input" placeholder="Enter the Bording Point" required/>
+                <InputField type="text" id="number_of_tickets" name="number_of_tickets" className="trip-form-input" placeholder="Enter the Number of Tickets" required/>
+                <InputField type="text" id="seat_numbers" name="seat_numbers" className="trip-form-input" placeholder="Enter the Seat Number" required/>
                 <InputField type="text" id="total_amount" name="total_amount" className="trip-form-input" placeholder="Enter the total amount.." required/>
                 <InputField type="text" id="paid" name="paid" className="trip-form-input" placeholder="Enter the paid amount.." required/>
                 <InputField type="text" id="remarks" name="remarks" className="trip-form-input" placeholder="Any Remarks.."/>

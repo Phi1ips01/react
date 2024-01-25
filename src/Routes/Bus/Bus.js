@@ -40,18 +40,17 @@ class Bus extends Component {
     handleSubmit=(event) => {
         event.preventDefault();
         const formData = {
-        // bus_operator_id:event.target.bus_operator_id.value,
-        bus_operator_id:1,
-        bus_id:event.target.bus_id.value,//bus name should be converted to bus id
+        bus_operator_id:event.target.operator_id.value,
+        bus_id:event.target.bus_id.value,
         name:event.target.name.value,
         type:event.target.type.value,
         share:event.target.share.value,
-        total_amount: event.target.bus_total_payment.value,
-        share_deducted_amount: event.target.share_deduced_amount.value,
+        // total_amount: event.target.bus_total_payment.value,
+        // share_deducted_amount: event.target.share_deduced_amount.value,
         
         }
         this.props.postBus(formData); // Dispatch the action
-        console.log(formData,".,.,.,.,")
+        console.log(".,.,.,.,",formData)
     }
     
         render() {
@@ -69,7 +68,12 @@ class Bus extends Component {
             else
             {
             const data = Array.isArray(testData) ? testData : [];
-        const allColumns = data.length > 0 ? Object.keys(data[0]).map(key => ({ Header: key, accessor: key })) : [];
+        const allColumns = data.length > 0 ? Object.keys(data[0]) : [];
+    
+        const columns = allColumns.map(column => ({
+          Header: column.charAt(0).toUpperCase() + column.slice(1).replace(/_/g, ' '), // Convert underscore to space and capitalize
+          accessor: column,
+        }));
         console.log("data,columns",data,allColumns)
 
             // const { loading, error, data } = this.props.showBus;
@@ -115,10 +119,10 @@ class Bus extends Component {
             
             
 
-        <DynamicTable columns={allColumns} data={data}/>
+        <DynamicTable columns={columns} data={data}/>
 </div>
         </div>
-        
+
     );
           }
 };
