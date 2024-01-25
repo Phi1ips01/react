@@ -8,5 +8,10 @@ export const INITIAL_STATE = {
     loading: false,
     error: false,
     data: {}
+  },
+  deleteUser: {
+    loading:false,
+    error:false,
+    data:{}
   }
 };

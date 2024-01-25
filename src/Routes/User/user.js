@@ -47,7 +47,7 @@ class User extends Component {
   }
 
   render() {
-    console.log("render", this.props);
+    console.log("render", this.props.data);
     const testData = this.props.data;
     const data = Array.isArray(testData) ? testData : [];
     const allColumns = data.length > 0 ? Object.keys(data[0]) : [];

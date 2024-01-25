@@ -5,6 +5,9 @@ import {
   POST_USER_FAILED,
   POST_USER_STARTED,
   POST_USER_SUCCESS,
+  DELETE_USER_FAILED,
+DELETE_USER_SUCCESS,
+DELETE_USER_STARTED
 } from '../../Redux.constants';
 import {
   showUserFailed,
@@ -12,9 +15,26 @@ import {
   showUserSuccess,
   postUserFailed,
 postUserStarted,
-postUserSuccess
+postUserSuccess,
+deleteUserFailed,
+deleteUserStarted,
+deleteUserSuccess
 } from './Helper';
 import { INITIAL_STATE } from './initialState';
+
+export function DeleteUser(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case DELETE_USER_SUCCESS:
+      return deleteUserSuccess(state, action.payload);
+    case DELETE_USER_STARTED:
+      return deleteUserStarted(state, action.payload);
+    case DELETE_USER_FAILED:
+      return deleteUserFailed(state, action.payload);
+    default:
+      return { ...state };
+  }
+}
+
 
 export function PostUser(state = INITIAL_STATE, action) {
   switch (action.type) {

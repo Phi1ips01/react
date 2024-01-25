@@ -67,3 +67,38 @@ export function postUserFailed(state, payload) {
     }
   };
 }
+
+
+export function deleteUserStarted(state, payload) {
+  return {
+    ...state,
+    deleteUser: {
+      loading: true,
+      error: false
+    }
+  };
+}
+
+export function deleteUserSuccess(state, payload) {
+  console.log('reached inside reducer11');
+  console.log("helper delete",payload)
+  return {
+    ...state,
+    deleteUser: {
+      loading: false,
+      error: false,
+      data: payload
+    },
+  };
+}
+
+
+export function deleteUserFailed(state, payload) {
+  return {
+    ...state,
+    deleteUser: {
+      loading: false,
+      error: payload
+    }
+  };
+}
