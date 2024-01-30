@@ -12,14 +12,16 @@ export const deleteInstance = new APIInstance({
 })
 const api = instance.api;
 const postApi = postInstance.api
-const deleteAPI = deleteInstance.api
+const deleteApi = deleteInstance.api
 
 export const showAllUser = (payload) => {
     return api.get(api.baseURL)
 };
 export const addUser = (payload) =>{
+    console.log("payload",payload)
     return postApi.post(postApi.baseURL,payload)
 }
 export const deleteUser = (payload) => {
-    return deleteAPI.destroy(deleteAPI.baseURL,payload)
+    console.log("payload",payload)
+    return deleteApi.delete(deleteApi.baseURL, { data: payload })
 }

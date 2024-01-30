@@ -2,7 +2,7 @@ import React from 'react';
 import { useTable } from 'react-table';
 import ModifyTableButton from '../ModifyTableButton';
 
-const DynamicTable = ({ columns, data, className }) => {
+const DynamicTable = ({ columns, data, className, deleteAction  }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -10,7 +10,7 @@ const DynamicTable = ({ columns, data, className }) => {
     rows,
     prepareRow,
   } = useTable({ columns, data });
-
+  console.log("tableprops",deleteAction)
   return (
     <div className="grid grid-cols-1">
       <div className="grid-item">
@@ -40,7 +40,7 @@ const DynamicTable = ({ columns, data, className }) => {
                   ))}
                   <td>
                     {/* Assuming data is an array of objects and each object has an 'id' property */}
-                    <ModifyTableButton rowID={row.original.id} />
+                    <ModifyTableButton rowID={row.original.id} deleteAction={deleteAction} />
                   </td>
                 </tr>
               );

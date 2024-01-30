@@ -70,6 +70,7 @@ export function postUserFailed(state, payload) {
 
 
 export function deleteUserStarted(state, payload) {
+  console.log("deletestarted",payload)
   return {
     ...state,
     deleteUser: {

@@ -68,3 +68,41 @@ export function postBusOperatorFailed(state, payload) {
     }
   };
 }
+
+
+
+export function deleteBusOperatorStarted(state, payload) {
+  return {
+    ...state,
+    deleteBusOperator: {
+      loading: true,
+      error: false
+    }
+  };
+}
+
+export function deleteBusOperatorSuccess(state, payload) {
+  console.log('reached inside reducer1');
+  
+  return {
+    ...state,
+    deleteBusOperator: {
+      loading: false,
+      error: false,
+      data: payload.data.response,
+      
+    },
+    
+  };
+}
+
+
+export function deleteBusOperatorFailed(state, payload) {
+  return {
+    ...state,
+    deleteBusOperator: {
+      loading: false,
+      error: payload
+    }
+  };
+}

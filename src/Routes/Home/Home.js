@@ -169,7 +169,7 @@ handleSubmit = (event)=> {
                 <InputButton className="trip-form-submit" value="Submit"/>
             </form>
         </div>
-        <DynamicTable columns={columns} data={data} className="trip-table"/>
+        <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteTrip} className="trip-table"/>
       </div>
     );
   }

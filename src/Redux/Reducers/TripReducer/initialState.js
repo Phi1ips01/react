@@ -9,5 +9,10 @@ export const INITIAL_STATE = {
     error: false,
     data: {}
   },
-  selectedOperatorID: null
+  selectedOperatorID: null,
+  deleteTrip:{
+    loading:false,
+    error:false,
+    data:{}
+  }
 };

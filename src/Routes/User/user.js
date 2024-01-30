@@ -69,7 +69,10 @@ class User extends Component {
             <InputField type="text" id="role" name="role" className="default-form-input" placeholder="Enter the role"/>
             <InputButton type="submit" className="default-form-submit"  value="Submit"/>
           </form>
-          <DynamicTable columns={columns} data={data}/>
+          {
+            console.log("userlog", this.props.deleteActionUser)
+          }
+          <DynamicTable columns={columns} data={data} deleteActionUser={this.props.deleteActionUser} />
         </div>
       </div>
     );

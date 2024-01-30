@@ -3,9 +3,15 @@ import edit from '../../images/edit.png';
 import del from '../../images/delete.png';
 // import PropType from 'prop-types';
 export default class ModifyTableButton extends Component {
-  handleDelete = (e)=>{
-    e.preventDefault()
-    this.props.deleteActionUser(this.props.rowID)
+  handleDelete = (e) => {
+    const row = {
+      id:this.props.rowID
+    }
+    e.preventDefault();
+    if (this.props.deleteAction) {
+      console.log("rowID",this.props)
+      this.props.deleteAction(row);
+    }
   }
   render() {
     console.log("buttonporps",this.props)

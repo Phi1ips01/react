@@ -5,7 +5,10 @@ import {
   POST_TRIP_FAILED,
   POST_TRIP_STARTED,
   POST_TRIP_SUCCESS,
-  UPDATE_SELECTED_OPERATOR
+  UPDATE_SELECTED_OPERATOR,
+  DELETE_TRIP_STARTED,
+  DELETE_TRIP_SUCCESS,
+  DELETE_TRIP_FAILED
 } from '../../Redux.constants';
 import {
   showTripFailed,
@@ -13,9 +16,25 @@ import {
   showTripSuccess,
   postTripFailed,
   postTripStarted,
-  postTripSuccess
+  postTripSuccess,
+  deleteTripStarted,
+  deleteTripFailed,
+  deleteTripSuccess
 } from './Helper';
 import { INITIAL_STATE } from './initialState';
+
+export function DeleteTrip(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case DELETE_TRIP_SUCCESS:
+      return deleteTripSuccess(state, action.payload);
+    case DELETE_TRIP_STARTED:
+      return deleteTripStarted(state, action.payload);
+    case DELETE_TRIP_FAILED:
+      return deleteTripFailed(state, action.payload);
+    default:
+      return { ...state };
+  }
+}
 
 
 export function PostTrip(state = INITIAL_STATE, action) {

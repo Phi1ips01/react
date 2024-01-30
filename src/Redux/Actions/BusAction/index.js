@@ -5,8 +5,35 @@ import {
     POST_BUS_FAILED,
     POST_BUS_STARTED,
     POST_BUS_SUCCESS,
+    DELETE_BUS_FAILED,
+    DELETE_BUS_STARTED,
+    DELETE_BUS_SUCCESS
 } from '../../Redux.constants';
-import { addBus, showAllBus } from '../../../api/busAPI';
+import { addBus, showAllBus, deleteBus } from '../../../api/busAPI';
+
+export function deleteActionBus(payload) {
+    return async (dispatch) => {
+        dispatch({
+            type: DELETE_BUS_STARTED,
+            payload: {},
+        });
+        try {
+            console.log("deleteBUSsuccess")
+            const data = await deleteBus(payload);
+            console.log("BUSdelete",data)
+            dispatch({
+                type: DELETE_BUS_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: DELETE_BUS_FAILED,
+                payload: error,
+            });
+        }
+    };
+}
+
 
 export function postBus(payload) {
     return async (dispatch) => {

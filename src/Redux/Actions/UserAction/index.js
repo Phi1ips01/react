@@ -18,8 +18,9 @@ export function deleteActionUser(payload) {
             payload: {},
         });
         try {
+            console.log("deleteusersuccess")
             const data = await deleteUser(payload);
-            
+            console.log("userdelete",data)
             dispatch({
                 type: DELETE_USER_SUCCESS,
                 payload: data,
@@ -32,9 +33,6 @@ export function deleteActionUser(payload) {
         }
     };
 }
-
-
-
 export function postUser(payload) {
     return async (dispatch) => {
         dispatch({

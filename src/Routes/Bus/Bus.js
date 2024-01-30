@@ -75,7 +75,7 @@ class Bus extends Component {
           accessor: column,
         }));
         console.log("data,columns",data,allColumns)
-
+console.log("deleteBus",this.props)
             // const { loading, error, data } = this.props.showBus;
     return (
         <div>
@@ -119,7 +119,7 @@ class Bus extends Component {
             
             
 
-        <DynamicTable columns={columns} data={data}/>
+        <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteBus} />
 </div>
         </div>
 

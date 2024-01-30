@@ -4,7 +4,11 @@ import {
   SHOW_BUS_SUCCESS,
   POST_BUS_FAILED,
   POST_BUS_STARTED,
-  POST_BUS_SUCCESS
+  POST_BUS_SUCCESS,
+  DELETE_BUS_STARTED,
+  DELETE_BUS_SUCCESS,
+  DELETE_BUS_FAILED
+
 } from '../../Redux.constants'; 
 import {
   showBusFailed,
@@ -12,9 +16,26 @@ import {
   showBusSuccess,
   postBusSuccess,
   postBusFailed,
-  postBusStarted
+  postBusStarted,
+  deleteBusFailed,
+  deleteBusStarted,
+  deleteBusSuccess,
 } from './Helper';
 import { INITIAL_STATE } from './initialState';
+
+export function DeleteBus(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case DELETE_BUS_SUCCESS:
+      return deleteBusSuccess(state, action.payload);
+    case DELETE_BUS_STARTED:
+      return deleteBusStarted(state, action.payload);
+    case DELETE_BUS_FAILED:
+      return deleteBusFailed(state, action.payload);
+    default:
+      return { ...state };
+  }
+}
+
 
 export function PostBus(state = INITIAL_STATE, action) {
   switch (action.type) {

@@ -66,3 +66,39 @@ export function postTripFailed(state, payload) {
     }
   };
 }
+
+
+export function deleteTripStarted(state, payload) {
+  console.log("deletestarted",payload)
+  return {
+    ...state,
+    deleteTrip: {
+      loading: true,
+      error: false
+    }
+  };
+}
+
+export function deleteTripSuccess(state, payload) {
+  console.log('reached inside reducer11');
+  console.log("helper delete",payload)
+  return {
+    ...state,
+    deleteTrip: {
+      loading: false,
+      error: false,
+      data: payload
+    },
+  };
+}
+
+
+export function deleteTripFailed(state, payload) {
+  return {
+    ...state,
+    deleteTrip: {
+      loading: false,
+      error: payload
+    }
+  };
+}

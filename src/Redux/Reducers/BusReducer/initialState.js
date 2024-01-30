@@ -8,5 +8,10 @@ export const INITIAL_STATE = {
     loading:false,
     error:false,
     data:{}
+  },
+  deleteBus:{
+    loading:false,
+    error:false,
+    data:{}
   }
 };
