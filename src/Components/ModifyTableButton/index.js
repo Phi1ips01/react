@@ -7,7 +7,7 @@ export default class ModifyTableButton extends Component {
     const row = {
       id:this.props.rowID
     }
-    e.preventDefault();
+   
     if (this.props.deleteAction) {
       console.log("rowID",this.props)
       this.props.deleteAction(row);

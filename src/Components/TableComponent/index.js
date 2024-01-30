@@ -14,7 +14,7 @@ const DynamicTable = ({ columns, data, className, deleteAction  }) => {
   return (
     <div className="grid grid-cols-1">
       <div className="grid-item">
-        <table {...getTableProps()} className={`table table-dark table-striped container w-100`}>
+        <table {...getTableProps()} className={`table table-dark table-striped container w-100` }>
           <thead>
             {headerGroups.map(headerGroup => (
               <tr {...headerGroup.getHeaderGroupProps()}>

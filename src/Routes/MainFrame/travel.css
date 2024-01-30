@@ -148,7 +148,7 @@
 
   .clear {clear: both;}
   .default-main {
-    margin-left: 16%;
+    margin-left: 15.5%;
     margin-top: 12%;
     width: 80%;
   }
@@ -224,13 +224,11 @@
   .table {
     margin-top: 20px;
     overflow-x: auto;
-    font-size: x-small;
+    font-size: 9px;
     text-align: center;
-    max-width:100%
-  }
-  .trip-table{
-    table-layout: fixed;
-    width: 100%;
+    table-layout: auto;
+    max-width: 100%;
+
   }
   button img
   {

@@ -7,5 +7,6 @@ export const ROUTES = {
   BUS:'/bus',
   BUS_OPERATOR:'/busOperator',
   USER:'/user',
-  OPERATOR_UPDATE:'/operatorUpdate'
+  OPERATOR_UPDATE:'/operatorUpdate',
+  TRIP_DATA: '/tripData'
 };

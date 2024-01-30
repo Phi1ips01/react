@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // import { users } from '../../api/users';
-import DynamicTable from '../../Components/TableComponent'
+// import DynamicTable from '../../Components/TableComponent'
 import InputButton from '../../Components/InputButton';
 import InputField from '../../Components/InputField';
 import TopNav from '../../Components/TopNav'
@@ -43,18 +43,18 @@ class Home extends Component {
     this.props.showBusOperator()
     this.props.showBus()
 
-    this.fetchTrip();
+    // this.fetchTrip();
   }
-  async fetchTrip() {
-    try {
-        await this.props.showTrip();
-        // const tripData = this.props.showTrip.data; // Access data correctly
-        // console.log(tripData);
-    } catch (error) {
-        console.error(error);
-        // Handle error here
-    }
-}
+//   async fetchTrip() {
+//     try {
+//         await this.props.showTrip();
+//         // const tripData = this.props.showTrip.data; // Access data correctly
+//         // console.log(tripData);
+//     } catch (error) {
+//         console.error(error);
+//         // Handle error here
+//     }
+// }
 handleOperatorChange = (event) => {
   const selectedOperatorId = event.target.value;
   console.log("this.props handle",this.props)
@@ -63,7 +63,7 @@ handleOperatorChange = (event) => {
   // this.props.fetchBusesByOperator(selectedOperatorId);
 };
 handleSubmit = (event)=> {
-    event.preventDefault();
+    // event.preventDefault();
     const formData = {
             operator_id:event.target.operator_id.value ,
             bus_id:event.target.bus_id.value ,
@@ -103,14 +103,14 @@ handleSubmit = (event)=> {
     const { busOperatorData, busData, selectedOperatorId } = this.props || [];
 
 
-    const testData = this.props.tripData
-        const data = Array.isArray(testData) ? testData : [];
-    const allColumns = data.length > 0 ? Object.keys(data[0]) : [];
-    const columns = allColumns.map(column => ({
-      Header: column.charAt(0).toUpperCase() + column.slice(1).replace(/_/g, ' '), // Convert underscore to space and capitalize
-      accessor: column,
-    }));
-    console.log("data,columns",columns)
+    // const testData = this.props.tripData
+    //     const data = Array.isArray(testData) ? testData : [];
+    // const allColumns = data.length > 0 ? Object.keys(data[0]) : [];
+    // const columns = allColumns.map(column => ({
+    //   Header: column.charAt(0).toUpperCase() + column.slice(1).replace(/_/g, ' '), // Convert underscore to space and capitalize
+    //   accessor: column,
+    // }));
+    // console.log("data,columns",columns)
     // const { userList, loading, error } = this.state;
     return (
       <div>
@@ -169,7 +169,7 @@ handleSubmit = (event)=> {
                 <InputButton className="trip-form-submit" value="Submit"/>
             </form>
         </div>
-        <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteTrip} className="trip-table"/>
+        {/* <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteTrip} className="trip-table"/> */}
       </div>
     );
   }

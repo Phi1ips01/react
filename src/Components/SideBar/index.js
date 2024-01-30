@@ -16,6 +16,7 @@ export default class ButtonElement extends Component {
         </a>
           <ul>
             <br/><br/>
+            <li><a href='/tripData'>Trip Data</a></li>
             <li><a href="/bus">Bus</a></li>
             <li><a href="/busOperator">Bus Operator</a></li>
             <li><a href="/user">User</a></li>

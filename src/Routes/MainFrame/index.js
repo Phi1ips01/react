@@ -11,6 +11,7 @@ import BusOperator from '../BusOperator'
 import Bus from '../Bus';
 import OperatorUpdate from '../OperatorUpdate'
 import User from '../User'
+import TripData from '../TripData';
 import PrivateRoute from '../../utils/PrivateRoute';
 import './travel.css'
 // import { Instances } from '../../api';
@@ -39,7 +40,7 @@ class MainFrame extends Component {
                         <PrivateRoute path={ROUTES.USER} component={User} />
                         <PrivateRoute path={ROUTES.OPERATOR_UPDATE} component={OperatorUpdate} />
                         <PrivateRoute path={ROUTES.LANDING_PAGE} component={LandingPage} />
-
+                        <PrivateRoute path={ROUTES.TRIP_DATA} component={TripData} />
                         <Redirect from={ROUTES.INDEX} to={ROUTES.LANDING_PAGE} />
                     </Switch>
                 </div>
