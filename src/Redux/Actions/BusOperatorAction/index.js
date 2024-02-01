@@ -83,7 +83,7 @@ export function showBusOperator(payload) {
 }
 
 
-export function setSearchTerm(term) {
+export function setSearchTermBusOperator(term) {
     return async (dispatch) => {
       dispatch({
         type: SET_SEARCH_TERM,
@@ -92,7 +92,7 @@ export function setSearchTerm(term) {
     }
 }
 
-  export function setTableData(data) {
+  export function setTableDataBusOperator(data) {
     return async (dispatch) => {
       dispatch({
         type: SET_TABLE_DATA,

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import BusOperator from './Bus_Operator';
 
-import { showBusOperator,postBusOperator, deleteActionBusOperator,setSearchTerm,setTableData } from '../../Redux/Actions';
+import { showBusOperator,postBusOperator, deleteActionBusOperator,setSearchTermBusOperator,setTableDataBusOperator } from '../../Redux/Actions';
 
 import { SelectState } from './Selector';
 
@@ -19,8 +19,8 @@ function mapDispatchToProps(dispatch) {
     showBusOperator: (params) => dispatch(showBusOperator(params)),
     postBusOperator: (params) => dispatch(postBusOperator(params)),
     deleteBusOperator: (params) => dispatch(deleteActionBusOperator(params)),
-    setSearchTerm:(params) => dispatch(setSearchTerm(params)),
-    setTableData:(params) => dispatch(setTableData(params))
+    setSearchTermBusOperator:(params) => dispatch(setSearchTermBusOperator(params)),
+    setTableDataBusOperator:(params) => dispatch(setTableDataBusOperator(params))
   
   }
   };
