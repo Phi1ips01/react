@@ -101,3 +101,17 @@ export function deleteBusFailed(state, payload) {
     }
   };
 }
+
+export function searchTermBus(state, payload) {
+  return {
+    ...state,
+    searchTerm: payload,
+  };
+}
+
+export function tableDataBus(state, payload) {
+  return {
+    ...state,
+    tableData: payload,
+  };
+}

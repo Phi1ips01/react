@@ -8,7 +8,9 @@ import {
     UPDATE_SELECTED_OPERATOR,
     DELETE_TRIP_FAILED,
     DELETE_TRIP_STARTED,
-    DELETE_TRIP_SUCCESS
+    DELETE_TRIP_SUCCESS,
+    SET_SEARCH_TERM,
+    SET_TABLE_DATA
     } 
     from '../../Redux.constants';
 import { addTrip, showAllTrip,deleteTrip } from '../../../api/tripAPI';
@@ -85,3 +87,22 @@ export function showTrip(payload) {
         }
     };
 }
+
+
+export function setSearchTermTrip(term) {
+    return async (dispatch) => {
+      dispatch({
+        type: SET_SEARCH_TERM,
+        payload: term,
+      });
+    }
+}
+
+  export function setTableDataTrip(data) {
+    return async (dispatch) => {
+      dispatch({
+        type: SET_TABLE_DATA,
+        payload: data,
+      });
+    };
+  }

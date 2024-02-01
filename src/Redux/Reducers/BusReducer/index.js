@@ -7,7 +7,9 @@ import {
   POST_BUS_SUCCESS,
   DELETE_BUS_STARTED,
   DELETE_BUS_SUCCESS,
-  DELETE_BUS_FAILED
+  DELETE_BUS_FAILED,
+  SET_SEARCH_TERM,
+  SET_TABLE_DATA
 
 } from '../../Redux.constants'; 
 import {
@@ -20,6 +22,8 @@ import {
   deleteBusFailed,
   deleteBusStarted,
   deleteBusSuccess,
+  searchTermBus,
+  tableDataBus
 } from './Helper';
 import { INITIAL_STATE } from './initialState';
 
@@ -58,6 +62,18 @@ export function ShowBus(state = INITIAL_STATE, action) {
       return showBusStarted(state, action.payload);
     case SHOW_BUS_FAILED:
       return showBusFailed(state, action.payload);
+    default:
+      return { ...state };
+  }
+}
+
+
+export function SearchBus(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case SET_SEARCH_TERM:
+      return searchTermBus(state, action.payload);
+    case SET_TABLE_DATA:
+      return tableDataBus(state, action.payload);
     default:
       return { ...state };
   }

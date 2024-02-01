@@ -103,3 +103,17 @@ export function deleteUserFailed(state, payload) {
     }
   };
 }
+
+export function searchTermUser(state, payload) {
+  return {
+    ...state,
+    searchTerm: payload,
+  };
+}
+
+export function tableDataUser(state, payload) {
+  return {
+    ...state,
+    tableData: payload,
+  };
+}

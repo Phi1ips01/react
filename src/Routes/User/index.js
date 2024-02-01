@@ -2,12 +2,16 @@ import { connect } from 'react-redux';
 
 import User from './user';
 
-import { showUser,postUser,deleteActionUser } from '../../Redux/Actions';
+import { showUser,postUser,deleteActionUser,setSearchTermUser,setTableDataUser } from '../../Redux/Actions';
 
 import { SelectState } from './Selector';
 
 function mapStateToProps(state) {
-  return { ...SelectState(state) };
+  return {
+    data: SelectState(state).showUser.data,
+    searchData: SelectState(state).searchTerm,
+    tableData: SelectState(state).tableData,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -20,7 +24,9 @@ function mapDispatchToProps(dispatch) {
     },
     deleteActionUser: (params)=>{
       dispatch(deleteActionUser(params))
-    }
+    },
+    setSearchTermUser:(params) => dispatch(setSearchTermUser(params)),
+    setTableDataUser:(params) => dispatch(setTableDataUser(params))
   };
 }
 

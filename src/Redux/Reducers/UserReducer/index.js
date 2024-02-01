@@ -6,19 +6,23 @@ import {
   POST_USER_STARTED,
   POST_USER_SUCCESS,
   DELETE_USER_FAILED,
-DELETE_USER_SUCCESS,
-DELETE_USER_STARTED
+  DELETE_USER_SUCCESS,
+  DELETE_USER_STARTED,
+  SET_SEARCH_TERM,
+  SET_TABLE_DATA
 } from '../../Redux.constants';
 import {
   showUserFailed,
   showUserStarted,
   showUserSuccess,
   postUserFailed,
-postUserStarted,
-postUserSuccess,
-deleteUserFailed,
-deleteUserStarted,
-deleteUserSuccess
+  postUserStarted,
+  postUserSuccess,
+  deleteUserFailed,
+  deleteUserStarted,
+  deleteUserSuccess,
+  searchTermUser,
+  tableDataUser
 } from './Helper';
 import { INITIAL_STATE } from './initialState';
 
@@ -57,6 +61,17 @@ export function ShowUser(state = INITIAL_STATE, action) {
       return showUserStarted(state, action.payload);
     case SHOW_USER_FAILED:
       return showUserFailed(state, action.payload);
+    default:
+      return { ...state };
+  }
+}
+
+export function SearchUser(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case SET_SEARCH_TERM:
+      return searchTermUser(state, action.payload);
+    case SET_TABLE_DATA:
+      return tableDataUser(state, action.payload);
     default:
       return { ...state };
   }

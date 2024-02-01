@@ -28,6 +28,8 @@ class Bus extends Component {
         try {
             await this.props.showBus();
             console.log("fetchbus",this.props)
+            this.props.setTableDataBus(this.props.data)
+            this.props.setSearchTermBus('')
 
             // const busData = this.props.showBus; // Access data correctly
             // console.log("fetchbus busadata",busData);
@@ -119,7 +121,7 @@ console.log("deleteBus",this.props)
             
             
 
-        <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteBus} />
+        <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteBus} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermBus}/>
 </div>
         </div>
 

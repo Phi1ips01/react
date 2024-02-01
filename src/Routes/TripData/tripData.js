@@ -43,6 +43,9 @@ class Home extends Component {
   async fetchTrip() {
     try {
         await this.props.showTrip();
+        this.props.setTableDataTrip(this.props.data)
+            this.props.setSearchTermTrip('')
+            
         // const tripData = this.props.showTrip.data; // Access data correctly
         // console.log(tripData);
     } catch (error) {
@@ -67,7 +70,7 @@ class Home extends Component {
         <DropDown/>
             <SideBar/>
             <div className="default-main">
-        <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteTrip} className="trip-table"/>
+            <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteTrip} searchData = {this.props.searchData}setSearchTerm ={this.props.setSearchTermTrip} />
       </div>
       </div>
     );

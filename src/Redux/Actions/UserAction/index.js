@@ -7,7 +7,9 @@ POST_USER_STARTED,
 POST_USER_SUCCESS,
 DELETE_USER_FAILED,
 DELETE_USER_SUCCESS,
-DELETE_USER_STARTED
+DELETE_USER_STARTED,
+SET_SEARCH_TERM,
+SET_TABLE_DATA
 } from '../../Redux.constants';
 import { addUser, showAllUser,deleteUser } from '../../../api/userAPI';
 
@@ -77,3 +79,21 @@ export function showUser(payload) {
         }
     };
 }
+
+export function setSearchTermUser(term) {
+    return async (dispatch) => {
+      dispatch({
+        type: SET_SEARCH_TERM,
+        payload: term,
+      });
+    }
+}
+
+  export function setTableDataUser(data) {
+    return async (dispatch) => {
+      dispatch({
+        type: SET_TABLE_DATA,
+        payload: data,
+      });
+    };
+  }

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Bus from './Bus';
 
-import { showBus,postBus,showBusOperator, deleteActionBus } from '../../Redux/Actions';
+import { showBus,postBus,showBusOperator, deleteActionBus,setSearchTermBus,setTableDataBus } from '../../Redux/Actions';
 
 import { SelectState } from './Selector';
 
@@ -10,6 +10,8 @@ function mapStateToProps(state) {
   return {
     busData: SelectState(state).showBus.data,
     showBusOperatorData: SelectState(state).showBusOperator.data, // Add this line
+    searchData: SelectState(state).searchTerm,
+    tableData: SelectState(state).tableData,
   };
 }
 
@@ -19,8 +21,10 @@ function mapDispatchToProps(dispatch) {
     showBus: (params) => dispatch(showBus(params)),
     postBus: (params) => dispatch(postBus(params)),
     showBusOperator: (params) => dispatch(showBusOperator(params)),
-    deleteBus: (params) => dispatch(deleteActionBus(params))
-    
+    deleteBus: (params) => dispatch(deleteActionBus(params)),
+    setSearchTermBus:(params) => dispatch(setSearchTermBus(params)),
+    setTableDataBus:(params) => dispatch(setTableDataBus(params))
+  
   };
 }
 

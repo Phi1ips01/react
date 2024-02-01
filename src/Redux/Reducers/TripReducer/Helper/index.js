@@ -102,3 +102,16 @@ export function deleteTripFailed(state, payload) {
     }
   };
 }
+export function searchTermTrip(state, payload) {
+  return {
+    ...state,
+    searchTerm: payload,
+  };
+}
+
+export function tableDataTrip(state, payload) {
+  return {
+    ...state,
+    tableData: payload,
+  };
+}

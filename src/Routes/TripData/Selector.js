@@ -4,6 +4,7 @@ function getTripPageReducer(state) {
     console.log("satte",state)
     return {
         showTrip: state.ShowTrip.showTrip,
+        searchTerm:state.SearchTrip.searchTerm
         
     }
 }

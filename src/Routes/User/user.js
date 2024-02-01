@@ -26,6 +26,8 @@ class User extends Component {
     try {
       await this.props.showUser();
       console.log("fetchuser ", this.props);
+      this.props.setTableDataUser(this.props.data)
+      this.props.setSearchTermUser('')
     } catch (error) {
       console.error(error);
       // Handle error here
@@ -72,7 +74,7 @@ class User extends Component {
           {
             console.log("userlog", this.props.deleteActionUser)
           }
-          <DynamicTable columns={columns} data={data} deleteActionUser={this.props.deleteActionUser} />
+          <DynamicTable columns={columns} data={data} deleteActionUser={this.props.deleteActionUser} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermUser}  />
         </div>
       </div>
     );

@@ -1,9 +1,12 @@
 import { createSelector } from 'reselect';
 
 function getUserPageReducer(state) {
-    return state.ShowUser.showUser;
+    return {
+        showUser:state.ShowUser.showUser,
+        searchTerm:state.SearchUser.searchTerm
+    }
 }
-function mergeReducer(showUser) {
+    function mergeReducer(showUser) {
     return {
         ...showUser
     };
