@@ -2,8 +2,11 @@ import { createSelector } from 'reselect';
 
 function getBusOperatorPageReducer(state) {
     console.log("reducer selecter",state)
-    return state.ShowBusOperator.showBusOperator;
-}
+    return {
+        showBusOperator: state.ShowBusOperator.showBusOperator,
+        searchTerm:state.SearchBusOperator.searchTerm
+        }
+    }
 function mergeReducer(showBusOperator) {
     return {
         ...showBusOperator

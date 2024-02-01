@@ -24,6 +24,9 @@ class BusOperator extends Component  {
         try {
             await this.props.showBusOperator();
             console.log("this.props",this.props)
+            this.props.setTableData(this.props.data)
+            this.props.setSearchTerm('')
+            
             // const busOperatorData = this.props.data.data.response; // Access data correctly
             // console.log("busOperatorData",busOperatorData);
 
@@ -75,7 +78,7 @@ class BusOperator extends Component  {
 
             <InputButton type="submit" className="default-form-submit" value="Submit"/>
         </form>
-        <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteBusOperator} />
+        <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteBusOperator} searchData = {this.props.searchData}setSearchTerm ={this.props.setSearchTerm} />
         </div>
         </div>
     );

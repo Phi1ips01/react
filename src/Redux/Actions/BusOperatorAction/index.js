@@ -7,7 +7,9 @@ import {
     POST_BUS_OPERATOR_SUCCESS,
     DELETE_BUS_OPERATOR_FAILED,
     DELETE_BUS_OPERATOR_STARTED,
-    DELETE_BUS_OPERATOR_SUCCESS
+    DELETE_BUS_OPERATOR_SUCCESS,
+    SET_SEARCH_TERM,
+    SET_TABLE_DATA
     } from '../../Redux.constants';
 import { addBusOperator, showAllBusOperator,deleteBusOperator } from '../../../api/busOperatorAPI';
 
@@ -79,3 +81,22 @@ export function showBusOperator(payload) {
         }
     };
 }
+
+
+export function setSearchTerm(term) {
+    return async (dispatch) => {
+      dispatch({
+        type: SET_SEARCH_TERM,
+        payload: term,
+      });
+    }
+}
+
+  export function setTableData(data) {
+    return async (dispatch) => {
+      dispatch({
+        type: SET_TABLE_DATA,
+        payload: data,
+      });
+    };
+  }

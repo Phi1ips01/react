@@ -106,3 +106,17 @@ export function deleteBusOperatorFailed(state, payload) {
     }
   };
 }
+
+export function searchTermBusOperator(state, payload) {
+  return {
+    ...state,
+    searchTerm: payload,
+  };
+}
+
+export function tableDataBusOperator(state, payload) {
+  return {
+    ...state,
+    tableData: payload,
+  };
+}

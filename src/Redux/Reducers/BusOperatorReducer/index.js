@@ -7,7 +7,9 @@ POST_BUS_OPERATOR_SUCCESS,
 POST_OPERATOR_UPDATE_STARTED,
 DELETE_BUS_OPERATOR_FAILED,
 DELETE_BUS_OPERATOR_STARTED,
-DELETE_BUS_OPERATOR_SUCCESS
+DELETE_BUS_OPERATOR_SUCCESS,
+SET_SEARCH_TERM,
+SET_TABLE_DATA
 } from '../../Redux.constants';
 import {
   showBusOperatorFailed,
@@ -19,8 +21,22 @@ import {
   deleteBusOperatorSuccess,
   deleteBusOperatorStarted,
   deleteBusOperatorFailed,
+  searchTermBusOperator,
+  tableDataBusOperator
 } from './Helper';
 import { INITIAL_STATE } from './initialState';
+
+
+export function SearchBusOperator(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case SET_SEARCH_TERM:
+      return searchTermBusOperator(state, action.payload);
+    case SET_TABLE_DATA:
+      return tableDataBusOperator(state, action.payload);
+    default:
+      return { ...state };
+  }
+}
 
 export function PostBusOperator(state = INITIAL_STATE, action) {
   switch (action.type) {

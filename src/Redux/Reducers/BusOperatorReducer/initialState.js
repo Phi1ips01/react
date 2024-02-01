@@ -13,5 +13,7 @@ export const INITIAL_STATE = {
     loading:false,
     error:false,
     data:{}
-  }
+  },
+  searchTerm: '',
+  tableData: [],
 }
