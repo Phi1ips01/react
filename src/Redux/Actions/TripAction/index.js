@@ -29,6 +29,7 @@ export function deleteActionTrip(payload) {
                 type: DELETE_TRIP_SUCCESS,
                 payload: data,
             });
+            dispatch(showTrip())
         } catch (error) {
             dispatch({
                 type: DELETE_TRIP_FAILED,
@@ -50,6 +51,8 @@ export function postTrip(payload) {
                 type: POST_TRIP_SUCCESS,
                 payload: data,
             });
+            dispatch(showTrip())
+
         } catch (error) {
             dispatch({
                 type: POST_TRIP_FAILED,

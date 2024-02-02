@@ -27,6 +27,7 @@ export function deleteActionBusOperator(payload) {
                 type: DELETE_BUS_OPERATOR_SUCCESS,
                 payload: data,
             });
+            dispatch(showBusOperator())
         } catch (error) {
             dispatch({
                 type: DELETE_BUS_OPERATOR_FAILED,
@@ -49,6 +50,7 @@ export function postBusOperator(payload) {
                 type: POST_BUS_OPERATOR_SUCCESS,
                 payload: data,
             });
+            dispatch(showBusOperator())
         } catch (error) {
             dispatch({
                 type: POST_BUS_OPERATOR_FAILED,

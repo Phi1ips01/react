@@ -26,7 +26,8 @@ export function deleteActionBus(payload) {
             dispatch({
                 type: DELETE_BUS_SUCCESS,
                 payload: data,
-            });
+            })
+            dispatch(showBus());
         } catch (error) {
             dispatch({
                 type: DELETE_BUS_FAILED,
@@ -48,7 +49,8 @@ export function postBus(payload) {
             dispatch({
                 type: POST_BUS_SUCCESS,
                 payload: data,
-            });
+            })
+            dispatch(showBus());
         } catch (error) {
             dispatch({
                 type: POST_BUS_FAILED,
@@ -59,7 +61,7 @@ export function postBus(payload) {
 }
 
 
-export function showBus(payload) {
+export function showBus() {
     return async (dispatch) => {
         dispatch({
             type: SHOW_BUS_STARTED,

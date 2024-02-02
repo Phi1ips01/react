@@ -27,6 +27,8 @@ export function deleteActionUser(payload) {
                 type: DELETE_USER_SUCCESS,
                 payload: data,
             });
+            dispatch(showUser())
+
         } catch (error) {
             dispatch({
                 type: DELETE_USER_FAILED,
@@ -48,6 +50,8 @@ export function postUser(payload) {
                 type: POST_USER_SUCCESS,
                 payload: data,
             });
+            dispatch(showUser())
+
         } catch (error) {
             dispatch({
                 type: POST_USER_FAILED,
