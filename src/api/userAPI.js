@@ -10,10 +10,14 @@ export const postInstance = new APIInstance({
 export const deleteInstance = new APIInstance({
     baseURL: 'user/delete'
 })
+export const updateInstance = new APIInstance({
+    baseURL: 'user/update'
+})
+
 const api = instance.api;
 const postApi = postInstance.api
 const deleteApi = deleteInstance.api
-
+const updateApi = updateInstance.api
 export const showAllUser = (payload) => {
     return api.get(api.baseURL)
 };
@@ -24,4 +28,7 @@ export const addUser = (payload) =>{
 export const deleteUser = (payload) => {
     console.log("payload",payload)
     return deleteApi.delete(deleteApi.baseURL, { data: payload })
+}
+export const updateUser = (payload)=>{
+    return updateApi.put(updateApi.baseURL,{data:payload})
 }

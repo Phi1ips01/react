@@ -4,9 +4,9 @@ import { useTable } from 'react-table';
 import Search from '../Search'
 import ModifyTableButton from '../ModifyTableButton'
 const DynamicTable = ({ columns, data, searchData, setSearchTerm, deleteAction }) => {
-  console.log('Columns:', columns);
-  console.log('Data:', data);
-  console.log('Search Term:', searchData);
+  // console.log('Columns:', columns);
+  // console.log('Data:', data);
+  // console.log('Search Term:', searchData);
   const {
     getTableProps,
     getTableBodyProps,
@@ -27,8 +27,8 @@ const DynamicTable = ({ columns, data, searchData, setSearchTerm, deleteAction }
   }, [searchData, rows, columns]);
 
   const displayRows = searchData ? filteredRows : rows;
-  console.log('Filtered Rows:', filteredRows);
-  console.log('Display Rows:', displayRows);
+  // console.log('Filtered Rows:', filteredRows);
+  // console.log('Display Rows:', displayRows);
   return (
       <div className="grid grid-cols-1">
         <div className="grid-item">

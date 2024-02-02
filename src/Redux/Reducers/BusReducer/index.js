@@ -8,6 +8,9 @@ import {
   DELETE_BUS_STARTED,
   DELETE_BUS_SUCCESS,
   DELETE_BUS_FAILED,
+  UPDATE_BUS_FAILED,
+  UPDATE_BUS_STARTED,
+  UPDATE_BUS_SUCCESS,
   SET_SEARCH_TERM,
   SET_TABLE_DATA
 
@@ -22,6 +25,9 @@ import {
   deleteBusFailed,
   deleteBusStarted,
   deleteBusSuccess,
+  updateBusFailed,
+  updateBusStarted,
+  updateBusSuccess,
   searchTermBus,
   tableDataBus
 } from './Helper';
@@ -39,6 +45,20 @@ export function DeleteBus(state = INITIAL_STATE, action) {
       return { ...state };
   }
 }
+
+export function UpdateBus(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case UPDATE_BUS_SUCCESS:
+      return updateBusSuccess(state, action.payload);
+    case UPDATE_BUS_STARTED:
+      return updateBusStarted(state, action.payload);
+    case UPDATE_BUS_FAILED:
+      return updateBusFailed(state, action.payload);
+    default:
+      return { ...state };
+  }
+}
+
 
 
 export function PostBus(state = INITIAL_STATE, action) {

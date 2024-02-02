@@ -16,4 +16,9 @@ export const INITIAL_STATE = {
   },
   searchTerm: '',
   tableData: [],
+  updateBus:{
+    loading:false,
+    error:false,
+    data:{}
+  }
 };

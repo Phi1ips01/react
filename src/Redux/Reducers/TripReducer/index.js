@@ -9,6 +9,9 @@ import {
   DELETE_TRIP_STARTED,
   DELETE_TRIP_SUCCESS,
   DELETE_TRIP_FAILED,
+  UPDATE_TRIP_FAILED,
+  UPDATE_TRIP_STARTED,
+  UPDATE_TRIP_SUCCESS,
   SET_SEARCH_TERM,
   SET_TABLE_DATA
 } from '../../Redux.constants';
@@ -22,10 +25,26 @@ import {
   deleteTripStarted,
   deleteTripFailed,
   deleteTripSuccess,
+  updateTripFailed,
+  updateTripStarted,
+  updateTripSuccess,
   searchTermTrip,
   tableDataTrip
 } from './Helper';
 import { INITIAL_STATE } from './initialState';
+
+export function UpdateTrip(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case UPDATE_TRIP_SUCCESS:
+      return updateTripSuccess(state, action.payload);
+    case UPDATE_TRIP_STARTED:
+      return updateTripStarted(state, action.payload);
+    case UPDATE_TRIP_FAILED:
+      return updateTripFailed(state, action.payload);
+    default:
+      return { ...state };
+  }
+}
 
 export function DeleteTrip(state = INITIAL_STATE, action) {
   switch (action.type) {

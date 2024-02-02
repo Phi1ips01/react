@@ -1,9 +1,9 @@
 import { instance as Login, } from './login';
-import { instance as getBus,postInstance as postBus, deleteInstance as deleteBus } from './busAPI';
-import {instance as getBusOperator,postInstance as postBusOperator, deleteInstance as deleteBusOperator} from './busOperatorAPI'
-import {instance as getUser,postInstance as postUser,deleteInstance as deleteUser} from './userAPI'
+import { instance as getBus,postInstance as postBus, deleteInstance as deleteBus,updateInstance as updateBus } from './busAPI';
+import {instance as getBusOperator,postInstance as postBusOperator, deleteInstance as deleteBusOperator,updateInstance as updateBusOperator} from './busOperatorAPI'
+import {instance as getUser,postInstance as postUser,deleteInstance as deleteUser,updateInstance as updateUser} from './userAPI'
 import {instance as getOperatorUpdate,postInstance as postOperatorUpdate} from './operatorUpdateAPI'
-import {instance as getTrip,postInstance as postTrip,deleteInstance as deleteTrip} from './tripAPI' 
+import {instance as getTrip,postInstance as postTrip,deleteInstance as deleteTrip,updateInstance as updateTrip} from './tripAPI' 
 
 
 export const Instances = [
@@ -11,14 +11,17 @@ export const Instances = [
      getBus,
      postBus,
      deleteBus,
+     updateBus,
      getBusOperator,
      postBusOperator,
      deleteBusOperator,
+     updateBusOperator,
      getUser,
      postUser,
      deleteUser,
+     updateUser,
      getOperatorUpdate,
      postOperatorUpdate,
-     getTrip,postTrip,deleteTrip
+     getTrip,postTrip,deleteTrip,updateTrip,
     ];
 

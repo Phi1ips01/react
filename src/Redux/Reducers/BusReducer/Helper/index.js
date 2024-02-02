@@ -102,6 +102,42 @@ export function deleteBusFailed(state, payload) {
   };
 }
 
+export function updateBusStarted(state, payload) {
+  return {
+    ...state,
+    updateBus: {
+      loading: true,
+      error: false
+    }
+  };
+}
+
+export function updateBusSuccess(state, payload) {
+  console.log('reached inside reducer1');
+  
+  return {
+    ...state,
+    updateBus: {
+      loading: false,
+      error: false,
+      data: payload.data.response,
+      
+    },
+    
+  };
+}
+
+
+export function updateBusFailed(state, payload) {
+  return {
+    ...state,
+    updateBus: {
+      loading: false,
+      error: payload
+    }
+  };
+}
+
 export function searchTermBus(state, payload) {
   return {
     ...state,

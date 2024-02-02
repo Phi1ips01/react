@@ -8,6 +8,9 @@ import {
   DELETE_USER_FAILED,
   DELETE_USER_SUCCESS,
   DELETE_USER_STARTED,
+  UPDATE_USER_FAILED,
+  UPDATE_USER_STARTED,
+  UPDATE_USER_SUCCESS,
   SET_SEARCH_TERM,
   SET_TABLE_DATA
 } from '../../Redux.constants';
@@ -21,6 +24,9 @@ import {
   deleteUserFailed,
   deleteUserStarted,
   deleteUserSuccess,
+  updateUserFailed,
+  updateUserStarted,
+  updateUserSuccess,
   searchTermUser,
   tableDataUser
 } from './Helper';
@@ -38,7 +44,18 @@ export function DeleteUser(state = INITIAL_STATE, action) {
       return { ...state };
   }
 }
-
+export function UpdateUser(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case UPDATE_USER_SUCCESS:
+      return updateUserSuccess(state, action.payload);
+    case UPDATE_USER_STARTED:
+      return updateUserStarted(state, action.payload);
+    case UPDATE_USER_FAILED:
+      return updateUserFailed(state, action.payload);
+    default:
+      return { ...state };
+  }
+}
 
 export function PostUser(state = INITIAL_STATE, action) {
   switch (action.type) {

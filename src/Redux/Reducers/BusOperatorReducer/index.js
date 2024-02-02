@@ -8,6 +8,9 @@ POST_OPERATOR_UPDATE_STARTED,
 DELETE_BUS_OPERATOR_FAILED,
 DELETE_BUS_OPERATOR_STARTED,
 DELETE_BUS_OPERATOR_SUCCESS,
+UPDATE_BUS_OPERATOR_FAILED,
+UPDATE_BUS_OPERATOR_STARTED,
+UPDATE_BUS_OPERATOR_SUCCESS,
 SET_SEARCH_TERM,
 SET_TABLE_DATA
 } from '../../Redux.constants';
@@ -22,7 +25,10 @@ import {
   deleteBusOperatorStarted,
   deleteBusOperatorFailed,
   searchTermBusOperator,
-  tableDataBusOperator
+  tableDataBusOperator,
+  updateBusOperatorFailed,
+  updateBusOperatorStarted,
+  updateBusOperatorSuccess,
 } from './Helper';
 import { INITIAL_STATE } from './initialState';
 
@@ -72,6 +78,18 @@ export function DeleteBusOperator(state = INITIAL_STATE, action) {
       return deleteBusOperatorStarted(state, action.payload);
     case DELETE_BUS_OPERATOR_FAILED:
       return deleteBusOperatorFailed(state, action.payload);
+    default:
+      return { ...state };
+  }
+}
+export function UpdateBusOperator(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case UPDATE_BUS_OPERATOR_SUCCESS:
+      return updateBusOperatorSuccess(state, action.payload);
+    case UPDATE_BUS_OPERATOR_STARTED:
+      return updateBusOperatorStarted(state, action.payload);
+    case UPDATE_BUS_OPERATOR_FAILED:
+      return updateBusOperatorFailed(state, action.payload);
     default:
       return { ...state };
   }

@@ -9,11 +9,14 @@ import {
     DELETE_TRIP_FAILED,
     DELETE_TRIP_STARTED,
     DELETE_TRIP_SUCCESS,
+    UPDATE_TRIP_FAILED,
+    UPDATE_TRIP_STARTED,
+    UPDATE_TRIP_SUCCESS,
     SET_SEARCH_TERM,
     SET_TABLE_DATA
     } 
     from '../../Redux.constants';
-import { addTrip, showAllTrip,deleteTrip } from '../../../api/tripAPI';
+import { addTrip, showAllTrip,deleteTrip,updateTrip } from '../../../api/tripAPI';
 
 export function deleteActionTrip(payload) {
     return async (dispatch) => {
@@ -39,6 +42,29 @@ export function deleteActionTrip(payload) {
     };
 }
 
+export function updateActionTrip(payload) {
+    return async (dispatch) => {
+        dispatch({
+            type: UPDATE_TRIP_STARTED,
+            payload: {},
+        });
+        try {
+            console.log("updateup")
+            const data = await updateTrip(payload);
+            console.log("updatedown",data)
+            dispatch({
+                type: UPDATE_TRIP_SUCCESS,
+                payload: data,
+            })
+            dispatch(showTrip());
+        } catch (error) {
+            dispatch({
+                type: UPDATE_TRIP_FAILED,
+                payload: error,
+            });
+        }
+    };
+}
 export function postTrip(payload) {
     return async (dispatch) => {
         dispatch({

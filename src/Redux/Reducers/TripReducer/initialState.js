@@ -15,6 +15,12 @@ export const INITIAL_STATE = {
     error:false,
     data:{}
   },
+  updateTrip:{
+    loading:false,
+    error:false,
+    data:{}
+  },
   searchTerm: '',
   tableData: [],
+  
 };

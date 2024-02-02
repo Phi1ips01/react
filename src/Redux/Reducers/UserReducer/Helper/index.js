@@ -104,6 +104,42 @@ export function deleteUserFailed(state, payload) {
   };
 }
 
+export function updateUserStarted(state, payload) {
+  return {
+    ...state,
+    updateUser: {
+      loading: true,
+      error: false
+    }
+  };
+}
+
+export function updateUserSuccess(state, payload) {
+  console.log('reached inside reducer1');
+  
+  return {
+    ...state,
+    updateUser: {
+      loading: false,
+      error: false,
+      data: payload.data.response,
+      
+    },
+    
+  };
+}
+
+
+export function updateUserFailed(state, payload) {
+  return {
+    ...state,
+    updateUser: {
+      loading: false,
+      error: payload
+    }
+  };
+}
+
 export function searchTermUser(state, payload) {
   return {
     ...state,

@@ -102,6 +102,44 @@ export function deleteTripFailed(state, payload) {
     }
   };
 }
+
+
+export function updateTripStarted(state, payload) {
+  return {
+    ...state,
+    updateTrip: {
+      loading: true,
+      error: false
+    }
+  };
+}
+
+export function updateTripSuccess(state, payload) {
+  console.log('reached inside reducer1');
+  
+  return {
+    ...state,
+    updateTrip: {
+      loading: false,
+      error: false,
+      data: payload.data.response,
+      
+    },
+    
+  };
+}
+
+
+export function updateTripFailed(state, payload) {
+  return {
+    ...state,
+    updateTrip: {
+      loading: false,
+      error: payload
+    }
+  };
+}
+
 export function searchTermTrip(state, payload) {
   return {
     ...state,

@@ -3,15 +3,18 @@ import {
     SHOW_USER_STARTED,
     SHOW_USER_SUCCESS,
     POST_USER_FAILED,
-POST_USER_STARTED,
-POST_USER_SUCCESS,
-DELETE_USER_FAILED,
-DELETE_USER_SUCCESS,
-DELETE_USER_STARTED,
-SET_SEARCH_TERM,
-SET_TABLE_DATA
+    POST_USER_STARTED,
+    POST_USER_SUCCESS,
+    DELETE_USER_FAILED,
+    DELETE_USER_SUCCESS,
+    DELETE_USER_STARTED,
+    UPDATE_USER_FAILED,
+    UPDATE_USER_STARTED,
+    UPDATE_USER_SUCCESS,
+    SET_SEARCH_TERM,
+    SET_TABLE_DATA
 } from '../../Redux.constants';
-import { addUser, showAllUser,deleteUser } from '../../../api/userAPI';
+import { addUser, showAllUser,deleteUser,updateUser } from '../../../api/userAPI';
 
 export function deleteActionUser(payload) {
     return async (dispatch) => {
@@ -61,6 +64,29 @@ export function postUser(payload) {
     };
 }
 
+export function updateActionUser(payload) {
+    return async (dispatch) => {
+        dispatch({
+            type: UPDATE_USER_STARTED,
+            payload: {},
+        });
+        try {
+            console.log("updateup")
+            const data = await updateUser(payload);
+            console.log("updatedown",data)
+            dispatch({
+                type: UPDATE_USER_SUCCESS,
+                payload: data,
+            })
+            dispatch(showUser());
+        } catch (error) {
+            dispatch({
+                type: UPDATE_USER_FAILED,
+                payload: error,
+            });
+        }
+    };
+}
 
 export function showUser(payload) {
     return async (dispatch) => {
