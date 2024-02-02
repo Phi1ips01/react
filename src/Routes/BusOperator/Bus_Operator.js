@@ -78,7 +78,7 @@ class BusOperator extends Component  {
 
             <InputButton type="submit" className="default-form-submit" value="Submit"/>
         </form>
-        <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteBusOperator} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermBusOperator} />
+        <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteBusOperator} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermBusOperator} showOneRowData = {this.props.showOneBusOperatorData} showOneRow = {this.props.showOneBusOperator}/>
         </div>
         </div>
     );

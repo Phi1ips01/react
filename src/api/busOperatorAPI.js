@@ -13,10 +13,14 @@ export const deleteInstance =new APIInstance({
 export const updateInstance =new APIInstance({
     baseURL:'busOperator/update'
 })
+export const showOneInstance = new APIInstance({
+    baseURL: 'busOperator/showOne'
+})
 const api = instance.api;
 const postApi = postInstance.api
 const deleteApi = deleteInstance.api
 const updateApi = updateInstance.api
+const showOneApi = showOneInstance.api
 
 export const showAllBusOperator = () => {
     console.log("busoperatorAPI model")
@@ -32,4 +36,8 @@ export const deleteBusOperator = (payload) => {
 }
 export const updateBusOperator = (payload)=>{
     return updateApi.put(updateApi.baseURL,{data:payload})
+}
+export const showOneBusOperator = (payload)=>{
+    console.log("api",payload)
+    return showOneApi.get(showOneApi.baseURL,{  params: payload  })
 }

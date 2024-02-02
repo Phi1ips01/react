@@ -3,12 +3,15 @@ import React from 'react';
 
 const Search = ({ value, onChange }) => {
     return(
-  <input
-    type="text"
-    placeholder="Search..."
-    value={value}
-    onChange={(e) => onChange(e.target.value)}
-  />
+      <div className='search'>
+<input
+  type="text"
+  placeholder="🔍 Search..."
+  value={value}
+  onChange={(e) => onChange(e.target.value)}
+  className='search-input'
+/>
+  </div>
 )}
 
 export default Search;

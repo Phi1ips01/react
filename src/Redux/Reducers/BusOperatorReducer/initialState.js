@@ -14,6 +14,11 @@ export const INITIAL_STATE = {
     error:false,
     data:{}
   },
+  showOneBusOperator: {
+    loading: false,
+    error: false,
+    data: {}
+  },
   searchTerm: '',
   tableData: [],
   updateBusOperator:{

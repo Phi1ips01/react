@@ -34,6 +34,43 @@ export function showBusOperatorFailed(state, payload) {
     }
   };
 }
+
+export function showOneBusOperatorStarted(state, payload) {
+  return {
+    ...state,
+    showOneBusOperator: {
+      loading: true,
+      error: false
+    }
+  };
+}
+
+export function showOneBusOperatorSuccess(state, payload) {
+  console.log('reached inside reducer1',payload);
+  
+  return {
+    ...state,
+    showOneBusOperator: {
+      loading: false,
+      error: false,
+      data: payload.data.response,
+      
+    },
+    
+  };
+}
+
+
+export function showOneBusOperatorFailed(state, payload) {
+  return {
+    ...state,
+    showOneBusOperator: {
+      loading: false,
+      error: payload
+    }
+  };
+}
+
 export function updateBusOperatorStarted(state, payload) {
   return {
     ...state,

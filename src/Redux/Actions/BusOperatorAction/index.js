@@ -11,10 +11,13 @@ import {
     UPDATE_BUS_OPERATOR_FAILED,
     UPDATE_BUS_OPERATOR_STARTED,
     UPDATE_BUS_OPERATOR_SUCCESS,
+    SHOW_ONE_BUS_OPERATOR_FAILED,
+    SHOW_ONE_BUS_OPERATOR_STARTED,
+    SHOW_ONE_BUS_OPERATOR_SUCCESS,
     SET_SEARCH_TERM,
     SET_TABLE_DATA
     } from '../../Redux.constants';
-import { addBusOperator, showAllBusOperator,deleteBusOperator, updateBusOperator } from '../../../api/busOperatorAPI';
+import { addBusOperator, showAllBusOperator,deleteBusOperator, updateBusOperator,showOneBusOperator } from '../../../api/busOperatorAPI';
 
 export function deleteActionBusOperator(payload) {
     return async (dispatch) => {
@@ -109,6 +112,30 @@ export function showBusOperator(payload) {
         }
     };
 }
+
+export function showOneActionBusOperator(payload) {
+    return  async (dispatch) => {
+        dispatch({
+            type: SHOW_ONE_BUS_OPERATOR_STARTED,
+            payload: {},
+        });
+        try {
+            console.log("busoperatoraction success",payload)
+            const data = await showOneBusOperator(payload);
+            console.log("data", data)
+            dispatch({
+                type: SHOW_ONE_BUS_OPERATOR_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: SHOW_ONE_BUS_OPERATOR_FAILED,
+                payload: error,
+            });
+        }
+    };
+}
+
 
 
 export function setSearchTermBusOperator(term) {
