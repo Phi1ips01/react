@@ -4,7 +4,9 @@ function getBusPageReducer(state) {
     return {
         showBus: state.ShowBus.showBus,
         showBusOperator: state.ShowBusOperator.showBusOperator,
-        searchTerm:state.SearchBus.searchTerm
+        searchTerm:state.SearchBus.searchTerm,
+        showOneBus:state.ShowOneBus.showOneBus,
+        updateBus:state.UpdateBus
     }
 }
 function mergeReducer(showBus) {

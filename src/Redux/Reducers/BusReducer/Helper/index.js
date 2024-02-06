@@ -151,3 +151,49 @@ export function tableDataBus(state, payload) {
     tableData: payload,
   };
 }
+
+export function clearBus(state,payload)
+{
+  return {
+    ...state,
+    showOneBus: {},
+    error: null,
+  }
+}
+
+
+export function showOneBusStarted(state, payload) {
+  return {
+    ...state,
+    showOneBus: {
+      loading: true,
+      error: false
+    }
+  };
+}
+
+export function showOneBusSuccess(state, payload) {
+  console.log('reached inside reducer1',payload);
+  
+  return {
+    ...state,
+    showOneBus: {
+      loading: false,
+      error: false,
+      data: payload.data.response,
+      
+    },
+    
+  };
+}
+
+
+export function showOneBusFailed(state, payload) {
+  return {
+    ...state,
+    showOneBus: {
+      loading: false,
+      error: payload
+    }
+  };
+}

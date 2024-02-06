@@ -41,19 +41,50 @@ class Bus extends Component {
 
     handleSubmit=(event) => {
         event.preventDefault();
+        const showOneBusData = this.props.showOneBusData
+        const form_bus_operator_id = event.target.operator_id.value!==''?event.target.operator_id.value:showOneBusData.bus_operator_id
+        const form_bus_id = event.target.bus_id.value!==''?event.target.bus_id.value:showOneBusData.bus_id
+        const form_name = event.target.name.value!==''?event.target.name.value:showOneBusData.name
+        const form_type = event.target.type.value!==''?event.target.type.value:showOneBusData.type
+        const form_share = event.target.share.value!==''?event.target.share.value:showOneBusData.share
         const formData = {
-        bus_operator_id:event.target.operator_id.value,
-        bus_id:event.target.bus_id.value,
-        name:event.target.name.value,
-        type:event.target.type.value,
-        share:event.target.share.value,
+        bus_operator_id:form_bus_operator_id,
+        bus_id:form_bus_id,
+        name:form_name,
+        type:form_type,
+        share:form_share,
         // total_amount: event.target.bus_total_payment.value,
         // share_deducted_amount: event.target.share_deduced_amount.value,
         
         }
-        this.props.postBus(formData); // Dispatch the action
-        console.log(".,.,.,.,",formData)
-    }
+        if (this.props.showOneBusData) {
+          // If there is editData in props, dispatch updateBusOperator action
+          const id = this.props.showOneBusData.id
+          const updatedFormData = {
+            ...formData,
+            id: id,
+          }
+          this.props.updateBus(updatedFormData);
+        } else {
+          // If no editData, dispatch postBusOperator action
+          this.props.postBus(formData);
+        }
+    
+        // Clear the form after submission
+        this.clearForm();
+      };
+    
+      clearForm = () => {
+        // Clear the form fields
+        document.getElementById('operator_id').value = '';
+        document.getElementById('name').value = '';
+        document.getElementById('type').value = '';
+        document.getElementById('share').value = '';
+        document.getElementById('bus_id').value = '';
+        this.props.clearBus();
+        console.log("clear form ", this.props.showOneBusData)
+      };
+  
     
         render() {
             // const { loading, error } = this.props;
@@ -61,6 +92,7 @@ class Bus extends Component {
             const { showBusOperatorData } = this.props || [];
             console.log("showBUsOperaotrData",showBusOperatorData)
             const testData = this.props.busData
+            
             if (!showBusOperatorData || !testData) {
               // Render a loading state or return null until the data is available
               return (
@@ -79,6 +111,9 @@ class Bus extends Component {
         console.log("data,columns",data,allColumns)
 console.log("deleteBus",this.props)
             // const { loading, error, data } = this.props.showBus;
+            const { showOneBusData } = this.props;
+        const isEditMode = !!showOneBusData
+        console.log("buss",isEditMode)
     return (
         <div>
             
@@ -87,41 +122,68 @@ console.log("deleteBus",this.props)
            <div className="default-main">
         <form  onSubmit={this.handleSubmit} className="default-form">
           <h3>Enter the Bus details here</h3>
-          <InputField type="text" id="bus_id" name="bus_id" className="default-form-input" placeholder="Enter the bus ID.." required/>
-          
-          <select className='default-select' id="operator_id" required>
-          <option value="" disabled selected>Select the Operator</option>
+          <InputField
+              type="text"
+              id="bus_id"
+              name="bus_id"
+              className="default-form-input"
+              placeholder={isEditMode ? showOneBusData.bus_id : "Enter the bus ID.."}
+              required = {isEditMode ? false : true}
+            />          
+          <select 
+          className='default-select' 
+          id="operator_id" 
+          required = {isEditMode ? false : true}>
+          <option value="" disabled selected>{isEditMode?showOneBusData.bus_operator_id:'Select the Operator'}</option>
           {Array.isArray(showBusOperatorData) &&
-  showBusOperatorData.map(operator => {
-    console.log("Operator ID:", operator.bus_operator_id);
-    console.log("Operator Name:", operator.name);
-
-    return (
-      <option key={operator.id} value={operator.id}>
-        {operator.name}
-      </option>
-    );
-  })}
-
-
-
+              showBusOperatorData.map(operator => {
+                return (
+                  <option key={operator.id} value={operator.id}>
+                    {operator.name}
+                  </option>
+                );
+              })}
         </select>
-          <InputField type="text" id="name" name="name" className="default-form-input" placeholder="Enter the Name" required/>
-          <select name="type" id="type" className="default-select">
+        <InputField
+            type="text"
+            id="name"
+            name="name"
+            className="default-form-input"
+            placeholder={isEditMode ? showOneBusData.name : "Enter the Name"}
+            required = {isEditMode ? false : true}
+          />
+          <select 
+          name="type" 
+          id="type" 
+          className="default-select"
+          required = {isEditMode ? false : true}>
                 <option value="volvo">Volvo</option>
                 <option value="Full AC">FUll AC</option>
                 <option value="Second Seater">Second Seater</option>
             </select>
-            <InputField type="text" id="share" name="share" className="default-form-input" placeholder="Enter the share in %" required/>
+            <InputField
+              type="text"
+              id="share"
+              name="share"
+              className="default-form-input"
+              placeholder={isEditMode ? showOneBusData.share : "Enter the share in %"}
+              required = {isEditMode ? false : true}
+            />        
             {/* <InputField type="text" id="bus_total_payment" name="bus_total_payment" className="default-form-input" placeholder="Enter the Total amount disbaled" />
             <InputField type="text" id="share_deduced_amount" name="share_deduced_amount" className="default-form-input" placeholder="Share deduced amount disbaled" /> */}
 
-            <InputButton className="default-form-submit" value="Submit"/>
+            <InputButton type="submit" id="inputButton" className="default-form-submit" value={!isEditMode ? 'Submit' : 'Update'}/>
+            {isEditMode && (
+              <button type="button" className="default-form-clear" onClick={this.clearForm}>
+                
+                Clear
+              </button>
+            )}
         </form>
             
             
 
-        <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteBus} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermBus}/>
+        <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteBus} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermBus} showOneRowData = {this.props.showOneBusData} showOneRow = {this.props.showOneBus}/>
 </div>
         </div>
 

@@ -192,3 +192,12 @@ export function tableDataBusOperator(state, payload) {
     tableData: payload,
   };
 }
+
+export function clearBusOperator(state,payload)
+{
+  return {
+    ...state,
+    showOneBusOperator: {},
+    error: null,
+  }
+}

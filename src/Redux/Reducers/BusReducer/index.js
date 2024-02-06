@@ -11,6 +11,10 @@ import {
   UPDATE_BUS_FAILED,
   UPDATE_BUS_STARTED,
   UPDATE_BUS_SUCCESS,
+  SHOW_ONE_BUS_FAILED,
+  SHOW_ONE_BUS_STARTED,
+  SHOW_ONE_BUS_SUCCESS,
+  CLEAR_BUS,
   SET_SEARCH_TERM,
   SET_TABLE_DATA
 
@@ -28,7 +32,11 @@ import {
   updateBusFailed,
   updateBusStarted,
   updateBusSuccess,
+  showOneBusFailed,
+  showOneBusStarted,
+  showOneBusSuccess,
   searchTermBus,
+  clearBus,
   tableDataBus
 } from './Helper';
 import { INITIAL_STATE } from './initialState';
@@ -94,6 +102,21 @@ export function SearchBus(state = INITIAL_STATE, action) {
       return searchTermBus(state, action.payload);
     case SET_TABLE_DATA:
       return tableDataBus(state, action.payload);
+    default:
+      return { ...state };
+  }
+}
+
+export function ShowOneBus(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case SHOW_ONE_BUS_SUCCESS:
+      return showOneBusSuccess(state, action.payload);
+    case SHOW_ONE_BUS_STARTED:
+      return showOneBusStarted(state, action.payload);
+    case SHOW_ONE_BUS_FAILED:
+      return showOneBusFailed(state, action.payload);
+      case CLEAR_BUS:
+      return clearBus(state,action.payload);
     default:
       return { ...state };
   }

@@ -153,3 +153,50 @@ export function tableDataTrip(state, payload) {
     tableData: payload,
   };
 }
+
+
+export function clearTrip(state,payload)
+{
+  return {
+    ...state,
+    showOneTrip: {},
+    error: null,
+  }
+}
+
+
+export function showOneTripStarted(state, payload) {
+  return {
+    ...state,
+    showOneTrip: {
+      loading: true,
+      error: false
+    }
+  };
+}
+
+export function showOneTripSuccess(state, payload) {
+  console.log('reached inside reducer1',payload);
+  
+  return {
+    ...state,
+    showOneTrip: {
+      loading: false,
+      error: false,
+      data: payload.data.response,
+      
+    },
+    
+  };
+}
+
+
+export function showOneTripFailed(state, payload) {
+  return {
+    ...state,
+    showOneTrip: {
+      loading: false,
+      error: payload
+    }
+  };
+}

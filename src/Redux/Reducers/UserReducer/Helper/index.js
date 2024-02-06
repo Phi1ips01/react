@@ -153,3 +153,50 @@ export function tableDataUser(state, payload) {
     tableData: payload,
   };
 }
+
+
+export function clearUser(state,payload)
+{
+  return {
+    ...state,
+    showOneUser: {},
+    error: null,
+  }
+}
+
+
+export function showOneUserStarted(state, payload) {
+  return {
+    ...state,
+    showOneUser: {
+      loading: true,
+      error: false
+    }
+  };
+}
+
+export function showOneUserSuccess(state, payload) {
+  console.log('reached inside reducer1',payload);
+  
+  return {
+    ...state,
+    showOneUser: {
+      loading: false,
+      error: false,
+      data: payload.data.response,
+      
+    },
+    
+  };
+}
+
+
+export function showOneUserFailed(state, payload) {
+  return {
+    ...state,
+    showOneUser: {
+      loading: false,
+      error: payload
+    }
+  };
+}

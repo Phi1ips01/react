@@ -11,6 +11,10 @@ import {
   UPDATE_USER_FAILED,
   UPDATE_USER_STARTED,
   UPDATE_USER_SUCCESS,
+  SHOW_ONE_USER_FAILED,
+  SHOW_ONE_USER_STARTED,
+  SHOW_ONE_USER_SUCCESS,
+  CLEAR_USER,
   SET_SEARCH_TERM,
   SET_TABLE_DATA
 } from '../../Redux.constants';
@@ -27,6 +31,10 @@ import {
   updateUserFailed,
   updateUserStarted,
   updateUserSuccess,
+  showOneUserFailed,
+  showOneUserStarted,
+  showOneUserSuccess,
+  clearUser,
   searchTermUser,
   tableDataUser
 } from './Helper';
@@ -89,6 +97,21 @@ export function SearchUser(state = INITIAL_STATE, action) {
       return searchTermUser(state, action.payload);
     case SET_TABLE_DATA:
       return tableDataUser(state, action.payload);
+    default:
+      return { ...state };
+  }
+}
+
+export function ShowOneUser(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case SHOW_ONE_USER_SUCCESS:
+      return showOneUserSuccess(state, action.payload);
+    case SHOW_ONE_USER_STARTED:
+      return showOneUserStarted(state, action.payload);
+    case SHOW_ONE_USER_FAILED:
+      return showOneUserFailed(state, action.payload);
+      case CLEAR_USER:
+      return clearUser(state,action.payload);
     default:
       return { ...state };
   }

@@ -11,10 +11,14 @@ import {
     UPDATE_BUS_FAILED,
     UPDATE_BUS_STARTED,
     UPDATE_BUS_SUCCESS,
+    SHOW_ONE_BUS_FAILED,
+    SHOW_ONE_BUS_SUCCESS,
+    SHOW_ONE_BUS_STARTED,
     SET_SEARCH_TERM,
-    SET_TABLE_DATA
+    SET_TABLE_DATA,
+    CLEAR_BUS
 } from '../../Redux.constants';
-import { addBus, showAllBus, deleteBus,updateBus } from '../../../api/busAPI';
+import { addBus, showAllBus, deleteBus,updateBus,showOneBus } from '../../../api/busAPI';
 
 export function deleteActionBus(payload) {
     return async (dispatch) => {
@@ -127,3 +131,32 @@ export function setSearchTermBus(term) {
       });
     };
   }
+  export function clearBus() {
+    return {
+        type: CLEAR_BUS,
+    };
+}
+
+
+export function showOneActionBus(payload) {
+    return  async (dispatch) => {
+        dispatch({
+            type: SHOW_ONE_BUS_STARTED,
+            payload: {},
+        });
+        try {
+            console.log("Busaction success",payload)
+            const data = await showOneBus(payload);
+            console.log("data", data)
+            dispatch({
+                type: SHOW_ONE_BUS_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: SHOW_ONE_BUS_FAILED,
+                payload: error,
+            });
+        }
+    };
+}

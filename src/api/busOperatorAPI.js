@@ -35,7 +35,7 @@ export const deleteBusOperator = (payload) => {
     return deleteApi.delete(deleteApi.baseURL, { data: payload })
 }
 export const updateBusOperator = (payload)=>{
-    return updateApi.put(updateApi.baseURL,{data:payload})
+    return updateApi.put(updateApi.baseURL,payload)
 }
 export const showOneBusOperator = (payload)=>{
     console.log("api",payload)

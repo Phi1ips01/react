@@ -12,8 +12,12 @@ import {
   UPDATE_TRIP_FAILED,
   UPDATE_TRIP_STARTED,
   UPDATE_TRIP_SUCCESS,
+  SHOW_ONE_TRIP_FAILED,
+  SHOW_ONE_TRIP_STARTED,
+  SHOW_ONE_TRIP_SUCCESS,
   SET_SEARCH_TERM,
-  SET_TABLE_DATA
+  SET_TABLE_DATA,
+  CLEAR_TRIP
 } from '../../Redux.constants';
 import {
   showTripFailed,
@@ -28,6 +32,10 @@ import {
   updateTripFailed,
   updateTripStarted,
   updateTripSuccess,
+  showOneTripFailed,
+  showOneTripStarted,
+  showOneTripSuccess,
+  clearTrip,
   searchTermTrip,
   tableDataTrip
 } from './Helper';
@@ -105,6 +113,20 @@ export function SearchTrip(state = INITIAL_STATE, action) {
       return searchTermTrip(state, action.payload);
     case SET_TABLE_DATA:
       return tableDataTrip(state, action.payload);
+    default:
+      return { ...state };
+  }
+}
+export function ShowOneTrip(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case SHOW_ONE_TRIP_SUCCESS:
+      return showOneTripSuccess(state, action.payload);
+    case SHOW_ONE_TRIP_STARTED:
+      return showOneTripStarted(state, action.payload);
+    case SHOW_ONE_TRIP_FAILED:
+      return showOneTripFailed(state, action.payload);
+      case CLEAR_TRIP:
+      return clearTrip(state,action.payload);
     default:
       return { ...state };
   }

@@ -13,11 +13,17 @@ export const deleteInstance = new APIInstance({
 export const updateInstance = new APIInstance({
     baseURL: 'user/update'
 })
+export const showOneInstance = new APIInstance({
+    baseURL: 'user/showOne'
+})
 
 const api = instance.api;
 const postApi = postInstance.api
 const deleteApi = deleteInstance.api
 const updateApi = updateInstance.api
+const showOneApi = showOneInstance.api
+
+
 export const showAllUser = (payload) => {
     return api.get(api.baseURL)
 };
@@ -30,5 +36,9 @@ export const deleteUser = (payload) => {
     return deleteApi.delete(deleteApi.baseURL, { data: payload })
 }
 export const updateUser = (payload)=>{
-    return updateApi.put(updateApi.baseURL,{data:payload})
+    return updateApi.put(updateApi.baseURL,payload)
+}
+export const showOneUser = (payload)=>{
+    console.log("api",payload)
+    return showOneApi.get(showOneApi.baseURL,{  params: payload  })
 }

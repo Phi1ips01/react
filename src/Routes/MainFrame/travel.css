@@ -208,7 +208,7 @@
     box-sizing: border-box;
     background-color: rgba(255, 243, 243, 0.7);
   }
-  .default-form-submit {
+  .default-form-submit, .default-form-clear {
     width: 24%;
     background-color: #4CAF50;
     color: white;
@@ -340,4 +340,20 @@
   .btn-container {
     display: flex;
     justify-content: space-around;
+  }
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  .form-group input, .form-group select{
+    width: 80%;
+  }
+  .form-group {
+    flex: 0 0 30%; /* Adjust the width as needed */
+    margin-bottom: 6px;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 2px;
   }

@@ -15,7 +15,8 @@ SHOW_ONE_BUS_OPERATOR_FAILED,
 SHOW_ONE_BUS_OPERATOR_STARTED,
 SHOW_ONE_BUS_OPERATOR_SUCCESS,
 SET_SEARCH_TERM,
-SET_TABLE_DATA
+SET_TABLE_DATA,
+CLEAR_BUS_OPERATOR
 } from '../../Redux.constants';
 import {
   showBusOperatorFailed,
@@ -35,6 +36,7 @@ import {
   updateBusOperatorFailed,
   updateBusOperatorStarted,
   updateBusOperatorSuccess,
+  clearBusOperator,
 } from './Helper';
 import { INITIAL_STATE } from './initialState';
 
@@ -84,6 +86,8 @@ export function ShowOneBusOperator(state = INITIAL_STATE, action) {
       return showOneBusOperatorStarted(state, action.payload);
     case SHOW_ONE_BUS_OPERATOR_FAILED:
       return showOneBusOperatorFailed(state, action.payload);
+      case CLEAR_BUS_OPERATOR:
+      return clearBusOperator(state,action.payload);
     default:
       return { ...state };
   }

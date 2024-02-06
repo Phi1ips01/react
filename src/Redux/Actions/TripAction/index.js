@@ -12,11 +12,15 @@ import {
     UPDATE_TRIP_FAILED,
     UPDATE_TRIP_STARTED,
     UPDATE_TRIP_SUCCESS,
+    SHOW_ONE_TRIP_FAILED,
+    SHOW_ONE_TRIP_STARTED,
+    SHOW_ONE_TRIP_SUCCESS,
     SET_SEARCH_TERM,
-    SET_TABLE_DATA
+    SET_TABLE_DATA,
+    CLEAR_TRIP,
     } 
     from '../../Redux.constants';
-import { addTrip, showAllTrip,deleteTrip,updateTrip } from '../../../api/tripAPI';
+import { addTrip, showAllTrip,deleteTrip,updateTrip,showOneTrip } from '../../../api/tripAPI';
 
 export function deleteActionTrip(payload) {
     return async (dispatch) => {
@@ -135,3 +139,32 @@ export function setSearchTermTrip(term) {
       });
     };
   }
+
+  export function clearTrip() {
+    return {
+        type: CLEAR_TRIP,
+    };
+}
+
+export function showOneActionTrip(payload) {
+    return  async (dispatch) => {
+        dispatch({
+            type: SHOW_ONE_TRIP_STARTED,
+            payload: {},
+        });
+        try {
+            console.log("Tripaction success",payload)
+            const data = await showOneTrip(payload);
+            console.log("data", data)
+            dispatch({
+                type: SHOW_ONE_TRIP_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: SHOW_ONE_TRIP_FAILED,
+                payload: error,
+            });
+        }
+    };
+}

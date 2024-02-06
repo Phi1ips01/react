@@ -21,6 +21,7 @@ export const INITIAL_STATE = {
   },
   searchTerm: '',
   tableData: [],
+  editData:null,
   updateBusOperator:{
     loading:false,
     error:false,

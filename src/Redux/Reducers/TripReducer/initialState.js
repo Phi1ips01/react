@@ -22,5 +22,10 @@ export const INITIAL_STATE = {
   },
   searchTerm: '',
   tableData: [],
-  
+  editData:null,
+  showOneTrip: {
+    loading: false,
+    error: false,
+    data: {}
+  },
 };

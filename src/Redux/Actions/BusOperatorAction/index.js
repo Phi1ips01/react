@@ -15,7 +15,8 @@ import {
     SHOW_ONE_BUS_OPERATOR_STARTED,
     SHOW_ONE_BUS_OPERATOR_SUCCESS,
     SET_SEARCH_TERM,
-    SET_TABLE_DATA
+    SET_TABLE_DATA,
+    CLEAR_BUS_OPERATOR
     } from '../../Redux.constants';
 import { addBusOperator, showAllBusOperator,deleteBusOperator, updateBusOperator,showOneBusOperator } from '../../../api/busOperatorAPI';
 
@@ -135,7 +136,11 @@ export function showOneActionBusOperator(payload) {
         }
     };
 }
-
+  export function clearBusOperator() {
+    return {
+        type: CLEAR_BUS_OPERATOR,
+    };
+}
 
 
 export function setSearchTermBusOperator(term) {
@@ -155,3 +160,4 @@ export function setSearchTermBusOperator(term) {
       });
     };
   }
+  

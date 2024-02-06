@@ -1,10 +1,16 @@
 import { createSelector } from 'reselect';
 
 function getTripPageReducer(state) {
-    console.log("satte",state)
+    console.log("satte",state.ShowOneTrip)
+    
     return {
         showTrip: state.ShowTrip.showTrip,
-        searchTerm:state.SearchTrip.searchTerm
+        searchTerm:state.SearchTrip.searchTerm,
+        showBus: state.ShowBus.showBus,
+        showBusOperator: state.ShowBusOperator.showBusOperator,
+        selectedOperatorID: state.selectedOperatorID,
+        updateTrip:state.updateTrip,
+        showOneTrip:state.ShowOneTrip.showOneTrip,
         
     }
 }

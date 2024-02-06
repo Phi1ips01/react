@@ -35,19 +35,47 @@ class User extends Component {
   }
 
   handleSubmit = (event) => {
-    console.log("handle submit",event.target);
+    console.log("handle submit",this.props.showOneUser);
     event.preventDefault();
-    const formData = {
-        username:event.target.username.value,
-        email:event.target.email.value,
-        password:event.target.password.value,
-        role:event.target.role.value
-    }
-    console.log(".,.,.,.,",formData, );
-    // const formData = new FormData(event.target);
-    this.props.postUser(formData); // Dispatch the action
-  }
+    const showOneUserData = this.props.showOneUserData
 
+    const form_username= event.target.username.value!==''?event.target.username.value:showOneUserData.username
+    const form_email= event.target.email.value!==''?event.target.email.value:showOneUserData.email
+    const form_password=event.target.password.value!==''?event.target.password.value:showOneUserData.password
+    const form_role = event.target.role.value!==''?event.target.role.value:showOneUserData.role
+    const formData = {
+        username:form_username,
+        email:form_email,
+        password:form_password,
+        role:form_role
+    }
+
+    if (this.props.showOneUserData) {
+      // If there is editData in props, dispatch updateBusOperator action
+      const id = this.props.showOneUserData.id
+      const updatedFormData = {
+        ...formData,
+        id: id,
+      }
+      this.props.updateUser(updatedFormData);
+    } else {
+      // If no editData, dispatch postBusOperator action
+      this.props.postUser(formData);
+    }
+
+    // Clear the form after submission
+    this.clearForm();
+  };
+
+  clearForm = () => {
+    // Clear the form fields
+    document.getElementById('username').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('password').value = '';
+    document.getElementById('role').value = '';
+    this.props.clearUser();
+    console.log("clear form ", this.props.showOneBusData)
+  };
   render() {
     console.log("render", this.props.data);
     const testData = this.props.data;
@@ -57,7 +85,11 @@ class User extends Component {
     const columns = allColumns.map(column => ({
       Header: column.charAt(0).toUpperCase() + column.slice(1).replace(/_/g, ' '), // Convert underscore to space and capitalize
       accessor: column,
+
     }));
+    const { showOneUserData } = this.props;
+        const isEditMode = !!showOneUserData && !!showOneUserData.username
+        console.log("buss",isEditMode)
     return (
       <div>
         <DropDown />
@@ -65,16 +97,50 @@ class User extends Component {
         <div className="default-main">
           <form className="default-form" onSubmit={this.handleSubmit}>
             <h3>Enter the User details here</h3>
-            <InputField type="text" id="username" name="username" className="default-form-input" placeholder="Enter the username.."/>
-            <InputField type="text" id="email" name="email" className="default-form-input" placeholder="Enter the Email.."/>
-            <InputField type="text" id="password" name="password" className="default-form-input" placeholder="Enter the password"/><br/>
-            <InputField type="text" id="role" name="role" className="default-form-input" placeholder="Enter the role"/>
-            <InputButton type="submit" className="default-form-submit"  value="Submit"/>
+            <InputField
+              type="text"
+              id="username"
+              name="username"
+              className="default-form-input"
+              placeholder={isEditMode ? showOneUserData.username : "Enter the username.."}
+              required={isEditMode ? false : true}
+            />
+            <InputField
+              type="text"
+              id="email"
+              name="email"
+              className="default-form-input"
+              placeholder={isEditMode ? showOneUserData.email : "Enter the Email.."}
+              required={isEditMode ? false : true}
+            />
+            <InputField
+              type="password"
+              id="password"
+              name="password"
+              className="default-form-input"
+              placeholder={isEditMode ? showOneUserData.password : "Enter the password"}
+              required={isEditMode ? false : true}
+            /><br/>
+            <InputField
+              type="text"
+              id="role"
+              name="role"
+              className="default-form-input"
+              placeholder={isEditMode ? showOneUserData.role : "Enter the role"}
+              required={isEditMode ? false : true}
+            />
+            <InputButton type="submit" id="inputButton" className="default-form-submit" value={!isEditMode ? 'Submit' : 'Update'}/>
+            {isEditMode && (
+              <button type="button" className="default-form-clear" onClick={this.clearForm}>
+                
+                Clear
+              </button>
+            )}
           </form>
           {
-            console.log("userlog", this.props.deleteActionUser)
+            console.log("userlog", this.props)
           }
-          <DynamicTable columns={columns} data={data} deleteActionUser={this.props.deleteActionUser} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermUser}  />
+          <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteActionUser} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermUser} showOneRowData = {this.props.showOneUserData} showOneRow = {this.props.showOneUser} />
         </div>
       </div>
     );

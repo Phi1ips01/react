@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import edit from '../../images/edit.png';
 import del from '../../images/delete.png';
-import Modal from '../Modal';
 // import PropType from 'prop-types';
 export default class ModifyTableButton extends Component {
   handleDelete = (e) => {
@@ -21,7 +20,7 @@ export default class ModifyTableButton extends Component {
     if (this.props.showOneRow) {
       console.log("rowID",this.props)
       this.props.showOneRow(row)
-      return <Modal/>
+      
   }
 
 }

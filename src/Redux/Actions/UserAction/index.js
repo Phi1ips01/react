@@ -11,10 +11,14 @@ import {
     UPDATE_USER_FAILED,
     UPDATE_USER_STARTED,
     UPDATE_USER_SUCCESS,
+    SHOW_ONE_USER_FAILED,
+    SHOW_ONE_USER_STARTED,
+    SHOW_ONE_USER_SUCCESS,
     SET_SEARCH_TERM,
-    SET_TABLE_DATA
+    SET_TABLE_DATA,
+    CLEAR_USER
 } from '../../Redux.constants';
-import { addUser, showAllUser,deleteUser,updateUser } from '../../../api/userAPI';
+import { addUser, showAllUser,deleteUser,updateUser,showOneUser } from '../../../api/userAPI';
 
 export function deleteActionUser(payload) {
     return async (dispatch) => {
@@ -127,3 +131,29 @@ export function setSearchTermUser(term) {
       });
     };
   }
+  export function clearUser() {
+    return {
+        type: CLEAR_USER,
+    };
+}export function showOneActionUser(payload) {
+    return  async (dispatch) => {
+        dispatch({
+            type: SHOW_ONE_USER_STARTED,
+            payload: {},
+        });
+        try {
+            console.log("Useraction success",payload)
+            const data = await showOneUser(payload);
+            console.log("data", data)
+            dispatch({
+                type: SHOW_ONE_USER_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: SHOW_ONE_USER_FAILED,
+                payload: error,
+            });
+        }
+    };
+}

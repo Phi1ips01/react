@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { useTable } from 'react-table';
 import Search from '../Search'
 import ModifyTableButton from '../ModifyTableButton'
-const DynamicTable = ({ columns, data, searchData, setSearchTerm, deleteAction }) => {
+const DynamicTable = ({ columns, data, searchData, setSearchTerm, deleteAction,showOneRow, showOneRowData }) => {
   // console.log('Columns:', columns);
   // console.log('Data:', data);
   // console.log('Search Term:', searchData);
@@ -57,7 +57,7 @@ const DynamicTable = ({ columns, data, searchData, setSearchTerm, deleteAction }
                       </td>
                     ))}
                     <td>
-                      <ModifyTableButton rowID={row.original.id} deleteAction={deleteAction} />
+                      <ModifyTableButton rowID={row.original.id} deleteAction={deleteAction} showOneRow = {showOneRow} showOneRowData = {showOneRowData} />
                     </td>
                   </tr>
                 );

@@ -37,19 +37,43 @@ class BusOperator extends Component  {
     }
     handleSubmit=(event)=> {
         event.preventDefault();
+        
+        const showOneBusOperatorData = this.props.showOneBusOperatorData
+        const formBusOperatorId = event.target.operator_id.value!==''?event.target.operator_id.value:showOneBusOperatorData.bus_operator_id
+        const formName = event.target.name.value!==''?event.target.name.value:showOneBusOperatorData.name
+        const formContact = event.target.contact.value!==''?event.target.contact.value:showOneBusOperatorData.contact
         const formData = {
-          bus_operator_id:event.target.operator_id.value,
-          name:event.target.name.value,
-          contact:event.target.contact.value,
-          // total_amount: event.target.bus_operator_total_payment.value,
-          // profit:event.target.bus_operator_profit.value,
-          // paid:event.target.bus_operator_paid.value,
-          // remaining_payment: event.target.remaining_payment.value,
+          bus_operator_id:formBusOperatorId,
+          name:formName,
+          contact:formContact,
+          
         }
-        console.log("this.props",this.props)
-        this.props.postBusOperator(formData); // Dispatch the action
-        console.log(formData,".,.,.,.,")
-    }
+        console.log("hands",formData)
+        if (this.props.showOneBusOperatorData) {
+          // If there is editData in props, dispatch updateBusOperator action
+          const id = this.props.showOneBusOperatorData.id
+          const updatedFormData = {
+            ...formData,
+            id: id,
+          }
+          this.props.updateBusOperator(updatedFormData);
+        } else {
+          // If no editData, dispatch postBusOperator action
+          this.props.postBusOperator(formData);
+        }
+    
+        // Clear the form after submission
+        this.clearForm();
+      };
+    
+      clearForm = () => {
+        // Clear the form fields
+        document.getElementById('operator_id').value = '';
+        document.getElementById('name').value = '';
+        document.getElementById('contact').value = '';
+        this.props.clearBusOperator();
+        console.log("clear form ", this.props.showOneBusOperatorData)
+      };
     render(){
       console.log("render",this.props)
             const testData = this.props.data
@@ -60,7 +84,9 @@ class BusOperator extends Component  {
           Header: column.charAt(0).toUpperCase() + column.slice(1).replace(/_/g, ' '), // Convert underscore to space and capitalize
           accessor: column,
         }));
-
+        const { showOneBusOperatorData } = this.props;
+        const isEditMode = !!showOneBusOperatorData && !!showOneBusOperatorData.bus_operator_id;
+        console.log("editmode render",isEditMode)
     return (
         <div>
              <DropDown/>
@@ -68,15 +94,41 @@ class BusOperator extends Component  {
            <div className="default-main">
         <form onSubmit={this.handleSubmit} className="default-form">
           <h3>Enter the Bus Operator details here</h3>
-            <InputField type="text" id="trip_id" name="operator_id"  className="default-form-input" placeholder="Enter the bus operator ID.." required/>
-            <InputField type="text" id="name" name="name" className="default-form-input" placeholder="Enter the Name" required/>
-            <InputField type="text" id="contact" name="contact" className="default-form-input" placeholder="Enter the contact" required/>
-            {/* <InputField type="text" id="bus_operator_total_payment" name="bus_operator_total_payment" className="default-form-input" placeholder="Total bus operator amount disabled"  />
+          <InputField
+              type="text"
+              id="operator_id"
+              name="operator_id"
+              className="default-form-input"
+              placeholder={isEditMode?showOneBusOperatorData.bus_operator_id:"Enter the bus operator ID.."}
+              required={isEditMode?false:true}
+            />
+            <InputField
+              type="text"
+              id="name"
+              name="name"
+              className="default-form-input"
+              placeholder={isEditMode?showOneBusOperatorData.name:"Enter the Name"}
+              required={isEditMode?false:true}             
+            />
+            <InputField
+              type="text"
+              id="contact"
+              name="contact"
+              className="default-form-input"
+              placeholder={isEditMode?showOneBusOperatorData.contact:"Enter the contact"}
+              required={isEditMode?false:true}              
+            />            {/* <InputField type="text" id="bus_operator_total_payment" name="bus_operator_total_payment" className="default-form-input" placeholder="Total bus operator amount disabled"  />
             <InputField type="text" id="bus_operator_profit" name="bus_operator_profit" className="default-form-input" placeholder="Profit recieved disabled" />
             <InputField type="text" id="bus_operator_paid" name="bus_operator_paid" className="default-form-input" placeholder="Amount paid disabled" />
             <InputField type="text" id="remaining_payment" name="remaining_payment" className="default-form-input" placeholder="remaining payment disabled" /> */}
 
-            <InputButton type="submit" className="default-form-submit" value="Submit"/>
+            <InputButton type="submit" id="inputButton" className="default-form-submit" value={!isEditMode ? 'Submit' : 'Update'}/>
+            {isEditMode && (
+              <button type="button" className="default-form-clear" onClick={this.clearForm}>
+                
+                Clear
+              </button>
+            )}
         </form>
         <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteBusOperator} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermBusOperator} showOneRowData = {this.props.showOneBusOperatorData} showOneRow = {this.props.showOneBusOperator}/>
         </div>
