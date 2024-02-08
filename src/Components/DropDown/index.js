@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 export default class DropDown extends Component {
+  handleLogOut = ()=>{
+console.log(this.props)
+    this.props.logout()
+  }
   render() {
     return (
       <div>
@@ -8,9 +12,13 @@ export default class DropDown extends Component {
         <div className="dropdown-content">
           <a href="/home">Trip Details</a>
           <a href="/tripData">Admin Panel</a>
-          <a href="/">Log Out</a>
-          <div className="clear"></div>
+          <div className='logout'>
+          <button className='logout-button' onClick={this.handleLogOut}>Logout</button>
         </div>
+        </div>
+        
+        <div className="clear"></div>
+
     </div>
         </div>
     );

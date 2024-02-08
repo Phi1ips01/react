@@ -112,13 +112,13 @@ class Bus extends Component {
 console.log("deleteBus",this.props)
             // const { loading, error, data } = this.props.showBus;
             const { showOneBusData } = this.props;
-        const isEditMode = !!showOneBusData
+        const isEditMode = !!showOneBusData && !!showOneBusData.bus_id
         console.log("buss",isEditMode)
     return (
         <div>
             
             <SideBar/>
-            <DropDown/>
+            <DropDown logout={this.props.logout}/>
            <div className="default-main">
         <form  onSubmit={this.handleSubmit} className="default-form">
           <h3>Enter the Bus details here</h3>

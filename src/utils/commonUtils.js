@@ -2,6 +2,7 @@ import { KEYS } from '../dataKeys';
 
 export const CommonUtils = {
     isLoggedIn: () => {
-        return localStorage.getItem(KEYS.ACCESS_TOKEN) ? true : true;
+        console.log("loca",localStorage.getItem(KEYS.ACCESS_TOKEN))
+        return localStorage.getItem(KEYS.ACCESS_TOKEN) ? true : false;
     }
 };

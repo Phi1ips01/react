@@ -49,9 +49,8 @@ export default class LoginPage extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { email, password } = this.state;
         const { signIn } = this.props;
-        signIn({ email: email.value, password: password.value });
+        signIn({ email: e.target.email.value, password: e.target.password.value })
     };
 
     render() {

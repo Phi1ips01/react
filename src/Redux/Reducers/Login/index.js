@@ -2,11 +2,13 @@ import {
   LOGIN_SUCCESS,
   LOGIN_STARTED,
   LOGIN_FAILED,
+  LOGOUT,
 } from '../../Redux.constants';
 import {
   loginSuccess,
   loginStarted,
-  loginFailed
+  loginFailed,
+  logout
 } from './Helper';
 import { INITIAL_STATE } from './initialState';
 
@@ -20,5 +22,17 @@ export default function Login(state = INITIAL_STATE, action) {
       return loginFailed(state, action.payload);
     default:
       return { ...state };
+  }
+}
+
+export function LogOut(state = INITIAL_STATE,action){
+  switch(action.type)
+  {
+    case LOGOUT:
+      
+        return logout(state,action.payload)
+
+        default:
+          return {...state}
   }
 }

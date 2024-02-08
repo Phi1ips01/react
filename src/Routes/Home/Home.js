@@ -114,7 +114,8 @@ handleSubmit = (event)=> {
     // const { userList, loading, error } = this.state;
     return (
       <div>
-        <TopNav/>
+        <TopNav logout={this.props.logout}/>
+
         <div className="trip-main">
             <form className="trip-form" onSubmit={this.handleSubmit}>
               <h3>Enter the Trip details here</h3>

@@ -135,7 +135,8 @@ export function setSearchTermUser(term) {
     return {
         type: CLEAR_USER,
     };
-}export function showOneActionUser(payload) {
+}
+export function showOneActionUser(payload) {
     return  async (dispatch) => {
         dispatch({
             type: SHOW_ONE_USER_STARTED,

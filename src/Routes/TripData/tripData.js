@@ -165,7 +165,7 @@ handleOperatorChange = (event) => {
         const { busOperatorData, busData, selectedOperatorId } = this.props || [];
     return (
       <div>
-        <DropDown/>
+            <DropDown logout={this.props.logout}/>
             <SideBar/>
             <div className="default-main">
             <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteTrip} searchData = {this.props.searchData}setSearchTerm ={this.props.setSearchTermTrip} showOneRowData = {this.props.showOneTripData} showOneRow = {this.props.showOneTrip}/>

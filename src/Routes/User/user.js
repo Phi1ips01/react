@@ -77,7 +77,7 @@ class User extends Component {
     console.log("clear form ", this.props.showOneBusData)
   };
   render() {
-    console.log("render", this.props.data);
+    console.log("render", this.props);
     const testData = this.props.data;
     const data = Array.isArray(testData) ? testData : [];
     const allColumns = data.length > 0 ? Object.keys(data[0]) : [];
@@ -92,7 +92,7 @@ class User extends Component {
         console.log("buss",isEditMode)
     return (
       <div>
-        <DropDown />
+            <DropDown logout={this.props.logout}/>
         <SideBar />
         <div className="default-main">
           <form className="default-form" onSubmit={this.handleSubmit}>

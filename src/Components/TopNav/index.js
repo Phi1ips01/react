@@ -9,11 +9,13 @@ import flight from "../../images/airplane.png"
 import DropDown from '../DropDown'
 import logo from '../../images/logo.png'
 export default class TopNav extends Component {
+  
   render() {
+    console.log("topnav",this.props)
     return (
       <div>
         <div className="header">
-        <DropDown/>
+        <DropDown logout={this.props.logout}/>
 
         <ul className="topnav">
         <li className="topnav-list no-hover"><a href="/">

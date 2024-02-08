@@ -7,29 +7,34 @@ import style from './style.module.scss';
 
 export default class Form extends Component {
   render() {
-    const { email, password, loading, inputChange, onSubmit } = this.props;
+    const { email, password, loading, onSubmit } = this.props;
     return (
       <form onSubmit={onSubmit}>
         <ul className={style.formsBlock__list}>
           <li>
-            <InputField
+            {/* <InputField
               htmlForName='email'
               placeholderLabel='Email'
               type='text'
               onChange={inputChange}
               value={email.value}
               error={email.error}
+            /> */}
+ <InputField
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email address"
+              required          
             />
-
           </li>
           <li>
             <InputField
-              htmlForName='password'
-              placeholderLabel='Password'
+              id="password"
+              name='password'
+              placeholder='Password'
               type='password'
-              onChange={inputChange}
-              value={password.value}
-              error={password.error}
+              required
             />
           </li>
           <li>

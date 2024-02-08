@@ -89,7 +89,7 @@ class BusOperator extends Component  {
         console.log("editmode render",isEditMode)
     return (
         <div>
-             <DropDown/>
+            <DropDown logout={this.props.logout}/>
             <SideBar/>
            <div className="default-main">
         <form onSubmit={this.handleSubmit} className="default-form">

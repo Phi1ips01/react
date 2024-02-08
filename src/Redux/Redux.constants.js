@@ -109,3 +109,5 @@ export const CLEAR_BUS_OPERATOR = "CLEAR_BUS_OPERATOR"
 export const CLEAR_BUS = "CLEAR_BUS"
 export const CLEAR_TRIP = "CLEAR_TRIP"
 export const CLEAR_USER = "CLEAR_USER"
+
+export const LOGOUT = "LOGOUT"

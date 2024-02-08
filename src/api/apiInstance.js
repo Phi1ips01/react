@@ -28,6 +28,7 @@ export class APIInstance {
     axiosInstance() {
         this.api = axios.create({
             baseURL: CONFIG.API_VERSION + this.baseURL,
+
         });
         return this.api;
     }
@@ -70,7 +71,7 @@ export class APIInstance {
             }
             const token = localStorage.getItem(KEYS.ACCESS_TOKEN);
             if (token) {
-                config.headers['Authorization'] = `Bearer ${token}`;
+                config.headers['Authorization'] = `${token}`;
             }
 
             config.cancelToken = new CancelToken((cancel) => {

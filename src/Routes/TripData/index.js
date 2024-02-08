@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Trip from './tripData';
 
-import { showTrip,deleteActionTrip,setSearchTermTrip,setTableDataTrip, showOneActionTrip, updateActionTrip, clearTrip} from '../../Redux/Actions';
+import { showTrip,deleteActionTrip,setSearchTermTrip,setTableDataTrip, showOneActionTrip, updateActionTrip, clearTrip,signOut} from '../../Redux/Actions';
 import { showBus,showBusOperator,updateSelectedOperator } from '../../Redux/Actions';
 import { SelectState } from './Selector';
 
@@ -33,7 +33,9 @@ function mapDispatchToProps(dispatch) {
     showBusOperator: (params) => dispatch(showBusOperator(params)),
     showOneTrip: (params) => dispatch(showOneActionTrip(params)),
     updateTrip: (params) => dispatch(updateActionTrip(params)),
-    clearTrip: (params) => dispatch(clearTrip(params))
+    clearTrip: (params) => dispatch(clearTrip(params)),
+    logout:(params)=>dispatch(signOut(params))
+
 
   }
 }

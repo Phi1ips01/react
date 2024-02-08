@@ -4,15 +4,16 @@ import {
     Switch,
     Redirect
 } from 'react-router-dom';
-
+// import Login from '../Login'
 import Home from '../Home/';
-import Details from '../Details';
 import BusOperator from '../BusOperator'
 import Bus from '../Bus';
 import OperatorUpdate from '../OperatorUpdate'
 import User from '../User'
 import TripData from '../TripData';
 import PrivateRoute from '../../utils/PrivateRoute';
+import { Route } from 'react-router-dom';
+
 import './travel.css'
 // import { Instances } from '../../api';
 
@@ -33,13 +34,12 @@ class MainFrame extends Component {
             <Fragment>
                 <div >
                     <Switch>
-                        <PrivateRoute path={ROUTES.HOME} component={Home} />
-                        <PrivateRoute path={ROUTES.DETAILS} component={Details} />
+                        <Route path={ROUTES.HOME} component={Home} /> {/**no need for login */}
                         <PrivateRoute path={ROUTES.BUS} component={Bus} />
                         <PrivateRoute path={ROUTES.BUS_OPERATOR} component={BusOperator} />
                         <PrivateRoute path={ROUTES.USER} component={User} />
                         <PrivateRoute path={ROUTES.OPERATOR_UPDATE} component={OperatorUpdate} />
-                        <PrivateRoute path={ROUTES.LANDING_PAGE} component={LandingPage} />
+                        <Route path={ROUTES.LANDING_PAGE} component={LandingPage} /> {/**no need for login */}
                         <PrivateRoute path={ROUTES.TRIP_DATA} component={TripData} />
                         <Redirect from={ROUTES.INDEX} to={ROUTES.LANDING_PAGE} />
                     </Switch>

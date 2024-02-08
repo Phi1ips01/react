@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import User from './user';
 
-import { showUser,postUser,deleteActionUser,setSearchTermUser,setTableDataUser, showOneActionUser,clearUser, updateActionUser,} from '../../Redux/Actions';
+import { showUser,postUser,deleteActionUser,setSearchTermUser,setTableDataUser, showOneActionUser,clearUser, updateActionUser,signOut} from '../../Redux/Actions';
 
 import { SelectState } from './Selector';
 
@@ -30,7 +30,9 @@ function mapDispatchToProps(dispatch) {
     setTableDataUser:(params) => dispatch(setTableDataUser(params)),
     clearUser:(params) =>dispatch(clearUser(params)),
     showOneUser: (params) => dispatch(showOneActionUser(params)),
-    updateUser: (params) => dispatch(updateActionUser(params))
+    updateUser: (params) => dispatch(updateActionUser(params)),
+    logout:(params)=>dispatch(signOut(params))
+
 
   };
 }

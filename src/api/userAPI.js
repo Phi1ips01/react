@@ -14,7 +14,7 @@ export const updateInstance = new APIInstance({
     baseURL: 'user/update'
 })
 export const showOneInstance = new APIInstance({
-    baseURL: 'user/showOne'
+    baseURL: 'user/showOneByPk'
 })
 
 const api = instance.api;
@@ -25,10 +25,12 @@ const showOneApi = showOneInstance.api
 
 
 export const showAllUser = (payload) => {
+
     return api.get(api.baseURL)
 };
 export const addUser = (payload) =>{
     console.log("payload",payload)
+
     return postApi.post(postApi.baseURL,payload)
 }
 export const deleteUser = (payload) => {
