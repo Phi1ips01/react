@@ -43,13 +43,13 @@ class Bus extends Component {
         event.preventDefault();
         const showOneBusData = this.props.showOneBusData
         const form_bus_operator_id = event.target.operator_id.value!==''?event.target.operator_id.value:showOneBusData.bus_operator_id
-        const form_bus_id = event.target.bus_id.value!==''?event.target.bus_id.value:showOneBusData.bus_id
+        // const form_bus_id = event.target.bus_id.value!==''?event.target.bus_id.value:showOneBusData.bus_id
         const form_name = event.target.name.value!==''?event.target.name.value:showOneBusData.name
         const form_type = event.target.type.value!==''?event.target.type.value:showOneBusData.type
         const form_share = event.target.share.value!==''?event.target.share.value:showOneBusData.share
         const formData = {
         bus_operator_id:form_bus_operator_id,
-        bus_id:form_bus_id,
+        // bus_id:form_bus_id,
         name:form_name,
         type:form_type,
         share:form_share,
@@ -57,7 +57,7 @@ class Bus extends Component {
         // share_deducted_amount: event.target.share_deduced_amount.value,
         
         }
-        if (this.props.showOneBusData) {
+        if (this.props.showOneBusData && this.props.showOneBusData.id) {
           // If there is editData in props, dispatch updateBusOperator action
           const id = this.props.showOneBusData.id
           const updatedFormData = {
@@ -80,7 +80,7 @@ class Bus extends Component {
         document.getElementById('name').value = '';
         document.getElementById('type').value = '';
         document.getElementById('share').value = '';
-        document.getElementById('bus_id').value = '';
+        // document.getElementById('bus_id').value = '';
         this.props.clearBus();
         console.log("clear form ", this.props.showOneBusData)
       };
@@ -109,11 +109,12 @@ class Bus extends Component {
           accessor: column,
         }));
         console.log("data,columns",data,allColumns)
-console.log("deleteBus",this.props)
+        console.log("deleteBus",this.props)
             // const { loading, error, data } = this.props.showBus;
             const { showOneBusData } = this.props;
-        const isEditMode = !!showOneBusData && !!showOneBusData.bus_id
+        const isEditMode = !!showOneBusData && !!showOneBusData.id
         console.log("buss",isEditMode)
+        // const update_bus_operator = showBusOperatorData.
     return (
         <div>
             
@@ -122,14 +123,14 @@ console.log("deleteBus",this.props)
            <div className="default-main">
         <form  onSubmit={this.handleSubmit} className="default-form">
           <h3>Enter the Bus details here</h3>
-          <InputField
+          {/* <InputField
               type="text"
               id="bus_id"
               name="bus_id"
               className="default-form-input"
-              placeholder={isEditMode ? showOneBusData.bus_id : "Enter the bus ID.."}
+              placeholder={isEditMode ? showOneBusData.id : "Enter the bus ID.."}
               required = {isEditMode ? false : true}
-            />          
+            />           */}
           <select 
           className='default-select' 
           id="operator_id" 
@@ -157,6 +158,8 @@ console.log("deleteBus",this.props)
           id="type" 
           className="default-select"
           required = {isEditMode ? false : true}>
+                      <option value="" disabled selected>Select the Bus</option>
+
                 <option value="volvo">Volvo</option>
                 <option value="Full AC">FUll AC</option>
                 <option value="Second Seater">Second Seater</option>

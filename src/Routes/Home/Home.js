@@ -63,7 +63,7 @@ handleOperatorChange = (event) => {
   // this.props.fetchBusesByOperator(selectedOperatorId);
 };
 handleSubmit = (event)=> {
-    // event.preventDefault();
+    event.preventDefault();
     const formData = {
             operator_id:event.target.operator_id.value ,
             bus_id:event.target.bus_id.value ,
@@ -80,6 +80,7 @@ handleSubmit = (event)=> {
             age: event.target.age.value,
             number_of_tickets:event.target.number_of_tickets.value ,
             total_amount: event.target.total_amount.value,
+            payment_status:(parseInt(event.target.total_amount.value)==parseInt(event.target.paid.value))?"completed":`remaining ${event.target.total_amount.value-event.target.paid.value}`,
             paid: event.target.paid.value,
             remarks: event.target.remarks.value,
             agents: event.target.agents.value,
@@ -87,7 +88,33 @@ handleSubmit = (event)=> {
     // console.log("this.props",this.props)
     this.props.postTrip(formData); // Dispatch the action
     console.log(formData,".,.,.,.,")
+    this.clearForm()
+    return(
+      <p>Successfully Inserted</p>
+    )
 }
+clearForm = ()=>{
+    // Clear the form fields
+  //   document.getElementById('operator_id').value = '';
+  // document.getElementById('bus_id').value = '';
+  // document.getElementById('trip_id').value = '';
+  // document.getElementById('customer_name').value = '';
+  // document.getElementById('contact').value = '';
+  // document.getElementById('alternate_contact').value = '';
+  // document.getElementById('starting_point').value = '';
+  // document.getElementById('boarding_point').value = '';
+  // document.getElementById('destination_point').value = '';
+  // document.getElementById('seat_numbers').value = '';
+  // document.getElementById('address').value = '';
+  // document.getElementById('date_of_journey').value = '';
+  // document.getElementById('age').value = '';
+  // document.getElementById('number_of_tickets').value = '';
+  // document.getElementById('total_amount').value = '';
+  // document.getElementById('paid').value = '';
+  // document.getElementById('remarks').value = '';
+  // document.getElementById('agents').value = '';
+  }
+
 // handleDate(){
 //   const today = new Date();
 //     const year = today.getFullYear();
@@ -125,19 +152,20 @@ handleSubmit = (event)=> {
                     id='operator_id'
                     name='operator_id'
                     onChange={this.handleOperatorChange}
+                    required
                 >
                   <option value='' disabled selected>
                     Enter the Operator
                   </option>
                       {Array.isArray(busOperatorData) &&
                         busOperatorData.map((operator) => (
-                        <option key={operator.bus_operator_id} value={operator.bus_operator_id}>
+                        <option key={operator.id} value={operator.id}>
                             {operator.name}
                         </option>
                         ))}
                  </select>
                 {/* <InputField type="text" id="operator_id" name="operator_id"  className="trip-form-input" placeholder="Enter the bus operator ID.."/> */}
-                <select className='trip-select' id='bus_id' name='bus_id'>
+                <select className='trip-select' id='bus_id' name='bus_id' required>
                   <option value='' disabled selected>
                     Enter the Bus
                   </option>
@@ -146,7 +174,7 @@ handleSubmit = (event)=> {
                       .filter((bus) => bus.operator_id === selectedOperatorId)
                       .map((bus) => (
                         
-                        <option key={bus.bus_id} value={bus.bus_id}>
+                        <option key={bus.id} value={bus.id}>
                           {bus.name}
                         </option>
                       ))}
@@ -169,6 +197,7 @@ handleSubmit = (event)=> {
                 <InputField type="text" id="agents" name="agents" className="trip-form-input" placeholder="Enter if any agents present.."/>
                 <InputButton className="trip-form-submit" value="Submit"/>
             </form>
+            
         </div>
         {/* <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteTrip} className="trip-table"/> */}
       </div>

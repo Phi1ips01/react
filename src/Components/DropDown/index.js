@@ -3,6 +3,7 @@ export default class DropDown extends Component {
   handleLogOut = ()=>{
 console.log(this.props)
     this.props.logout()
+    window.location.href = "/"
   }
   render() {
     return (
@@ -15,6 +16,7 @@ console.log(this.props)
           <div className='logout'>
           <button className='logout-button' onClick={this.handleLogOut}>Logout</button>
         </div>
+      
         </div>
         
         <div className="clear"></div>

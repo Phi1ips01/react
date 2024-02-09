@@ -39,11 +39,11 @@ class BusOperator extends Component  {
         event.preventDefault();
         
         const showOneBusOperatorData = this.props.showOneBusOperatorData
-        const formBusOperatorId = event.target.operator_id.value!==''?event.target.operator_id.value:showOneBusOperatorData.bus_operator_id
+        // const formBusOperatorId = event.target.operator_id.value!==''?event.target.operator_id.value:showOneBusOperatorData.bus_operator_id
         const formName = event.target.name.value!==''?event.target.name.value:showOneBusOperatorData.name
         const formContact = event.target.contact.value!==''?event.target.contact.value:showOneBusOperatorData.contact
         const formData = {
-          bus_operator_id:formBusOperatorId,
+          // bus_operator_id:formBusOperatorId,
           name:formName,
           contact:formContact,
           
@@ -68,7 +68,7 @@ class BusOperator extends Component  {
     
       clearForm = () => {
         // Clear the form fields
-        document.getElementById('operator_id').value = '';
+        // document.getElementById('operator_id').value = '';
         document.getElementById('name').value = '';
         document.getElementById('contact').value = '';
         this.props.clearBusOperator();
@@ -85,7 +85,7 @@ class BusOperator extends Component  {
           accessor: column,
         }));
         const { showOneBusOperatorData } = this.props;
-        const isEditMode = !!showOneBusOperatorData && !!showOneBusOperatorData.bus_operator_id;
+        const isEditMode = !!showOneBusOperatorData && !!showOneBusOperatorData.id;
         console.log("editmode render",isEditMode)
     return (
         <div>
@@ -94,14 +94,14 @@ class BusOperator extends Component  {
            <div className="default-main">
         <form onSubmit={this.handleSubmit} className="default-form">
           <h3>Enter the Bus Operator details here</h3>
-          <InputField
+          {/* <InputField
               type="text"
               id="operator_id"
               name="operator_id"
               className="default-form-input"
               placeholder={isEditMode?showOneBusOperatorData.bus_operator_id:"Enter the bus operator ID.."}
               required={isEditMode?false:true}
-            />
+            /> */}
             <InputField
               type="text"
               id="name"

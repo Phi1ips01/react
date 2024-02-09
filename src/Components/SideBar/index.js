@@ -20,7 +20,7 @@ export default class ButtonElement extends Component {
             <li><a href="/bus">Bus</a></li>
             <li><a href="/busOperator">Bus Operator</a></li>
             <li><a href="/user">User</a></li>
-            <li><a href="/operatorUpdate">Operator Update</a></li>
+            {/* <li><a href="/operatorUpdate">Operator Update</a></li> */}
           </ul>
         </div>
       </div>

@@ -52,7 +52,13 @@ const form_total_amount = event.target.total_amount.value !== '' ? event.target.
 const form_paid = event.target.paid.value !== '' ? event.target.paid.value : showOneTripData.paid;
 const form_remarks = event.target.remarks.value !== '' ? event.target.remarks.value : showOneTripData.remarks;
 const form_agents = event.target.agents.value !== '' ? event.target.agents.value : showOneTripData.agents;
-
+// if(form_total_amount===form_paid)
+// {
+//   const form_payment_status = "completed"
+// }
+// else{
+//   const form_payment_status = `remaining ${form_total_amount-form_paid}`
+// }
 const formData = {
   trip_id:form_pnr,
   bus_id:form_bus_id,
@@ -70,10 +76,11 @@ const formData = {
   seat_numbers: form_seat_numbers,
   total_amount: form_total_amount,
   paid: form_paid,
+  payment_status:(parseInt(form_total_amount)==parseInt(form_paid))?"completed":`remaining ${form_total_amount-form_paid}`,
   remarks: form_remarks,
   agents: form_agents
 };
-
+console.log("formdata",formData)
 if (this.props.showOneTripData) {
   // If there is editData in props, dispatch updateBusOperator action
   const id = this.props.showOneTripData.id;
@@ -129,6 +136,8 @@ this.clearForm();
   async fetchTrip() {
     try {
         await this.props.showTrip();
+        await this.props.showBus();
+        await this.props.showBusOperator();
         this.props.setTableDataTrip(this.props.data)
             this.props.setSearchTermTrip('')
             
@@ -150,6 +159,7 @@ handleOperatorChange = (event) => {
 
 
     const testData = this.props.tripData
+
         const data = Array.isArray(testData) ? testData : [];
     const allColumns = data.length > 0 ? Object.keys(data[0]) : [];
     const columns = allColumns.map(column => ({
@@ -165,16 +175,12 @@ handleOperatorChange = (event) => {
         const { busOperatorData, busData, selectedOperatorId } = this.props || [];
     return (
       <div>
-            <DropDown logout={this.props.logout}/>
-            <SideBar/>
-            <div className="default-main">
-            <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteTrip} searchData = {this.props.searchData}setSearchTerm ={this.props.setSearchTermTrip} showOneRowData = {this.props.showOneTripData} showOneRow = {this.props.showOneTrip}/>
-      </div>
+           
       {isEditMode && (
       <div className='default-main'>
         <form className="default-form" onSubmit={this.handleSubmit}>
               <h3>Enter the Trip details to be Updated</h3>
-
+{console.log("this.props",this.props)}
 <div className="form-row">
               <div className="form-group">
               <label htmlFor="trip_id">PNR Number</label>
@@ -377,7 +383,7 @@ handleOperatorChange = (event) => {
 
 <div className="form-row">
   <div className="form-group">
-    <label for="paid">Paid</label>
+    <label htmlFor="paid">Paid</label>
     <InputField
       type="text"
       id="paid"
@@ -421,6 +427,11 @@ handleOperatorChange = (event) => {
             </form>
       </div>
       )}
+       <DropDown logout={this.props.logout}/>
+            <SideBar/>
+            <div className="default-main">
+            <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteTrip} searchData = {this.props.searchData}setSearchTerm ={this.props.setSearchTermTrip} showOneRowData = {this.props.showOneTripData} showOneRow = {this.props.showOneTrip}/>
+      </div>
     </div>
     );
   }

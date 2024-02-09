@@ -31,16 +31,24 @@
     border:solid 3px white;
     border-radius: 9px;
   }
-  .dropdown-content a {
+  .dropdown-content a,.dropdown-content .logout-button {
     display: block;
     padding: 10px;
     text-decoration: none;
     color: #333;
+
   }
-  .dropdown-content a:hover {
+  .dropdown-content a:hover,.dropdown-content .logout-button:hover {
     background-color: #f1f1f1;
     text-decoration: none;
     color: blueviolet;
+  }
+  .dropdown-content .logout-button{
+    padding-left: 15px;
+    padding-right: 50px;
+    background: none;
+    border: none;
+    justify-content: center;
   }
   .dropdown:hover .dropdown-content {
     display: block;
