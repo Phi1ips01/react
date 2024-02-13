@@ -24,10 +24,9 @@ const deleteApi = deleteInstance.api
 const updateApi = updateInstance.api
 const showOneApi = showOneInstance.api
 
-
-
-export const showAllTrip = (payload) => {
-    return api.get(api.baseURL)
+export const showAllTrip = (pageIndex,pageSize) => {
+    console.log("get",pageIndex,pageSize)
+    return api.get(`?page=${pageIndex}&size=${pageSize}`)
 };
 export const addTrip = (payload) =>{
     return postApi.post(postApi.baseURL,payload)

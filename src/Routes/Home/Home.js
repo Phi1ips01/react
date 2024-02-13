@@ -58,6 +58,7 @@ class Home extends Component {
 handleOperatorChange = (event) => {
   const selectedOperatorId = event.target.value;
   console.log("this.props handle",this.props)
+  console.log("hanleOpeator",selectedOperatorId)
   this.props.updateSelectedOperator(selectedOperatorId);
   // Fetch buses based on the selected operator (you may need to implement this)
   // this.props.fetchBusesByOperator(selectedOperatorId);
@@ -88,10 +89,7 @@ handleSubmit = (event)=> {
     // console.log("this.props",this.props)
     this.props.postTrip(formData); // Dispatch the action
     console.log(formData,".,.,.,.,")
-    this.clearForm()
-    return(
-      <p>Successfully Inserted</p>
-    )
+    document.getElementById('success').innerText = 'Details entered successfully';
 }
 clearForm = ()=>{
     // Clear the form fields
@@ -113,6 +111,8 @@ clearForm = ()=>{
   // document.getElementById('paid').value = '';
   // document.getElementById('remarks').value = '';
   // document.getElementById('agents').value = '';
+  // document.getElementById('success').innerText = '';
+
   }
 
 // handleDate(){
@@ -142,7 +142,7 @@ clearForm = ()=>{
     return (
       <div>
         <TopNav logout={this.props.logout}/>
-
+        <h3 id='success'></h3>
         <div className="trip-main">
             <form className="trip-form" onSubmit={this.handleSubmit}>
               <h3>Enter the Trip details here</h3>
@@ -169,9 +169,12 @@ clearForm = ()=>{
                   <option value='' disabled selected>
                     Enter the Bus
                   </option>
+                  {console.log("busData",busData)}
+                  {console.log("busdara",selectedOperatorId)}
                   {Array.isArray(busData) &&
+                  
                     busData
-                      .filter((bus) => bus.operator_id === selectedOperatorId)
+                      .filter((bus) => bus.bus_operator_id == selectedOperatorId)
                       .map((bus) => (
                         
                         <option key={bus.id} value={bus.id}>
@@ -185,7 +188,15 @@ clearForm = ()=>{
                 <InputField type="text" id="alternate_contact" name="alternate_contact" className="trip-form-input" placeholder="Enter the alternate contact"/>
                 <InputField type="text" id="age" name="age" className="trip-form-input" placeholder="Enter the age" required/>
                 <InputField type="text" id="address" name="address" className="trip-form-input" placeholder="Enter the Address" required/>
-                <InputField type="date" id="date_of_journey" name="date_of_journey" className="trip-form-input" placeholder="Enter journey date" required="required"/>
+                <InputField
+                 type="date" 
+                 id="date_of_journey"
+                 name="date_of_journey" 
+                 className="trip-form-input" 
+                 placeholder="Enter journey date" 
+                 required="required"
+                 min={new Date().toISOString().split('T')[0]} 
+                 />
                 <InputField type="text" id="starting_point" name="starting_point" className="trip-form-input" placeholder="Enter the starting point..." required/>
                 <InputField type="text" id="destination_point" name="destination_point" className="trip-form-input" placeholder="Enter the Destination..." required/>
                 <InputField type="text" id="boarding_point" name="boarding_point" className="trip-form-input" placeholder="Enter the Bording Point" required/>

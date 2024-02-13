@@ -15,6 +15,7 @@ export default class InputField extends Component {
           value={this.props.value}
           required={this.props.required}
           disabled={this.props.disabled}
+          min = {this.props.min}
         />
     )
   }

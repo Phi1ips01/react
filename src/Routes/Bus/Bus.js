@@ -186,7 +186,7 @@ class Bus extends Component {
             
             
 
-        <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteBus} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermBus} showOneRowData = {this.props.showOneBusData} showOneRow = {this.props.showOneBus}/>
+        {/* <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteBus} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermBus} showOneRowData = {this.props.showOneBusData} showOneRow = {this.props.showOneBus}/> */}
 </div>
         </div>
 

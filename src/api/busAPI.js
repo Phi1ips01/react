@@ -27,7 +27,7 @@ const showOneApi = showOneInstance.api
 
 export const showAllBus = (payload) => {
     console.log("showallbus");
-    return api.get(api.baseURL)
+    return api.get(api.baseURL,payload)
 };
 export const addBus = (payload) => {
     return postApi.post(api.baseURL,payload)

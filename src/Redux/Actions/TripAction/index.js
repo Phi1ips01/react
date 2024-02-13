@@ -18,9 +18,14 @@ import {
     SET_SEARCH_TERM,
     SET_TABLE_DATA,
     CLEAR_TRIP,
+    SET_PAGE_INDEX,
+    SET_PAGE_SIZE,
+    SET_TOTAL_PAGES,
+    SET_DATA,
     } 
     from '../../Redux.constants';
 import { addTrip, showAllTrip,deleteTrip,updateTrip,showOneTrip } from '../../../api/tripAPI';
+import { showAllBus } from '../../../api/busAPI';
 
 export function deleteActionTrip(payload) {
     return async (dispatch) => {
@@ -100,14 +105,17 @@ export function updateSelectedOperator(selectedOperatorId)
     })}
   };
 
-export function showTrip(payload) {
+export function showTrip(pageIndex,pageSize) {
     return async (dispatch) => {
         dispatch({
             type: SHOW_TRIP_STARTED,
             payload: {},
         });
         try {
-            const data = await showAllTrip();
+            console.log("actiontyip",pageIndex,pageSize)
+
+            const data = await showAllTrip(pageIndex,pageSize);
+            console.log("tripdaataaction",data)
             dispatch({
                 type: SHOW_TRIP_SUCCESS,
                 payload: data,
@@ -168,3 +176,23 @@ export function showOneActionTrip(payload) {
         }
     };
 }
+
+export const setPageIndexTrip = (index) => ({
+    type: SET_PAGE_INDEX,
+    payload: index,
+  });
+  
+  export const setPageSizeTrip = (size) => ({
+    type: SET_PAGE_SIZE,
+    payload: size,
+  });
+  
+  export const setTotalPagesTrip = (totalPages) => ({
+    type: SET_TOTAL_PAGES,
+    payload: totalPages,
+  });
+  
+  export const setDataTrip = (data) => ({
+    type: SET_DATA,
+    payload: data,
+  });

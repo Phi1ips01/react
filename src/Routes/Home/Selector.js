@@ -6,7 +6,7 @@ function getTripPageReducer(state) {
         showTrip: state.ShowTrip.showTrip,
         showBus: state.ShowBus.showBus,
         showBusOperator: state.ShowBusOperator.showBusOperator,
-        selectedOperatorID: state.selectedOperatorID
+        selectedOperatorID: state.UpdateSelectedOperatorID.selectedOperatorId
     }
 }
 function mergeReducer(showTrip) {

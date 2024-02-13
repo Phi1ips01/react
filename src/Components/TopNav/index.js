@@ -26,9 +26,9 @@ export default class TopNav extends Component {
            
            </a></li>
 
-          <li className="topnav-list"><a href="#about"> <img src={train} className='topnav-image' alt='train'/></a></li>
+          <li className="topnav-list"> <a className='disabled-button' title='This feature will be available soon' disabled><img src={train} className='topnav-image' alt='train'/></a></li>
           <li className="topnav-list"><a href="/home"> <img src={bus} className='topnav-image' alt='bus'/></a></li>
-          <li className="topnav-list"><a href="#contact"> <img src={flight} className='topnav-image' alt='flight'/></a></li>
+          <li className="topnav-list"><a className='disabled-button' title='This feature will be available soon' disabled><img src={flight} className='topnav-image' alt='flight'/></a></li>
       </ul>
       </div>
       </div>

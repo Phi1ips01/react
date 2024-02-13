@@ -135,7 +135,7 @@ this.clearForm();
   }
   async fetchTrip() {
     try {
-        await this.props.showTrip();
+        await this.props.showTrip(0,10);
         await this.props.showBus();
         await this.props.showBusOperator();
         this.props.setTableDataTrip(this.props.data)
@@ -159,7 +159,9 @@ handleOperatorChange = (event) => {
 
 
     const testData = this.props.tripData
-
+    const testCount = this.props.tripCount
+    const rows = testData
+    console.log("test",testData,testCount)
         const data = Array.isArray(testData) ? testData : [];
     const allColumns = data.length > 0 ? Object.keys(data[0]) : [];
     const columns = allColumns.map(column => ({
@@ -173,6 +175,7 @@ handleOperatorChange = (event) => {
         console.log("buss",isEditMode)
         console.log("this.props",this.props)
         const { busOperatorData, busData, selectedOperatorId } = this.props || [];
+        const {setDataTrip,setPageIndexTrip,setPageSizeTrip,setTotalPagesTrip} = this.props
     return (
       <div>
            
@@ -301,6 +304,7 @@ handleOperatorChange = (event) => {
                 className="trip-form-input"
                 placeholder={isEditMode ? showOneTripData.date_of_journey : "Enter journey date"}
                 required={isEditMode?false:true}
+                min={new Date().toISOString().split('T')[0]} 
               />
               </div>
               </div>
@@ -430,7 +434,25 @@ handleOperatorChange = (event) => {
        <DropDown logout={this.props.logout}/>
             <SideBar/>
             <div className="default-main">
-            <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteTrip} searchData = {this.props.searchData}setSearchTerm ={this.props.setSearchTermTrip} showOneRowData = {this.props.showOneTripData} showOneRow = {this.props.showOneTrip}/>
+
+              {console.log("tripdataprops",this.props)}
+            <DynamicTable 
+              columns={columns} 
+              data={data} 
+              setDataTrip={setDataTrip} 
+              setPageIndexTrip={setPageIndexTrip} 
+              setPageSizeTrip={setPageSizeTrip} 
+              setTotalPagesTrip={setTotalPagesTrip} 
+              deleteAction={this.props.deleteTrip} 
+              searchData = {this.props.searchData}
+              setSearchTerm ={this.props.setSearchTermTrip} 
+              showOneRowData = {this.props.showOneTripData} 
+              showOneRow = {this.props.showOneTrip}
+              pageIndexReducer= {this.props.pageIndexTripReducer}
+              totalPagesReducer= {this.props.totalPagesTripReducer}
+              pageSizeReducer= {this.props.pageSizeTripReducer}
+              count= {this.props.tripCount}
+              />
       </div>
     </div>
     );

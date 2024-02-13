@@ -117,7 +117,17 @@ class BusOperator extends Component  {
               className="default-form-input"
               placeholder={isEditMode?showOneBusOperatorData.contact:"Enter the contact"}
               required={isEditMode?false:true}              
-            />            {/* <InputField type="text" id="bus_operator_total_payment" name="bus_operator_total_payment" className="default-form-input" placeholder="Total bus operator amount disabled"  />
+            />
+            <InputField
+              type="text"
+              id="paid"
+              name="paid"
+              className="default-form-input"
+              placeholder={isEditMode?showOneBusOperatorData.paid:"Enter the amount paid"}
+              required={isEditMode?false:true}              
+            />
+
+                        {/* <InputField type="text" id="bus_operator_total_payment" name="bus_operator_total_payment" className="default-form-input" placeholder="Total bus operator amount disabled"  />
             <InputField type="text" id="bus_operator_profit" name="bus_operator_profit" className="default-form-input" placeholder="Profit recieved disabled" />
             <InputField type="text" id="bus_operator_paid" name="bus_operator_paid" className="default-form-input" placeholder="Amount paid disabled" />
             <InputField type="text" id="remaining_payment" name="remaining_payment" className="default-form-input" placeholder="remaining payment disabled" /> */}
@@ -130,7 +140,7 @@ class BusOperator extends Component  {
               </button>
             )}
         </form>
-        <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteBusOperator} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermBusOperator} showOneRowData = {this.props.showOneBusOperatorData} showOneRow = {this.props.showOneBusOperator}/>
+        {/* <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteBusOperator} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermBusOperator} showOneRowData = {this.props.showOneBusOperatorData} showOneRow = {this.props.showOneBusOperator}/> */}
         </div>
         </div>
     );

@@ -7,11 +7,12 @@ import { showTrip,postTrip,showBus,showBusOperator,updateSelectedOperator, delet
 import { SelectState } from './Selector';
 
 function mapStateToProps(state) {
+  console.log("state",state)
   return { 
     tripData: SelectState(state).showTrip.data,
     busData: SelectState(state).showBus.data,
     busOperatorData: SelectState(state).showBusOperator.data,
-    selectedOperatorID: SelectState(state).selectedOperatorID,
+    selectedOperatorId: SelectState(state).selectedOperatorID,
     
   };
 }

@@ -140,7 +140,7 @@ class User extends Component {
           {
             console.log("userlog", this.props)
           }
-          <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteActionUser} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermUser} showOneRowData = {this.props.showOneUserData} showOneRow = {this.props.showOneUser} />
+          {/* <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteActionUser} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermUser} showOneRowData = {this.props.showOneUserData} showOneRow = {this.props.showOneUser} /> */}
         </div>
       </div>
     );

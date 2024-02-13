@@ -14,9 +14,9 @@ class LandingPage extends Component {
             <DropDown/>
         <Logo className="logo-landing"/>
         <div className="mode">
-            <a href="/"><button><img src={train} className="mode-img" alt="Train"/></button></a>
+            <button className='disabled-button' title='This feature will be available soon' disabled><img src={train} className="mode-img" alt="Train"/></button>
             <a href="/home"><button><img src={bus} className="mode-img" alt="Bus"/></button></a>
-            <a href="/"><button><img src={flight} className="mode-img" alt="Flight"/></button></a>
+            <button className='disabled-button' title='This feature will be available soon' disabled><img src={flight} className="mode-img" alt="Flight"/></button>
         </div>
     </div>
     )
