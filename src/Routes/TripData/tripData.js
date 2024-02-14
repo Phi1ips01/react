@@ -436,13 +436,26 @@ handleOperatorChange = (event) => {
             <div className="default-main">
 
               {console.log("tripdataprops",this.props)}
+              {  console.log("setPageIndex:", this.props.setPageIndexTrip)}
+  {console.log("setPageSize:", this.props.setPageSizeTrip)}
+  {console.log("setTotalPages:", this.props.setTotalPagesTrip)}
+  {console.log("deleteAction:", this.props.deleteTrip)}
+  {console.log("searchData:", this.props.searchData)}
+  {console.log("setSearchTerm:", this.props.setSearchTermTrip)}
+  {console.log("showOneRowData:", this.props.showOneTripData)}
+  {console.log("showOneRow:", this.props.showOneTrip)}
+  {console.log("pageIndexReducer:", this.props.pageIndexTripReducer)}
+  {console.log("totalPagesReducer:", this.props.totalPagesTripReducer)}
+  {console.log("pageSizeReducer:", this.props.pageSizeTripReducer)}
+  {console.log("count:", this.props.tripCount)}
+
             <DynamicTable 
               columns={columns} 
               data={data} 
-              setDataTrip={setDataTrip} 
-              setPageIndexTrip={setPageIndexTrip} 
-              setPageSizeTrip={setPageSizeTrip} 
-              setTotalPagesTrip={setTotalPagesTrip} 
+              setData={setDataTrip} 
+              setPageIndex={setPageIndexTrip} 
+              setPageSize={setPageSizeTrip} 
+              setTotalPages={setTotalPagesTrip} 
               deleteAction={this.props.deleteTrip} 
               searchData = {this.props.searchData}
               setSearchTerm ={this.props.setSearchTermTrip} 
@@ -452,6 +465,7 @@ handleOperatorChange = (event) => {
               totalPagesReducer= {this.props.totalPagesTripReducer}
               pageSizeReducer= {this.props.pageSizeTripReducer}
               count= {this.props.tripCount}
+              showAll={this.props.showTrip}
               />
       </div>
     </div>

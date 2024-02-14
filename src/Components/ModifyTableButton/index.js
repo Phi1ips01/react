@@ -25,7 +25,6 @@ export default class ModifyTableButton extends Component {
 
 }
   render() {
-    console.log("buttonporps",this.props)
     return (
       <div>
         <button type="button" className="btn btn-primary btn-sm" onClick={this.handleEdit}>
