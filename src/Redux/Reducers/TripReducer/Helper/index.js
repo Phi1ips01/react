@@ -201,3 +201,10 @@ export function showOneTripFailed(state, payload) {
     }
   };
 }
+
+export function CurrentPageReducerTrip(state, payload) {
+  return {
+    ...state,
+    currentPage:payload
+  };
+}

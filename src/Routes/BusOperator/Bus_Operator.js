@@ -140,7 +140,7 @@ class BusOperator extends Component  {
               </button>
             )}
         </form>
-        {/* <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteBusOperator} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermBusOperator} showOneRowData = {this.props.showOneBusOperatorData} showOneRow = {this.props.showOneBusOperator}/> */}
+        <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteBusOperator} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermBusOperator} showOneRowData = {this.props.showOneBusOperatorData} showOneRow = {this.props.showOneBusOperator}/>
         </div>
         </div>
     );

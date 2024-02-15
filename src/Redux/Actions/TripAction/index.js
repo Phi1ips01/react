@@ -18,10 +18,7 @@ import {
     SET_SEARCH_TERM,
     SET_TABLE_DATA,
     CLEAR_TRIP,
-    SET_PAGE_INDEX,
-    SET_PAGE_SIZE,
-    SET_TOTAL_PAGES,
-    SET_DATA,
+    SET_CURRENT_PAGE,
     } 
     from '../../Redux.constants';
 import { addTrip, showAllTrip,deleteTrip,updateTrip,showOneTrip } from '../../../api/tripAPI';
@@ -177,22 +174,8 @@ export function showOneActionTrip(payload) {
     };
 }
 
-export const setPageIndexTrip = (index) => ({
-    type: SET_PAGE_INDEX,
+export const setCurrentPageTrip = (index) => ({
+    type: SET_CURRENT_PAGE,
     payload: index,
   });
   
-  export const setPageSizeTrip = (size) => ({
-    type: SET_PAGE_SIZE,
-    payload: size,
-  });
-  
-  export const setTotalPagesTrip = (totalPages) => ({
-    type: SET_TOTAL_PAGES,
-    payload: totalPages,
-  });
-  
-  export const setDataTrip = (data) => ({
-    type: SET_DATA,
-    payload: data,
-  });

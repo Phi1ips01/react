@@ -175,7 +175,6 @@ handleOperatorChange = (event) => {
         console.log("buss",isEditMode)
         console.log("this.props",this.props)
         const { busOperatorData, busData, selectedOperatorId } = this.props || [];
-        const {setDataTrip,setPageIndexTrip,setPageSizeTrip,setTotalPagesTrip} = this.props
     return (
       <div>
            
@@ -435,7 +434,7 @@ handleOperatorChange = (event) => {
             <SideBar/>
             <div className="default-main">
 
-              {console.log("tripdataprops",this.props)}
+              {/* {console.log("tripdataprops",this.props)}
               {  console.log("setPageIndex:", this.props.setPageIndexTrip)}
   {console.log("setPageSize:", this.props.setPageSizeTrip)}
   {console.log("setTotalPages:", this.props.setTotalPagesTrip)}
@@ -447,23 +446,19 @@ handleOperatorChange = (event) => {
   {console.log("pageIndexReducer:", this.props.pageIndexTripReducer)}
   {console.log("totalPagesReducer:", this.props.totalPagesTripReducer)}
   {console.log("pageSizeReducer:", this.props.pageSizeTripReducer)}
-  {console.log("count:", this.props.tripCount)}
+  {console.log("count:", this.props.tripCount)} */}
 
             <DynamicTable 
               columns={columns} 
               data={data} 
-              setData={setDataTrip} 
-              setPageIndex={setPageIndexTrip} 
-              setPageSize={setPageSizeTrip} 
-              setTotalPages={setTotalPagesTrip} 
+
               deleteAction={this.props.deleteTrip} 
               searchData = {this.props.searchData}
               setSearchTerm ={this.props.setSearchTermTrip} 
               showOneRowData = {this.props.showOneTripData} 
               showOneRow = {this.props.showOneTrip}
-              pageIndexReducer= {this.props.pageIndexTripReducer}
-              totalPagesReducer= {this.props.totalPagesTripReducer}
-              pageSizeReducer= {this.props.pageSizeTripReducer}
+              setCurrentPage = {this.props.setCurrentPageTrip}
+              currentPageReducer = {this.props.currentPageReducerTrip}
               count= {this.props.tripCount}
               showAll={this.props.showTrip}
               />

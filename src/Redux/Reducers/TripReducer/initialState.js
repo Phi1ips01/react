@@ -28,4 +28,5 @@ export const INITIAL_STATE = {
     error: false,
     data: {}
   },
+  currentPage:1
 };

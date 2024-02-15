@@ -90,29 +90,31 @@ handleSubmit = (event)=> {
     this.props.postTrip(formData); // Dispatch the action
     console.log(formData,".,.,.,.,")
     document.getElementById('success').innerText = 'Details entered successfully';
+    this.clearForm()
 }
 clearForm = ()=>{
     // Clear the form fields
-  //   document.getElementById('operator_id').value = '';
-  // document.getElementById('bus_id').value = '';
-  // document.getElementById('trip_id').value = '';
-  // document.getElementById('customer_name').value = '';
-  // document.getElementById('contact').value = '';
-  // document.getElementById('alternate_contact').value = '';
-  // document.getElementById('starting_point').value = '';
-  // document.getElementById('boarding_point').value = '';
-  // document.getElementById('destination_point').value = '';
-  // document.getElementById('seat_numbers').value = '';
-  // document.getElementById('address').value = '';
-  // document.getElementById('date_of_journey').value = '';
-  // document.getElementById('age').value = '';
-  // document.getElementById('number_of_tickets').value = '';
-  // document.getElementById('total_amount').value = '';
-  // document.getElementById('paid').value = '';
-  // document.getElementById('remarks').value = '';
-  // document.getElementById('agents').value = '';
-  // document.getElementById('success').innerText = '';
-
+    document.getElementById('operator_id').value = '';
+  document.getElementById('bus_id').value = '';
+  document.getElementById('trip_id').value = '';
+  document.getElementById('customer_name').value = '';
+  document.getElementById('contact').value = '';
+  document.getElementById('alternate_contact').value = '';
+  document.getElementById('starting_point').value = '';
+  document.getElementById('boarding_point').value = '';
+  document.getElementById('destination_point').value = '';
+  document.getElementById('seat_numbers').value = '';
+  document.getElementById('address').value = '';
+  document.getElementById('date_of_journey').value = '';
+  document.getElementById('age').value = '';
+  document.getElementById('number_of_tickets').value = '';
+  document.getElementById('total_amount').value = '';
+  document.getElementById('paid').value = '';
+  document.getElementById('remarks').value = '';
+  document.getElementById('agents').value = '';
+  setTimeout(() => {
+    document.getElementById('success').innerText = '';
+  }, 5000);
   }
 
 // handleDate(){
@@ -128,17 +130,6 @@ clearForm = ()=>{
   render() {
     console.log("thisprops",this.props)
     const { busOperatorData, busData, selectedOperatorId } = this.props || [];
-
-
-    // const testData = this.props.tripData
-    //     const data = Array.isArray(testData) ? testData : [];
-    // const allColumns = data.length > 0 ? Object.keys(data[0]) : [];
-    // const columns = allColumns.map(column => ({
-    //   Header: column.charAt(0).toUpperCase() + column.slice(1).replace(/_/g, ' '), // Convert underscore to space and capitalize
-    //   accessor: column,
-    // }));
-    // console.log("data,columns",columns)
-    // const { userList, loading, error } = this.state;
     return (
       <div>
         <TopNav logout={this.props.logout}/>

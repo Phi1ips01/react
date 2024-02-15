@@ -112,7 +112,4 @@ export const CLEAR_USER = "CLEAR_USER"
 
 export const LOGOUT = "LOGOUT"
 
-export const SET_PAGE_INDEX = 'SET_PAGE_INDEX';
-export const SET_PAGE_SIZE = 'SET_PAGE_SIZE';
-export const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES';
-export const SET_DATA = 'SET_DATA';
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';

@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 
 import Trip from './tripData';
 
-import { showTrip,deleteActionTrip,setSearchTermTrip,setTableDataTrip, showOneActionTrip, updateActionTrip, clearTrip,signOut,setDataTrip,setPageIndexTrip,setPageSizeTrip,setTotalPagesTrip} from '../../Redux/Actions';
-import { showBus,showBusOperator,updateSelectedOperator } from '../../Redux/Actions';
+import { showTrip,deleteActionTrip,setSearchTermTrip,setTableDataTrip, showOneActionTrip, updateActionTrip, clearTrip,signOut,} from '../../Redux/Actions';
+import { showBus,showBusOperator,updateSelectedOperator,setCurrentPageTrip } from '../../Redux/Actions';
 import { SelectState } from './Selector';
 
 function mapStateToProps(state) {
@@ -17,11 +17,8 @@ function mapStateToProps(state) {
     busOperatorData: SelectState(state).showBusOperator.data,
     selectedOperatorID: SelectState(state).selectedOperatorID,
     showOneTripData: SelectState(state).showOneTrip.data,
-    dataTripReducer:state.dataTripReducer,
-    pageIndexTripReducer:state.pageIndexTripReducer,
-    pageSizeTripReducer:state.pageSizeTripReducer,
-    totalPagesTripReducer:state.totalPagesTripReducer,
-    
+    currentPageReducerTrip:SelectState(state).currentPageReducerTrip
+
   };
 }
 
@@ -41,10 +38,8 @@ function mapDispatchToProps(dispatch) {
     updateTrip: (params) => dispatch(updateActionTrip(params)),
     clearTrip: (params) => dispatch(clearTrip(params)),
     logout:(params)=>dispatch(signOut(params)),
-    setDataTrip:(params)=>dispatch(setDataTrip(params)),
-    setPageIndexTrip:(params)=>dispatch(setPageIndexTrip(params)),
-    setPageSizeTrip:(params)=>dispatch(setPageSizeTrip(params)),
-    setTotalPagesTrip:(params)=>dispatch(setTotalPagesTrip(params)),
+    setCurrentPageTrip:(params)=>dispatch(setCurrentPageTrip(params))
+
 
 
   }

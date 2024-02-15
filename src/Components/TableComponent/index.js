@@ -1,157 +1,162 @@
-import React, { useMemo, useEffect } from 'react';
-import { useTable, usePagination } from 'react-table';
-import Search from '../Search';
-import ModifyTableButton from '../ModifyTableButton';
+  // DynamicTable.js
 
-const DynamicTable = ({
-  columns,
-  data,
-  searchData,
-  setSearchTerm,
-  deleteAction,
-  showOneRow,
-  showOneRowData,
-  setPageIndex,
-  setPageSize,
-  setTotalPages,
-  pageIndexReducer,
-  totalPagesReducer,
-  pageSizeReducer,
-  count,
-  showAll,
-}) => {
+  import React, { useMemo } from 'react';
+  import { useTable, useSortBy } from 'react-table';
+  import Search from '../Search';
+  import ModifyTableButton from '../ModifyTableButton';
+  import { CSVLink } from 'react-csv';
+  import Pagination from 'react-bootstrap/Pagination';
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    prepareRow,
-    state: { pageIndex, pageSize },
-    gotoPage,
-    page,
-    previousPage,
-    nextPage,
-    canPreviousPage,
-    canNextPage
-  } = useTable(
-    {
-      columns,
-      data: data, // Use the page data for rendering
-      count: count,
-      initialState: { pageIndex: pageIndexReducer, pageSize: pageSizeReducer }, // Initial state from Redux
-      pageCount: totalPagesReducer, // Page count from Redux
-    },
-    usePagination
-  );
 
-  console.log("page",page)
-  // const canPreviousPage = previousPage ? true : false;
-  // const canNextPage = nextPage ? true : false;
-  // console.log("gotopage",gotoPage)
-  // console.log("previousPage",previousPage)
-  // console.log("nextPage",nextPage)
-  // console.log("canNextPage",canNextPage)
-  // console.log("canPreviousPage",canPreviousPage)
-  useEffect(() => {
-    // Dispatch action to set total pages
-    setTotalPages(Math.ceil(count / pageSizeReducer));
-  }, [count, pageSizeReducer, setTotalPages]);
-
-  const handleSetPageIndex = (newPageIndex,e) => {
-    gotoPage(newPageIndex);
-    setPageIndex(newPageIndex); // Dispatch action to set new page index
-    console.log("handleSetPageIndex",newPageIndex,pageSizeReducer)
-    showAll(newPageIndex, pageSizeReducer); // Fetch data for the new page
-  };
-
-  const handleSetPageSize = newPageSize => {
-
-    setPageSize(newPageSize); // Dispatch action to set new page size
-    showAll(pageIndexReducer, newPageSize); // Fetch data for the new page size
-    console.log("showAll",showAll(pageIndexReducer,newPageSize))
-  };
-  return (
-    <div className="grid grid-cols-1">
-      <div className="grid-item">
-        <Search value={searchData} onChange={setSearchTerm} />
-        <div className="table-container">
-          <table {...getTableProps()} className={`table table-dark table-striped container w-100`}>
-            <thead>
-              {headerGroups.map(headerGroup => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column, index) => (
-                    <th
-                      {...column.getHeaderProps()}
-                      className={index === 0 || index === columns.length - 1 || index === columns.length - 2 ? 'hidden' : 'trip-table-th'}
-                    >
-                      {column.render('Header')}
-                    </th>
-                  ))}
-                  <th>Edit/Delete</th>
-                </tr>
-              ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
-  {page.map(row => {
-    prepareRow(row);
-    return (
-      <tr {...row.getRowProps()} style={{ borderBottom: '1px solid black' }}>
-        {row.cells.map((cell, index) => (
-          <td
-            {...cell.getCellProps()}
-            style={{
-              padding: '1px',
-              display: index === 0 || index === columns.length - 1 || index === columns.length - 2 ? 'none' : 'table-cell',
-            }}
-          >
-            {cell.render('Cell')}
-          </td>
-        ))}
-        <td>
-          {row.original && row.original.id && (
-            <ModifyTableButton rowID={row.original.id} deleteAction={deleteAction} showOneRow={showOneRow} showOneRowData={showOneRowData} />
-          )}
-        </td>
-      </tr>
+  const DynamicTable = ({
+    columns,
+    data,
+    searchData,
+    setSearchTerm,
+    deleteAction,
+    showOneRow,
+    showOneRowData,
+    count,
+    showAll,
+    setCurrentPage,
+    currentPageReducer
+  }) => {
+    const tableData = useMemo(() => data, [data]);
+console.log("currentPageReducer",currentPageReducer)
+    const {
+      getTableProps,
+      getTableBodyProps,
+      headerGroups,
+      rows,
+      prepareRow,
+    } = useTable(
+      {
+        columns,
+        data: tableData,
+        initialState: {
+          hiddenColumns: columns
+            .filter(column => column.showByDefault)
+            .map(column => column.accessor),
+        },
+      },
+      useSortBy
     );
-  })}
-</tbody>
+    const pageSize=10
+  console.log("rows table",rows)
+    const filteredRows = useMemo(() => {
+      if (searchData.trim()=='') return rows.values;
 
-          </table>
-        </div>
-        <div>
-          <span>
-            Page <strong>{pageIndex + 1}</strong> of <strong>{totalPagesReducer}</strong>
-          </span>
-          <button onClick={(e) => handleSetPageIndex(0,e)} disabled={!canPreviousPage}>
-            {'<<'}
-          </button>
-          <button onClick={(e)=>handleSetPageIndex(pageIndex-1,e)} disabled={!canPreviousPage}>
-            Previous
-          </button>
-          <button onClick={(e)=>handleSetPageIndex(pageIndex+1,e)} disabled={!canNextPage}>
-            Next
-          </button>
-          <button onClick={(e) => handleSetPageIndex(totalPagesReducer - 1,e)} disabled={!canNextPage}>
-            {'>>'}
-          </button>
-          <select
-            value={pageSize}
-            onChange={e => {
-              handleSetPageSize(Number(e.target.value));
+      return rows.filter(row => {
+        return columns.some(column => {
+          const cellValue = String(row.values[column.accessor]).toLowerCase();
+          return cellValue.includes(searchData.toLowerCase());
+        });
+      });
+    }, [searchData, rows, columns]);
+    const displayRows = searchData.trim() ? filteredRows : rows;
+
+    const handlePageChange = (pageNumber) => {
+      console.log("handlepagechange",pageNumber)
+      setCurrentPage(pageNumber);
+      showAll(pageNumber, pageSize); // Assuming 10 items per page
+    };
+
+    return (
+      <div className="grid grid-cols-1">
+        <div className="grid-item">
+          <Search value={searchData} onChange={setSearchTerm} />
+
+          <div className="table-container">
+            <table {...getTableProps()} className="table table-dark table-striped container w-100">
+              <thead>
+                {headerGroups.map(headerGroup => (
+                  <tr {...headerGroup.getHeaderGroupProps()}>
+                    {headerGroup.headers.map((column, index) => (
+                      <th
+                        {...column.getHeaderProps(column.getSortByToggleProps())}
+                        className={
+                          index === 0 || index === columns.length - 1 || index === columns.length - 2
+                            ? 'hidden'
+                            : 'trip-table-th'
+                        }
+                      >
+                        {column.render('Header')}
+                        {column.isSorted && <span>{column.isSortedDesc ? '🔽' : '🔼'}</span>}
+                      </th>
+                    ))}
+                    <th>Edit/Delete</th>
+                  </tr>
+                ))}
+              </thead>
+
+              <tbody {...getTableBodyProps()}>
+                {displayRows.map(row => {
+                  prepareRow(row);
+                  return (
+                    <tr {...row.getRowProps()} style={{ borderBottom: '1px solid black' }}>
+                      {row.cells.map((cell, index) => (
+                        <td
+                          key={index}
+                          {...cell.getCellProps()}
+                          style={{
+                            padding: '1px',
+                            display:
+                              index === 0 || index === columns.length - 1 || index === columns.length - 2
+                                ? 'none'
+                                : 'table-cell',
+                          }}
+                        >
+                          {cell.render('Cell')}
+                        </td>
+                      ))}
+                      <td>
+                        {row.original?.id && (
+                          <ModifyTableButton
+                            rowID={row.original.id}
+                            deleteAction={deleteAction}
+                            showOneRow={showOneRow}
+                            showOneRowData={showOneRowData}
+                          />
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          <Pagination>
+            <Pagination.Prev
+              onClick={() => handlePageChange(Math.max(currentPageReducer - 1, 1))}
+              disabled={currentPageReducer <= 1}
+            />
+            {Array.from({ length: Math.ceil(count / pageSize) }, (_, index) => (
+              <Pagination.Item
+                key={index + 1}
+                active={index + 1 === currentPageReducer}
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </Pagination.Item>
+            ))}
+          <Pagination.Next
+            onClick={() => handlePageChange(Math.min(currentPageReducer + 1, Math.ceil(count / pageSize)))}
+            disabled={currentPageReducer === Math.ceil(count / pageSize)}
+          />
+          </Pagination>
+          <CSVLink
+            data={data.map(({ createdAt, updatedAt, ...rest }) => rest)}
+            className="btn btn-danger btn-sm"
+            onClick={() => {
+              console.log('You click the link', data); // Your click handling logic
             }}
           >
-            {[0, 10, 20, 30, 40, 50].map(pageSizeOption => (
-              <option key={pageSizeOption} value={pageSizeOption}>
-                Show {pageSizeOption}
-              </option>
-            ))}
-          </select>
+            Download CSV
+          </CSVLink>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
-
-export default DynamicTable;
+  export default DynamicTable;

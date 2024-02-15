@@ -18,10 +18,7 @@ import {
   SET_SEARCH_TERM,
   SET_TABLE_DATA,
   CLEAR_TRIP,
-  SET_PAGE_INDEX,
-  SET_PAGE_SIZE,
-  SET_TOTAL_PAGES,
-  SET_DATA,
+  SET_CURRENT_PAGE
 } from '../../Redux.constants';
 import {
   showTripFailed,
@@ -137,39 +134,14 @@ export function ShowOneTrip(state = INITIAL_STATE, action) {
   }
 }
 
-export const pageIndexTripReducer = (state = 0, action) => {
+export const CurrentPageReducerTrip = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case SET_PAGE_INDEX:
-      return action.payload;
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
     default:
       return state;
   }
 };
-
-export const pageSizeTripReducer = (state = 10, action) => {
-  switch (action.type) {
-    case SET_PAGE_SIZE:
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-export const totalPagesTripReducer = (state = 0, action) => {
-  switch (action.type) {
-    case SET_TOTAL_PAGES:
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-export const dataTripReducer = (state = [], action) => {
-  switch (action.type) {
-    case SET_DATA:
-      return action.payload;
-    default:
-      return state;
-  }
-};
-

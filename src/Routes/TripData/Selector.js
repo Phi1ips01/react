@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 function getTripPageReducer(state) {
-    console.log("satte",state.ShowOneTrip)
+    console.log("satte",state.ShowTrip.showTrip)
     
     return {
         showTrip: state.ShowTrip.showTrip,
@@ -11,6 +11,7 @@ function getTripPageReducer(state) {
         selectedOperatorID: state.selectedOperatorID,
         updateTrip:state.updateTrip,
         showOneTrip:state.ShowOneTrip.showOneTrip,
+        currentPageReducerTrip:state.CurrentPageReducerTrip.currentPage
         
     }
 }

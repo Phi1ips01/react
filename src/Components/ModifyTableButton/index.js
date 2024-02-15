@@ -4,15 +4,21 @@ import del from '../../images/delete.png';
 // import PropType from 'prop-types';
 export default class ModifyTableButton extends Component {
   handleDelete = (e) => {
-    const row = {
-      id:this.props.rowID
+    const result = window.confirm('Are you sure to delete this row?');
+    if (result) {
+      // User clicked "Yes"
+      const row = {
+        id:this.props.rowID
+      }
+     
+      if (this.props.deleteAction) {
+        console.log("rowID",this.props)
+        this.props.deleteAction(row);
+      }
     }
-   
-    if (this.props.deleteAction) {
-      console.log("rowID",this.props)
-      this.props.deleteAction(row);
-    }
-  }
+    } 
+
+    
   handleEdit = (e) =>{
     const row = {
       id:this.props.rowID
