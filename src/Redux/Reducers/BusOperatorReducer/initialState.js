@@ -26,5 +26,12 @@ export const INITIAL_STATE = {
     loading:false,
     error:false,
     data:{}
-  }
+  },
+  showAllBusOperator: {
+    loading: false,
+    error: false,
+    data: {}
+  },
+  currentPage:1,
+  
 }

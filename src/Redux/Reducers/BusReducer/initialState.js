@@ -27,4 +27,10 @@ showOneBus: {
   error: false,
   data: {}
 },
+showAllBus: {
+  loading: false,
+  error: false,
+  data: {}
+},
+currentPage:1,
 }

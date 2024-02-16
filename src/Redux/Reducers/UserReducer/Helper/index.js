@@ -11,13 +11,14 @@ export function showUserStarted(state, payload) {
 
 export function showUserSuccess(state, payload) {
   console.log('reached inside reducer');
-  console.log(payload.data)
+  console.log(payload.data.response.rows)
   return {
     ...state,
     showUser: {
       loading: false,
       error: false,
-      data: payload.data.response
+      data: payload.data.response.rows,
+      count: payload.data.response.count,
     },
   };
 }
@@ -198,5 +199,49 @@ export function showOneUserFailed(state, payload) {
       loading: false,
       error: payload
     }
+  };
+}
+
+export function showAllUserStarted(state, payload) {
+  return {
+    ...state,
+    showAllUser: {
+      loading: true,
+      error: false
+    }
+  };
+}
+
+export function showAllUserSuccess(state, payload) {
+  console.log('reached inside reducer',payload);
+  
+  return {
+    ...state,
+    showAllUser: {
+      loading: false,
+      error: false,
+      UserAllData: payload.data.response.rows,
+      count: payload.data.response.count,
+      
+    },
+    
+  };
+}
+
+
+export function showAllUserFailed(state, payload) {
+  return {
+    ...state,
+    showAllUser: {
+      loading: false,
+      error: payload
+    }
+  };
+}
+
+export function CurrentPageReducerUser(state, payload) {
+  return {
+    ...state,
+    currentPage:payload
   };
 }

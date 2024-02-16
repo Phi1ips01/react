@@ -14,6 +14,10 @@ UPDATE_BUS_OPERATOR_SUCCESS,
 SHOW_ONE_BUS_OPERATOR_FAILED,
 SHOW_ONE_BUS_OPERATOR_STARTED,
 SHOW_ONE_BUS_OPERATOR_SUCCESS,
+SHOW_ALL_BUS_OPERATOR_FAILED,
+SHOW_ALL_BUS_OPERATOR_STARTED,
+SHOW_ALL_BUS_OPERATOR_SUCCESS,
+SET_CURRENT_PAGE,
 SET_SEARCH_TERM,
 SET_TABLE_DATA,
 CLEAR_BUS_OPERATOR
@@ -36,6 +40,9 @@ import {
   updateBusOperatorFailed,
   updateBusOperatorStarted,
   updateBusOperatorSuccess,
+  showAllBusOperatorFailed,
+  showAllBusOperatorStarted,
+  showAllBusOperatorSuccess,
   clearBusOperator,
 } from './Helper';
 import { INITIAL_STATE } from './initialState';
@@ -112,6 +119,29 @@ export function UpdateBusOperator(state = INITIAL_STATE, action) {
       return updateBusOperatorStarted(state, action.payload);
     case UPDATE_BUS_OPERATOR_FAILED:
       return updateBusOperatorFailed(state, action.payload);
+    default:
+      return { ...state };
+  }
+}
+export const CurrentPageReducerBusOperator = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+export function ShowAllBusOperator(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case SHOW_ALL_BUS_OPERATOR_SUCCESS:
+      return showAllBusOperatorSuccess(state, action.payload);
+    case SHOW_ALL_BUS_OPERATOR_STARTED:
+      return showAllBusOperatorStarted(state, action.payload);
+    case SHOW_ALL_BUS_OPERATOR_FAILED:
+      return showAllBusOperatorFailed(state, action.payload);
     default:
       return { ...state };
   }

@@ -14,9 +14,13 @@ import {
   SHOW_ONE_BUS_FAILED,
   SHOW_ONE_BUS_STARTED,
   SHOW_ONE_BUS_SUCCESS,
+  SHOW_ALL_BUS_FAILED,
+  SHOW_ALL_BUS_STARTED,
+  SHOW_ALL_BUS_SUCCESS,
   CLEAR_BUS,
   SET_SEARCH_TERM,
-  SET_TABLE_DATA
+  SET_TABLE_DATA,
+  SET_CURRENT_PAGE,
 
 } from '../../Redux.constants'; 
 import {
@@ -35,6 +39,9 @@ import {
   showOneBusFailed,
   showOneBusStarted,
   showOneBusSuccess,
+  showAllBusFailed,
+  showAllBusStarted,
+  showAllBusSuccess,
   searchTermBus,
   clearBus,
   tableDataBus
@@ -117,6 +124,30 @@ export function ShowOneBus(state = INITIAL_STATE, action) {
       return showOneBusFailed(state, action.payload);
       case CLEAR_BUS:
       return clearBus(state,action.payload);
+    default:
+      return { ...state };
+  }
+}
+
+export const CurrentPageReducerBus = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+export function ShowAllBus(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case SHOW_ALL_BUS_SUCCESS:
+      return showAllBusSuccess(state, action.payload);
+    case SHOW_ALL_BUS_STARTED:
+      return showAllBusStarted(state, action.payload);
+    case SHOW_ALL_BUS_FAILED:
+      return showAllBusFailed(state, action.payload);
     default:
       return { ...state };
   }

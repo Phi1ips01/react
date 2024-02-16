@@ -24,10 +24,11 @@ const updateApi = updateInstance.api
 const showOneApi = showOneInstance.api
 
 
-export const showAllUser = (payload) => {
-
-    return api.get(api.baseURL)
-};
+export const showAllUser = (pageIndex,pageSize) => {
+    return api.get(`?page=${pageIndex}&size=${pageSize}`)
+        
+    };
+    
 export const addUser = (payload) =>{
     console.log("payload",payload)
 

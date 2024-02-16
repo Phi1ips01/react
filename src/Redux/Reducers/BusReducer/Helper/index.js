@@ -17,7 +17,8 @@ export function showBusSuccess(state, payload) {
     showBus: {
       loading: false,
       error: false,
-      data: payload.data.response
+      data: payload.data.response.rows,
+      count: payload.data.response.count,
     },
   };
 }
@@ -195,5 +196,48 @@ export function showOneBusFailed(state, payload) {
       loading: false,
       error: payload
     }
+  };
+}
+
+export function showAllBusStarted(state, payload) {
+  return {
+    ...state,
+    showAllBus: {
+      loading: true,
+      error: false
+    }
+  };
+}
+
+export function showAllBusSuccess(state, payload) {
+  console.log('reached inside reducer1',payload);
+  
+  return {
+    ...state,
+    showAllBus: {
+      loading: false,
+      error: false,
+      data: payload.data.response.rows,
+      
+    },
+    
+  };
+}
+
+
+export function showAllBusFailed(state, payload) {
+  return {
+    ...state,
+    showAllBus: {
+      loading: false,
+      error: payload
+    }
+  };
+}
+
+export function CurrentPageReducerBus(state, payload) {
+  return {
+    ...state,
+    currentPage:payload
   };
 }

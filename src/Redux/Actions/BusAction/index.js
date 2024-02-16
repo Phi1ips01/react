@@ -14,7 +14,11 @@ import {
     SHOW_ONE_BUS_FAILED,
     SHOW_ONE_BUS_SUCCESS,
     SHOW_ONE_BUS_STARTED,
+    SHOW_ALL_BUS_FAILED,
+    SHOW_ALL_BUS_SUCCESS,
+    SHOW_ALL_BUS_STARTED,
     SET_SEARCH_TERM,
+    SET_CURRENT_PAGE,
     SET_TABLE_DATA,
     CLEAR_BUS
 } from '../../Redux.constants';
@@ -68,7 +72,7 @@ export function postBus(payload) {
 }
 
 
-export function showBus() {
+export function showBus(page,size) {
     return async (dispatch) => {
         dispatch({
             type: SHOW_BUS_STARTED,
@@ -76,7 +80,7 @@ export function showBus() {
         });
         try {
             console.log("reachred action")
-            const data = await showAllBus();
+            const data = await showAllBus(page,size);
             console.log("data",data)
             dispatch({
                 type: SHOW_BUS_SUCCESS,
@@ -155,6 +159,33 @@ export function showOneActionBus(payload) {
         } catch (error) {
             dispatch({
                 type: SHOW_ONE_BUS_FAILED,
+                payload: error,
+            });
+        }
+    };
+}
+export const setCurrentPageBus = (index) => ({
+    type: SET_CURRENT_PAGE,
+    payload: index,
+  });
+  export function showAllActionBus(pageIndex,pageSize) {
+    return async (dispatch) => {
+        dispatch({
+            type: SHOW_ALL_BUS_STARTED,
+            payload: {},
+        });
+        try {
+            console.log("showallBusaction",pageIndex,pageSize)
+
+            const data = await showAllBus(pageIndex,pageSize);
+            console.log("Busdaataaction",data)
+            dispatch({
+                type: SHOW_ALL_BUS_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: SHOW_ALL_BUS_FAILED,
                 payload: error,
             });
         }

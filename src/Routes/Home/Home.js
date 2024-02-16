@@ -33,11 +33,7 @@ class Home extends Component {
     showBus:[],
     showBusOperator:[]
   }
-  // constructor (props){
-  //   super(props);
-  //   this.fetchBus=this.fetchBus.bind(this);
-  //   this.handleSubmit=this.handleSubmit.bind(this);
-  // }
+
   componentDidMount() {
     console.log("this.state componentDId",this.state)
     this.props.showBusOperator()
@@ -60,8 +56,7 @@ handleOperatorChange = (event) => {
   console.log("this.props handle",this.props)
   console.log("hanleOpeator",selectedOperatorId)
   this.props.updateSelectedOperator(selectedOperatorId);
-  // Fetch buses based on the selected operator (you may need to implement this)
-  // this.props.fetchBusesByOperator(selectedOperatorId);
+
 };
 handleSubmit = (event)=> {
     event.preventDefault();
@@ -86,14 +81,12 @@ handleSubmit = (event)=> {
             remarks: event.target.remarks.value,
             agents: event.target.agents.value,
     }
-    // console.log("this.props",this.props)
     this.props.postTrip(formData); // Dispatch the action
     console.log(formData,".,.,.,.,")
     document.getElementById('success').innerText = 'Details entered successfully';
     this.clearForm()
 }
 clearForm = ()=>{
-    // Clear the form fields
     document.getElementById('operator_id').value = '';
   document.getElementById('bus_id').value = '';
   document.getElementById('trip_id').value = '';
@@ -117,18 +110,8 @@ clearForm = ()=>{
   }, 5000);
   }
 
-// handleDate(){
-//   const today = new Date();
-//     const year = today.getFullYear();
-//     let month = today.getMonth() + 1;
-//     let day = today.getDate();
-//     month = month < 10 ? `0${month}` : month;
-//     day = day < 10 ? `0${day}` : day;
 
-//     return `${year}/${month}/${day}`;
-// }
   render() {
-    console.log("thisprops",this.props)
     const { busOperatorData, busData, selectedOperatorId } = this.props || [];
     return (
       <div>
@@ -137,7 +120,7 @@ clearForm = ()=>{
         <div className="trip-main">
             <form className="trip-form" onSubmit={this.handleSubmit}>
               <h3>Enter the Trip details here</h3>
-                <InputField type="text" id="trip_id" name="trip_id" className="trip-form-input" placeholder="Enter the PNR Number"/>
+                <InputField type="text" id="trip_id" name="trip_id" className="trip-form-input" placeholder={`PNR Number`}/>
                 <select
                     className='trip-select'
                     id='operator_id'
@@ -155,7 +138,6 @@ clearForm = ()=>{
                         </option>
                         ))}
                  </select>
-                {/* <InputField type="text" id="operator_id" name="operator_id"  className="trip-form-input" placeholder="Enter the bus operator ID.."/> */}
                 <select className='trip-select' id='bus_id' name='bus_id' required>
                   <option value='' disabled selected>
                     Enter the Bus
@@ -173,7 +155,6 @@ clearForm = ()=>{
                         </option>
                       ))}
                 </select>
-                {/* <InputField type="text" id="bus_id" name="bus_id" className="trip-form-input" placeholder="Enter the bus ID.."/> */}
                 <InputField type="text" id="customer_name" name="customer_name" className="trip-form-input" placeholder="Enter the Customer Name" required/>
                 <InputField type="text" id="contact" name="contact" className="trip-form-input" placeholder="Enter the contact" required/>
                 <InputField type="text" id="alternate_contact" name="alternate_contact" className="trip-form-input" placeholder="Enter the alternate contact"/>
@@ -201,7 +182,6 @@ clearForm = ()=>{
             </form>
             
         </div>
-        {/* <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteTrip} className="trip-table"/> */}
       </div>
     );
   }

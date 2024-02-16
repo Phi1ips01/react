@@ -138,8 +138,10 @@ this.clearForm();
         await this.props.showTrip(0,10);
         await this.props.showBus();
         await this.props.showBusOperator();
+         
         this.props.setTableDataTrip(this.props.data)
             this.props.setSearchTermTrip('')
+            
             
         // const tripData = this.props.showTrip.data; // Access data correctly
         // console.log(tripData);
@@ -148,6 +150,7 @@ this.clearForm();
         // Handle error here
     }
 }
+
 handleOperatorChange = (event) => {
   const selectedOperatorId = event.target.value;
   console.log("this.props handle",this.props)
@@ -156,7 +159,7 @@ handleOperatorChange = (event) => {
   // this.props.fetchBusesByOperator(selectedOperatorId);
 };
   render() {
-
+    // this.props.showAllActionTrip(0,this.props.tripCount)
 
     const testData = this.props.tripData
     const testCount = this.props.tripCount
@@ -451,7 +454,6 @@ handleOperatorChange = (event) => {
             <DynamicTable 
               columns={columns} 
               data={data} 
-
               deleteAction={this.props.deleteTrip} 
               searchData = {this.props.searchData}
               setSearchTerm ={this.props.setSearchTermTrip} 
@@ -461,6 +463,8 @@ handleOperatorChange = (event) => {
               currentPageReducer = {this.props.currentPageReducerTrip}
               count= {this.props.tripCount}
               showAll={this.props.showTrip}
+              dataCsv = {this.props.tripAllData}
+              showAllCsv = {this.props.showAllActionTrip}
               />
       </div>
     </div>

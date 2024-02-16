@@ -17,7 +17,8 @@ export function showBusOperatorSuccess(state, payload) {
     showBusOperator: {
       loading: false,
       error: false,
-      data: payload.data.response,
+      data: payload.data.response.rows,
+      count:payload.data.response.count
       
     },
     
@@ -200,4 +201,46 @@ export function clearBusOperator(state,payload)
     showOneBusOperator: {},
     error: null,
   }
+}
+export function showAllBusOperatorStarted(state, payload) {
+  return {
+    ...state,
+    showAllBusOperator: {
+      loading: true,
+      error: false
+    }
+  };
+}
+
+export function showAllBusOperatorSuccess(state, payload) {
+  console.log('reached inside reducer1',payload);
+  
+  return {
+    ...state,
+    showAllBusOperator: {
+      loading: false,
+      error: false,
+      data: payload.data.response.rows,
+      
+    },
+    
+  };
+}
+
+
+export function showAllBusOperatorFailed(state, payload) {
+  return {
+    ...state,
+    showAllBusOperator: {
+      loading: false,
+      error: payload
+    }
+  };
+}
+
+export function CurrentPageReducerBusOperator(state, payload) {
+  return {
+    ...state,
+    currentPage:payload
+  };
 }

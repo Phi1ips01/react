@@ -27,4 +27,10 @@ export const INITIAL_STATE = {
     error: false,
     data: {}
   },
+  showAllUser: {
+    loading: false,
+    error: false,
+    data: {}
+  },
+  currentPage:1,
 };

@@ -14,6 +14,10 @@ import {
     SHOW_ONE_BUS_OPERATOR_FAILED,
     SHOW_ONE_BUS_OPERATOR_STARTED,
     SHOW_ONE_BUS_OPERATOR_SUCCESS,
+    SHOW_ALL_BUS_OPERATOR_FAILED,
+    SHOW_ALL_BUS_OPERATOR_SUCCESS,
+    SHOW_ALL_BUS_OPERATOR_STARTED,
+    SET_CURRENT_PAGE,
     SET_SEARCH_TERM,
     SET_TABLE_DATA,
     CLEAR_BUS_OPERATOR
@@ -161,3 +165,30 @@ export function setSearchTermBusOperator(term) {
     };
   }
   
+  export const setCurrentPageBusOperator = (index) => ({
+    type: SET_CURRENT_PAGE,
+    payload: index,
+  });
+  export function showAllActionBusOperator(pageIndex,pageSize) {
+    return async (dispatch) => {
+        dispatch({
+            type: SHOW_ALL_BUS_OPERATOR_STARTED,
+            payload: {},
+        });
+        try {
+            console.log("showallBusOperatoraction",pageIndex,pageSize)
+
+            const data = await showAllBusOperator(pageIndex,pageSize);
+            console.log("BusOperatordaataaction",data)
+            dispatch({
+                type: SHOW_ALL_BUS_OPERATOR_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: SHOW_ALL_BUS_OPERATOR_FAILED,
+                payload: error,
+            });
+        }
+    };
+}

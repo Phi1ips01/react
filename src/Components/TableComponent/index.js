@@ -19,7 +19,9 @@
     count,
     showAll,
     setCurrentPage,
-    currentPageReducer
+    currentPageReducer,
+    showAllCsv,
+    dataCsv,
   }) => {
     const tableData = useMemo(() => data, [data]);
 console.log("currentPageReducer",currentPageReducer)
@@ -42,7 +44,9 @@ console.log("currentPageReducer",currentPageReducer)
       useSortBy
     );
     const pageSize=10
-  console.log("rows table",rows)
+    // showAllCsv(0,count)
+    const dataTable = Array.isArray(dataCsv) ? dataCsv : [];
+  console.log("rows table",dataTable)
     const filteredRows = useMemo(() => {
       if (searchData.trim()=='') return rows.values;
 
@@ -60,7 +64,12 @@ console.log("currentPageReducer",currentPageReducer)
       setCurrentPage(pageNumber);
       showAll(pageNumber, pageSize); // Assuming 10 items per page
     };
-
+    
+    const handleDownload = () => {
+      console.log("handle download")
+      // showAllCsv(0,count) // Fetch all the data before downloading
+      // return dataCsv
+    };
     return (
       <div className="grid grid-cols-1">
         <div className="grid-item">
@@ -146,11 +155,9 @@ console.log("currentPageReducer",currentPageReducer)
           />
           </Pagination>
           <CSVLink
-            data={data.map(({ createdAt, updatedAt, ...rest }) => rest)}
+            data={dataTable.map(({ createdAt, updatedAt, ...rest }) => rest)}
             className="btn btn-danger btn-sm"
-            onClick={() => {
-              console.log('You click the link', data); // Your click handling logic
-            }}
+            onClick={handleDownload}
           >
             Download CSV
           </CSVLink>

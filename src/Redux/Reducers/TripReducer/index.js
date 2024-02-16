@@ -15,6 +15,9 @@ import {
   SHOW_ONE_TRIP_FAILED,
   SHOW_ONE_TRIP_STARTED,
   SHOW_ONE_TRIP_SUCCESS,
+  SHOW_ALL_TRIP_FAILED,
+  SHOW_ALL_TRIP_STARTED,
+  SHOW_ALL_TRIP_SUCCESS,
   SET_SEARCH_TERM,
   SET_TABLE_DATA,
   CLEAR_TRIP,
@@ -36,6 +39,9 @@ import {
   showOneTripFailed,
   showOneTripStarted,
   showOneTripSuccess,
+  showAllTripFailed,
+  showAllTripStarted,
+  showAllTripSuccess,
   clearTrip,
   searchTermTrip,
   tableDataTrip
@@ -145,3 +151,15 @@ export const CurrentPageReducerTrip = (state = INITIAL_STATE, action) => {
       return state;
   }
 };
+export function ShowAllTrip(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case SHOW_ALL_TRIP_SUCCESS:
+      return showAllTripSuccess(state, action.payload);
+    case SHOW_ALL_TRIP_STARTED:
+      return showAllTripStarted(state, action.payload);
+    case SHOW_ALL_TRIP_FAILED:
+      return showAllTripFailed(state, action.payload);
+    default:
+      return { ...state };
+  }
+}

@@ -15,6 +15,9 @@ import {
     SHOW_ONE_TRIP_FAILED,
     SHOW_ONE_TRIP_STARTED,
     SHOW_ONE_TRIP_SUCCESS,
+    SHOW_ALL_TRIP_FAILED,
+    SHOW_ALL_TRIP_STARTED,
+    SHOW_ALL_TRIP_SUCCESS,
     SET_SEARCH_TERM,
     SET_TABLE_DATA,
     CLEAR_TRIP,
@@ -125,6 +128,29 @@ export function showTrip(pageIndex,pageSize) {
         }
     };
 }
+export function showAllActionTrip(pageIndex,pageSize) {
+    return async (dispatch) => {
+        dispatch({
+            type: SHOW_ALL_TRIP_STARTED,
+            payload: {},
+        });
+        try {
+            console.log("showalltripaction",pageIndex,pageSize)
+
+            const data = await showAllTrip(pageIndex,pageSize);
+            console.log("tripdaataaction",data)
+            dispatch({
+                type: SHOW_ALL_TRIP_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: SHOW_ALL_TRIP_FAILED,
+                payload: error,
+            });
+        }
+    };
+}
 
 
 export function setSearchTermTrip(term) {
@@ -178,4 +204,4 @@ export const setCurrentPageTrip = (index) => ({
     type: SET_CURRENT_PAGE,
     payload: index,
   });
-  
+ 

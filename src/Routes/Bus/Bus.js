@@ -19,14 +19,14 @@ class Bus extends Component {
     //   }
     componentDidMount() {
       
-        this.props.showBusOperator();
+        this.props.showBusOperator(0,20);
       
       this.fetchBus();
     }
 
        async fetchBus() {
         try {
-            await this.props.showBus();
+            await this.props.showBus(0,10);
             console.log("fetchbus",this.props)
             this.props.setTableDataBus(this.props.data)
             this.props.setSearchTermBus('')
@@ -38,6 +38,12 @@ class Bus extends Component {
             // Handle error here
         }
     }
+    handleOperatorChange = (event) => {
+      const selectedOperatorId = event.target.value;
+      console.log("this.props handle",this.props)
+      this.props.updateSelectedOperator(selectedOperatorId);
+    }
+  
 
     handleSubmit=(event) => {
         event.preventDefault();
@@ -109,7 +115,6 @@ class Bus extends Component {
           accessor: column,
         }));
         console.log("data,columns",data,allColumns)
-        console.log("deleteBus",this.props)
             // const { loading, error, data } = this.props.showBus;
             const { showOneBusData } = this.props;
         const isEditMode = !!showOneBusData && !!showOneBusData.id
@@ -123,14 +128,7 @@ class Bus extends Component {
            <div className="default-main">
         <form  onSubmit={this.handleSubmit} className="default-form">
           <h3>Enter the Bus details here</h3>
-          {/* <InputField
-              type="text"
-              id="bus_id"
-              name="bus_id"
-              className="default-form-input"
-              placeholder={isEditMode ? showOneBusData.id : "Enter the bus ID.."}
-              required = {isEditMode ? false : true}
-            />           */}
+         
           <select 
           className='default-select' 
           id="operator_id" 
@@ -172,9 +170,7 @@ class Bus extends Component {
               placeholder={isEditMode ? showOneBusData.share : "Enter the share in %"}
               required = {isEditMode ? false : true}
             />        
-            {/* <InputField type="text" id="bus_total_payment" name="bus_total_payment" className="default-form-input" placeholder="Enter the Total amount disbaled" />
-            <InputField type="text" id="share_deduced_amount" name="share_deduced_amount" className="default-form-input" placeholder="Share deduced amount disbaled" /> */}
-
+           
             <InputButton type="submit" id="inputButton" className="default-form-submit" value={!isEditMode ? 'Submit' : 'Update'}/>
             {isEditMode && (
               <button type="button" className="default-form-clear" onClick={this.clearForm}>
@@ -185,8 +181,22 @@ class Bus extends Component {
         </form>
             
             
-
-        <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteBus} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermBus} showOneRowData = {this.props.showOneBusData} showOneRow = {this.props.showOneBus}/>
+              {console.log("bus table this.props",this.props)}
+        <DynamicTable 
+        columns={columns} 
+        data={data} 
+        deleteAction={this.props.deleteBus} 
+        searchData = {this.props.searchData} 
+        setSearchTerm ={this.props.setSearchTermBus} 
+        showOneRowData = {this.props.showOneBusData} 
+        showOneRow = {this.props.showOneBus}
+        setCurrentPage = {this.props.setCurrentPageBus}
+        currentPageReducer = {this.props.currentPageReducerBus}
+        count= {this.props.busCount}
+        showAll={this.props.showBus}
+        dataCsv = {this.props.busAllData}
+        showAllCsv = {this.props.showAllActionBus}
+        />
 </div>
         </div>
 

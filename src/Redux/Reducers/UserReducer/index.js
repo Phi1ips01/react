@@ -14,9 +14,13 @@ import {
   SHOW_ONE_USER_FAILED,
   SHOW_ONE_USER_STARTED,
   SHOW_ONE_USER_SUCCESS,
+  SHOW_ALL_USER_FAILED,
+  SHOW_ALL_USER_STARTED,
+  SHOW_ALL_USER_SUCCESS,
   CLEAR_USER,
   SET_SEARCH_TERM,
-  SET_TABLE_DATA
+  SET_TABLE_DATA,
+  SET_CURRENT_PAGE
 } from '../../Redux.constants';
 import {
   showUserFailed,
@@ -34,6 +38,9 @@ import {
   showOneUserFailed,
   showOneUserStarted,
   showOneUserSuccess,
+  showAllUserFailed,
+  showAllUserStarted,
+  showAllUserSuccess,
   clearUser,
   searchTermUser,
   tableDataUser
@@ -116,3 +123,27 @@ export function ShowOneUser(state = INITIAL_STATE, action) {
       return { ...state };
   }
 }
+export function ShowAllUser(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case SHOW_ALL_USER_SUCCESS:
+      return showAllUserSuccess(state, action.payload);
+    case SHOW_ALL_USER_STARTED:
+      return showAllUserStarted(state, action.payload);
+    case SHOW_ALL_USER_FAILED:
+      return showAllUserFailed(state, action.payload);
+    default:
+      return { ...state };
+  }
+}
+
+export const CurrentPageReducerUser = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
+    default:
+      return state;
+  }
+};

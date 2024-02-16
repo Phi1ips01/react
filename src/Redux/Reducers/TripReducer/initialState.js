@@ -28,5 +28,10 @@ export const INITIAL_STATE = {
     error: false,
     data: {}
   },
+  showAllTrip: {
+    loading: false,
+    error: false,
+    data: {}
+  },
   currentPage:1
 };

@@ -202,6 +202,42 @@ export function showOneTripFailed(state, payload) {
   };
 }
 
+export function showAllTripStarted(state, payload) {
+  return {
+    ...state,
+    showAllTrip: {
+      loading: true,
+      error: false
+    }
+  };
+}
+
+export function showAllTripSuccess(state, payload) {
+  console.log('reached inside reducer1',payload);
+  
+  return {
+    ...state,
+    showAllTrip: {
+      loading: false,
+      error: false,
+      data: payload.data.response.rows,
+      
+    },
+    
+  };
+}
+
+
+export function showAllTripFailed(state, payload) {
+  return {
+    ...state,
+    showAllTrip: {
+      loading: false,
+      error: payload
+    }
+  };
+}
+
 export function CurrentPageReducerTrip(state, payload) {
   return {
     ...state,

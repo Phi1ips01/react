@@ -22,9 +22,9 @@ const deleteApi = deleteInstance.api
 const updateApi = updateInstance.api
 const showOneApi = showOneInstance.api
 
-export const showAllBusOperator = () => {
+export const showAllBusOperator = (pageIndex,pageSize) => {
     console.log("busoperatorAPI model")
-    return api.get(api.baseURL)
+    return api.get(`?page=${pageIndex}&size=${pageSize}`)
 };
 export const addBusOperator = (payload) =>{
     return postApi.post(postApi.baseURL,payload)

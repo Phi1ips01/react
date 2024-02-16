@@ -7,6 +7,8 @@ function getBusOperatorPageReducer(state) {
         searchTerm:state.SearchBusOperator.searchTerm,
         updateBusOperator: state.UpdateBusOperator,
         showOneBusOperator: state.ShowOneBusOperator.showOneBusOperator,
+        currentPageReducerBusOperator:state.CurrentPageReducerBusOperator.currentPage,
+        showAllBusOperator: state.ShowAllBusOperator.showAllBusOperator,
         }
     }
 function mergeReducer(showBusOperator) {

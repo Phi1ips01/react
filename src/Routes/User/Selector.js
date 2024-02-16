@@ -6,6 +6,8 @@ function getUserPageReducer(state) {
         searchTerm:state.SearchUser.searchTerm,
         updateUser:state.updateUser,
         showOneUser:state.ShowOneUser.showOneUser,
+        currentPageReducerUser:state.CurrentPageReducerUser.currentPage,
+        showAllUser: state.ShowAllUser.showAllUser,
     }
 }
     function mergeReducer(showUser) {

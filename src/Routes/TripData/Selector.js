@@ -11,10 +11,11 @@ function getTripPageReducer(state) {
         selectedOperatorID: state.selectedOperatorID,
         updateTrip:state.updateTrip,
         showOneTrip:state.ShowOneTrip.showOneTrip,
-        currentPageReducerTrip:state.CurrentPageReducerTrip.currentPage
+        currentPageReducerTrip:state.CurrentPageReducerTrip.currentPage,
+        showAllTrip: state.ShowAllTrip.showAllTrip,
         
     }
-}
+} 
 function mergeReducer(showTrip) {
     return {
         ...showTrip

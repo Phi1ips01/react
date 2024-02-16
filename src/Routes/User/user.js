@@ -24,7 +24,7 @@ class User extends Component {
 
   async fetchUser() {
     try {
-      await this.props.showUser();
+      await this.props.showUser(0,10);
       console.log("fetchuser ", this.props);
       this.props.setTableDataUser(this.props.data)
       this.props.setSearchTermUser('')
@@ -32,6 +32,12 @@ class User extends Component {
       console.error(error);
       // Handle error here
     }
+  }
+
+  handleOperatorChange = (event) => {
+    const selectedOperatorId = event.target.value;
+    console.log("this.props handle",this.props)
+    this.props.updateSelectedOperator(selectedOperatorId);
   }
 
   handleSubmit = (event) => {
@@ -77,6 +83,7 @@ class User extends Component {
     console.log("clear form ", this.props.showOneBusData)
   };
   render() {
+
     console.log("render", this.props);
     const testData = this.props.data;
     const data = Array.isArray(testData) ? testData : [];
@@ -138,9 +145,23 @@ class User extends Component {
             )}
           </form>
           {
-            console.log("userlog", this.props)
+            console.log("userlog", this.props.currentPageReducerUser)
           }
-          <DynamicTable columns={columns} data={data} deleteAction={this.props.deleteActionUser} searchData = {this.props.searchData} setSearchTerm ={this.props.setSearchTermUser} showOneRowData = {this.props.showOneUserData} showOneRow = {this.props.showOneUser} />
+          <DynamicTable 
+          columns={columns} 
+          data={data} 
+          deleteAction={this.props.deleteActionUser} 
+          searchData = {this.props.searchData} 
+          setSearchTerm ={this.props.setSearchTermUser} 
+          showOneRowData = {this.props.showOneUserData} 
+          showOneRow = {this.props.showOneUser} 
+          setCurrentPage = {this.props.setCurrentPageUser}
+          currentPageReducer = {this.props.currentPageReducerUser}
+          count= {this.props.userCount}
+          showAll={this.props.showUser}
+          dataCsv = {this.props.UserAllData}
+          showAllCsv = {this.props.showAllActionUser}
+          />
         </div>
       </div>
     );

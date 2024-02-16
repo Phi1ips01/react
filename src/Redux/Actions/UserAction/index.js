@@ -14,6 +14,10 @@ import {
     SHOW_ONE_USER_FAILED,
     SHOW_ONE_USER_STARTED,
     SHOW_ONE_USER_SUCCESS,
+    SHOW_ALL_USER_FAILED,
+    SHOW_ALL_USER_SUCCESS,
+    SHOW_ALL_USER_STARTED,
+    SET_CURRENT_PAGE,
     SET_SEARCH_TERM,
     SET_TABLE_DATA,
     CLEAR_USER
@@ -92,14 +96,14 @@ export function updateActionUser(payload) {
     };
 }
 
-export function showUser(payload) {
+export function showUser(page,size) {
     return async (dispatch) => {
         dispatch({
             type: SHOW_USER_STARTED,
             payload: {},
         });
         try {
-            const data = await showAllUser();
+            const data = await showAllUser(page,size);
             console.log("data",data)
             dispatch({
                 type: SHOW_USER_SUCCESS,
@@ -153,6 +157,33 @@ export function showOneActionUser(payload) {
         } catch (error) {
             dispatch({
                 type: SHOW_ONE_USER_FAILED,
+                payload: error,
+            });
+        }
+    };
+}
+export const setCurrentPageUser = (index) => ({
+    type: SET_CURRENT_PAGE,
+    payload: index,
+  });
+  export function showAllActionUser(pageIndex,pageSize) {
+    return async (dispatch) => {
+        dispatch({
+            type: SHOW_ALL_USER_STARTED,
+            payload: {},
+        });
+        try {
+            console.log("showallUseraction",pageIndex,pageSize)
+
+            const data = await showAllUser(pageIndex,pageSize);
+            console.log("Userdaataaction",data)
+            dispatch({
+                type: SHOW_ALL_USER_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: SHOW_ALL_USER_FAILED,
                 payload: error,
             });
         }
