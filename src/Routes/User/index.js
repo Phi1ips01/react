@@ -13,7 +13,7 @@ function mapStateToProps(state) {
     tableData: SelectState(state).tableData,
     showOneUserData: SelectState(state).showOneUser.data,
     currentPageReducerUser:SelectState(state).currentPageReducerUser,
-    UserAllData: SelectState(state).data,
+    userAllData: SelectState(state).showAllUser.data,
     data: SelectState(state).showUser.data,
     userCount:SelectState(state).showUser.count,
   };

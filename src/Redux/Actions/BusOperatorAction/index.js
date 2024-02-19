@@ -22,7 +22,7 @@ import {
     SET_TABLE_DATA,
     CLEAR_BUS_OPERATOR
     } from '../../Redux.constants';
-import { addBusOperator, showAllBusOperator,deleteBusOperator, updateBusOperator,showOneBusOperator } from '../../../api/busOperatorAPI';
+import { addBusOperator, showAllBusOperator,deleteBusOperator, updateBusOperator,showOneBusOperator,showAllCSVBusOperator } from '../../../api/busOperatorAPI';
 
 export function deleteActionBusOperator(payload) {
     return async (dispatch) => {
@@ -38,7 +38,7 @@ export function deleteActionBusOperator(payload) {
                 type: DELETE_BUS_OPERATOR_SUCCESS,
                 payload: data,
             });
-            dispatch(showBusOperator())
+            dispatch(showBusOperator(0,10))
         } catch (error) {
             dispatch({
                 type: DELETE_BUS_OPERATOR_FAILED,
@@ -61,7 +61,7 @@ export function postBusOperator(payload) {
                 type: POST_BUS_OPERATOR_SUCCESS,
                 payload: data,
             });
-            dispatch(showBusOperator())
+            dispatch(showBusOperator(0,10))
         } catch (error) {
             dispatch({
                 type: POST_BUS_OPERATOR_FAILED,
@@ -86,7 +86,7 @@ export function updateActionBusOperator(payload) {
                 type: UPDATE_BUS_OPERATOR_SUCCESS,
                 payload: data,
             })
-            dispatch(showBusOperator());
+            dispatch(showBusOperator(0,10));
         } catch (error) {
             dispatch({
                 type: UPDATE_BUS_OPERATOR_FAILED,
@@ -95,7 +95,7 @@ export function updateActionBusOperator(payload) {
         }
     };
 }
-export function showBusOperator(payload) {
+export function showBusOperator(page,size) {
     return  async (dispatch) => {
         dispatch({
             type: SHOW_BUS_OPERATOR_STARTED,
@@ -103,7 +103,7 @@ export function showBusOperator(payload) {
         });
         try {
             console.log("busoperatoraction success")
-            const data = await showAllBusOperator();
+            const data = await showAllBusOperator(page,size);
             console.log("data", data)
             dispatch({
                 type: SHOW_BUS_OPERATOR_SUCCESS,
@@ -178,7 +178,7 @@ export function setSearchTermBusOperator(term) {
         try {
             console.log("showallBusOperatoraction",pageIndex,pageSize)
 
-            const data = await showAllBusOperator(pageIndex,pageSize);
+            const data = await showAllCSVBusOperator();
             console.log("BusOperatordaataaction",data)
             dispatch({
                 type: SHOW_ALL_BUS_OPERATOR_SUCCESS,

@@ -7,13 +7,14 @@ import { showBusOperator,postBusOperator, deleteActionBusOperator,setSearchTermB
 import { SelectState } from './Selector';
 
 function mapStateToProps(state) {
+  console.log("mapstatetoprops",state.ShowAllBusOperator.showAllBusOperator)
   return {
     data: SelectState(state).showBusOperator.data,
     searchData: SelectState(state).searchTerm,
     tableData: SelectState(state).tableData,
     showOneBusOperatorData:SelectState(state).showOneBusOperator.data,
     currentPageReducerBusOperator:SelectState(state).currentPageReducerBusOperator,
-    busAllData: SelectState(state).showAllBusOperator.data,
+    busOperatorAllData: SelectState(state).showAllBusOperator.data,
     busOperatorCount:SelectState(state).showBusOperator.count,
   };
 }
@@ -30,9 +31,9 @@ function mapDispatchToProps(dispatch) {
     clearBusOperator:(params) =>dispatch(clearBusOperator(params)),
     logout:(params)=>dispatch(signOut(params)),
     setCurrentPageBusOperator:(params)=>dispatch(setCurrentPageBusOperator(params)),
-    showAllActionBusOperator:(page,size)=>{
-      console.log("dispatch showBus",page,size)
-      dispatch(showAllActionBusOperator(page,size))
+    showAllActionBusOperator:()=>{
+      console.log("dispatch showBus")
+      dispatch(showAllActionBusOperator())
     }
 
   }

@@ -24,7 +24,7 @@ import {
     SET_CURRENT_PAGE,
     } 
     from '../../Redux.constants';
-import { addTrip, showAllTrip,deleteTrip,updateTrip,showOneTrip } from '../../../api/tripAPI';
+import { addTrip, showAllTrip,deleteTrip,updateTrip,showOneTrip,showAllCSVTrip } from '../../../api/tripAPI';
 import { showAllBus } from '../../../api/busAPI';
 
 export function deleteActionTrip(payload) {
@@ -41,7 +41,7 @@ export function deleteActionTrip(payload) {
                 type: DELETE_TRIP_SUCCESS,
                 payload: data,
             });
-            dispatch(showTrip())
+            dispatch(showTrip(0,10))
         } catch (error) {
             dispatch({
                 type: DELETE_TRIP_FAILED,
@@ -65,7 +65,7 @@ export function updateActionTrip(payload) {
                 type: UPDATE_TRIP_SUCCESS,
                 payload: data,
             })
-            dispatch(showTrip());
+            dispatch(showTrip(0,10));
         } catch (error) {
             dispatch({
                 type: UPDATE_TRIP_FAILED,
@@ -86,7 +86,7 @@ export function postTrip(payload) {
                 type: POST_TRIP_SUCCESS,
                 payload: data,
             });
-            dispatch(showTrip())
+            dispatch(showTrip(0,10))
 
         } catch (error) {
             dispatch({
@@ -128,16 +128,16 @@ export function showTrip(pageIndex,pageSize) {
         }
     };
 }
-export function showAllActionTrip(pageIndex,pageSize) {
+export function showAllActionTrip() {
     return async (dispatch) => {
         dispatch({
             type: SHOW_ALL_TRIP_STARTED,
             payload: {},
         });
         try {
-            console.log("showalltripaction",pageIndex,pageSize)
+            console.log("showalltripaction")
 
-            const data = await showAllTrip(pageIndex,pageSize);
+            const data = await showAllCSVTrip();
             console.log("tripdaataaction",data)
             dispatch({
                 type: SHOW_ALL_TRIP_SUCCESS,

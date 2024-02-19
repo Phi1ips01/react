@@ -40,7 +40,7 @@ function mapDispatchToProps(dispatch) {
     clearTrip: (params) => dispatch(clearTrip(params)),
     logout:(params)=>dispatch(signOut(params)),
     setCurrentPageTrip:(params)=>dispatch(setCurrentPageTrip(params)),
-    showAllActionTrip:(page,size)=>{dispatch(showAllActionTrip(page,size))}
+    showAllActionTrip:()=>{dispatch(showAllActionTrip())}
 
 
 

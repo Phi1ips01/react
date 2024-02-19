@@ -29,6 +29,9 @@ export const showAllBus = (pageIndex,pageSize) => {
     console.log("showallbus");
     return api.get(`?page=${pageIndex}&size=${pageSize}`)
 };
+export const showAllCSVBus = ()=>{
+    return api.get()
+}
 export const addBus = (payload) => {
     return postApi.post(api.baseURL,payload)
 }

@@ -220,7 +220,7 @@ export function showAllBusOperatorSuccess(state, payload) {
     showAllBusOperator: {
       loading: false,
       error: false,
-      data: payload.data.response.rows,
+      data: payload.data.response,
       
     },
     

@@ -20,8 +20,6 @@
     showAll,
     setCurrentPage,
     currentPageReducer,
-    showAllCsv,
-    dataCsv,
   }) => {
     const tableData = useMemo(() => data, [data]);
 console.log("currentPageReducer",currentPageReducer)
@@ -45,8 +43,6 @@ console.log("currentPageReducer",currentPageReducer)
     );
     const pageSize=10
     // showAllCsv(0,count)
-    const dataTable = Array.isArray(dataCsv) ? dataCsv : [];
-  console.log("rows table",dataTable)
     const filteredRows = useMemo(() => {
       if (searchData.trim()=='') return rows.values;
 
@@ -65,11 +61,7 @@ console.log("currentPageReducer",currentPageReducer)
       showAll(pageNumber, pageSize); // Assuming 10 items per page
     };
     
-    const handleDownload = () => {
-      console.log("handle download")
-      // showAllCsv(0,count) // Fetch all the data before downloading
-      // return dataCsv
-    };
+
     return (
       <div className="grid grid-cols-1">
         <div className="grid-item">
@@ -154,13 +146,13 @@ console.log("currentPageReducer",currentPageReducer)
             disabled={currentPageReducer === Math.ceil(count / pageSize)}
           />
           </Pagination>
-          <CSVLink
+          {/* <CSVLink
             data={dataTable.map(({ createdAt, updatedAt, ...rest }) => rest)}
             className="btn btn-danger btn-sm"
             onClick={handleDownload}
           >
             Download CSV
-          </CSVLink>
+          </CSVLink> */}
         </div>
       </div>
     );

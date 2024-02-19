@@ -22,7 +22,7 @@ import {
     SET_TABLE_DATA,
     CLEAR_BUS
 } from '../../Redux.constants';
-import { addBus, showAllBus, deleteBus,updateBus,showOneBus } from '../../../api/busAPI';
+import { addBus, showAllBus, deleteBus,updateBus,showOneBus,showAllCSVBus } from '../../../api/busAPI';
 
 export function deleteActionBus(payload) {
     return async (dispatch) => {
@@ -38,7 +38,7 @@ export function deleteActionBus(payload) {
                 type: DELETE_BUS_SUCCESS,
                 payload: data,
             })
-            dispatch(showBus());
+            dispatch(showBus(0,10));
         } catch (error) {
             dispatch({
                 type: DELETE_BUS_FAILED,
@@ -61,7 +61,7 @@ export function postBus(payload) {
                 type: POST_BUS_SUCCESS,
                 payload: data,
             })
-            dispatch(showBus());
+            dispatch(showBus(0,10));
         } catch (error) {
             dispatch({
                 type: POST_BUS_FAILED,
@@ -109,7 +109,7 @@ export function updateActionBus(payload) {
                 type: UPDATE_BUS_SUCCESS,
                 payload: data,
             })
-            dispatch(showBus());
+            dispatch(showBus(0,10));
         } catch (error) {
             dispatch({
                 type: UPDATE_BUS_FAILED,
@@ -168,16 +168,16 @@ export const setCurrentPageBus = (index) => ({
     type: SET_CURRENT_PAGE,
     payload: index,
   });
-  export function showAllActionBus(pageIndex,pageSize) {
+  export function showAllActionBus() {
     return async (dispatch) => {
         dispatch({
             type: SHOW_ALL_BUS_STARTED,
             payload: {},
         });
         try {
-            console.log("showallBusaction",pageIndex,pageSize)
+            console.log("showallBusaction")
 
-            const data = await showAllBus(pageIndex,pageSize);
+            const data = await showAllCSVBus();
             console.log("Busdaataaction",data)
             dispatch({
                 type: SHOW_ALL_BUS_SUCCESS,

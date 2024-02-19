@@ -28,6 +28,9 @@ export const showAllTrip = (pageIndex,pageSize) => {
     console.log("get",pageIndex,pageSize)
     return api.get(`?page=${pageIndex}&size=${pageSize}`)
 };
+export const showAllCSVTrip = ()=>{
+    return api.get()
+}
 export const addTrip = (payload) =>{
     return postApi.post(postApi.baseURL,payload)
 }

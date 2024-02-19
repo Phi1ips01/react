@@ -38,9 +38,8 @@ function mapDispatchToProps(dispatch) {
     updateBus: (params) => dispatch(updateActionBus(params)),
     logout:(params)=>dispatch(signOut(params)),
     setCurrentPageBus:(params)=>dispatch(setCurrentPageBus(params)),
-    showAllActionBus:(page,size)=>{
-      console.log("dispatch showBus",page,size)
-      dispatch(showAllActionBus(page,size))
+    showAllActionBus:()=>{
+      dispatch(showAllActionBus())
     }
 
   

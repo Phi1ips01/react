@@ -28,7 +28,9 @@ export const showAllUser = (pageIndex,pageSize) => {
     return api.get(`?page=${pageIndex}&size=${pageSize}`)
         
     };
-    
+    export const showAllCSVUser = ()=>{
+        return api.get()
+    }
 export const addUser = (payload) =>{
     console.log("payload",payload)
 

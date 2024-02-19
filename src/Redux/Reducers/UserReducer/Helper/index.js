@@ -220,8 +220,7 @@ export function showAllUserSuccess(state, payload) {
     showAllUser: {
       loading: false,
       error: false,
-      UserAllData: payload.data.response.rows,
-      count: payload.data.response.count,
+      data: payload.data.response,
       
     },
     

@@ -4,6 +4,8 @@ import InputButton from '../../Components/InputButton';
 import DynamicTable from '../../Components/TableComponent';
 import SideBar from '../../Components/SideBar'
 import DropDown from '../../Components/DropDown'
+import CsvLink from '../../Components/CsvLink'
+
 class Bus extends Component {
     state = {
         loading: false,
@@ -44,7 +46,11 @@ class Bus extends Component {
       this.props.updateSelectedOperator(selectedOperatorId);
     }
   
-
+    handleCSVDownload = ()=>{
+      this.props.showAllActionBus()
+      
+    }
+  
     handleSubmit=(event) => {
         event.preventDefault();
         const showOneBusData = this.props.showOneBusData
@@ -197,6 +203,11 @@ class Bus extends Component {
         dataCsv = {this.props.busAllData}
         showAllCsv = {this.props.showAllActionBus}
         />
+          <button className="csv-button" onClick={this.handleCSVDownload}>
+                {this.props.busAllData && (
+          <CsvLink data={this.props.busAllData} />
+        )}
+  </button>
 </div>
         </div>
 

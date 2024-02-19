@@ -22,7 +22,7 @@ import {
     SET_TABLE_DATA,
     CLEAR_USER
 } from '../../Redux.constants';
-import { addUser, showAllUser,deleteUser,updateUser,showOneUser } from '../../../api/userAPI';
+import { addUser, showAllUser,deleteUser,updateUser,showOneUser,showAllCSVUser } from '../../../api/userAPI';
 
 export function deleteActionUser(payload) {
     return async (dispatch) => {
@@ -38,7 +38,7 @@ export function deleteActionUser(payload) {
                 type: DELETE_USER_SUCCESS,
                 payload: data,
             });
-            dispatch(showUser())
+            dispatch(showUser(0,10))
 
         } catch (error) {
             dispatch({
@@ -61,7 +61,7 @@ export function postUser(payload) {
                 type: POST_USER_SUCCESS,
                 payload: data,
             });
-            dispatch(showUser())
+            dispatch(showUser(0,10))
 
         } catch (error) {
             dispatch({
@@ -86,7 +86,7 @@ export function updateActionUser(payload) {
                 type: UPDATE_USER_SUCCESS,
                 payload: data,
             })
-            dispatch(showUser());
+            dispatch(showUser(0,10));
         } catch (error) {
             dispatch({
                 type: UPDATE_USER_FAILED,
@@ -166,16 +166,16 @@ export const setCurrentPageUser = (index) => ({
     type: SET_CURRENT_PAGE,
     payload: index,
   });
-  export function showAllActionUser(pageIndex,pageSize) {
+  export function showAllActionUser() {
     return async (dispatch) => {
         dispatch({
             type: SHOW_ALL_USER_STARTED,
             payload: {},
         });
         try {
-            console.log("showallUseraction",pageIndex,pageSize)
+            console.log("showallUseraction",)
 
-            const data = await showAllUser(pageIndex,pageSize);
+            const data = await showAllCSVUser();
             console.log("Userdaataaction",data)
             dispatch({
                 type: SHOW_ALL_USER_SUCCESS,

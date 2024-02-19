@@ -4,6 +4,7 @@ import SideBar from '../../Components/SideBar';
 import DropDown from '../../Components/DropDown';
 import InputField from '../../Components/InputField';
 import InputButton from '../../Components/InputButton';
+import CsvLink from '../../Components/CsvLink'
 
 class User extends Component {
   constructor(props) {
@@ -82,6 +83,10 @@ class User extends Component {
     this.props.clearUser();
     console.log("clear form ", this.props.showOneBusData)
   };
+  handleCSVDownload = ()=>{
+    this.props.showAllActionUser()
+    
+  }
   render() {
 
     console.log("render", this.props);
@@ -159,9 +164,12 @@ class User extends Component {
           currentPageReducer = {this.props.currentPageReducerUser}
           count= {this.props.userCount}
           showAll={this.props.showUser}
-          dataCsv = {this.props.UserAllData}
-          showAllCsv = {this.props.showAllActionUser}
           />
+           <button className="csv-button" onClick={this.handleCSVDownload}>
+                {this.props.userAllData && (
+          <CsvLink data={this.props.userAllData} />
+        )}
+  </button>
         </div>
       </div>
     );

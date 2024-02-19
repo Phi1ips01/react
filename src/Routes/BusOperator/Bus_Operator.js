@@ -5,6 +5,7 @@ import SideBar from '../../Components/SideBar'
 import DropDown from '../../Components/DropDown'
 import { Component } from 'react';
 import DynamicTable from '../../Components/TableComponent'
+import CsvLink from '../../Components/CsvLink'
 class BusOperator extends Component  {
     state = {
         loading: false,
@@ -35,6 +36,10 @@ class BusOperator extends Component  {
             // Handle error here
         }
     }
+    handleCSVDownload = ()=>{
+      this.props.showAllActionBusOperator()
+      
+    }
     handleOperatorChange = (event) => {
       const selectedOperatorId = event.target.value;
       console.log("this.props handle",this.props)
@@ -47,14 +52,16 @@ class BusOperator extends Component  {
         // const formBusOperatorId = event.target.operator_id.value!==''?event.target.operator_id.value:showOneBusOperatorData.bus_operator_id
         const formName = event.target.name.value!==''?event.target.name.value:showOneBusOperatorData.name
         const formContact = event.target.contact.value!==''?event.target.contact.value:showOneBusOperatorData.contact
+        const formPaid = event.target.paid.value!==''?event.target.paid.value:showOneBusOperatorData.paid
         const formData = {
           // bus_operator_id:formBusOperatorId,
           name:formName,
           contact:formContact,
+          paid:formPaid
           
         }
         console.log("hands",formData)
-        if (this.props.showOneBusOperatorData) {
+        if (this.props.showOneBusOperatorData && this.props.showOneBusOperatorData.id) {
           // If there is editData in props, dispatch updateBusOperator action
           const id = this.props.showOneBusOperatorData.id
           const updatedFormData = {
@@ -76,6 +83,7 @@ class BusOperator extends Component  {
         // document.getElementById('operator_id').value = '';
         document.getElementById('name').value = '';
         document.getElementById('contact').value = '';
+        document.getElementById('paid').value = '';
         this.props.clearBusOperator();
         console.log("clear form ", this.props.showOneBusOperatorData)
       };
@@ -121,8 +129,8 @@ class BusOperator extends Component  {
               id="paid"
               name="paid"
               className="default-form-input"
-              placeholder={isEditMode?showOneBusOperatorData.paid:"Enter the amount paid"}
-              required={isEditMode?false:true}              
+              placeholder={isEditMode?showOneBusOperatorData.paid:"amount paid(disabled for new entry)"}
+              disabled={isEditMode?false:true}              
             />
 
             <InputButton type="submit" id="inputButton" className="default-form-submit" value={!isEditMode ? 'Submit' : 'Update'}/>
@@ -146,9 +154,12 @@ class BusOperator extends Component  {
         currentPageReducer = {this.props.currentPageReducerBusOperator}
         count= {this.props.busOperatorCount}
         showAll={this.props.showBusOperator}
-        dataCsv = {this.props.busOperatorAllData}
-        showAllCsv = {this.props.showAllActionBusOperator}
         />
+          <button className="csv-button" onClick={this.handleCSVDownload}>
+                {this.props.busOperatorAllData && (
+          <CsvLink data={this.props.busOperatorAllData} />
+        )}
+  </button>
         </div>
         </div>
     );

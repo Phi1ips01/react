@@ -220,7 +220,7 @@ export function showAllTripSuccess(state, payload) {
     showAllTrip: {
       loading: false,
       error: false,
-      data: payload.data.response.rows,
+      data: payload.data.response,
       
     },
     

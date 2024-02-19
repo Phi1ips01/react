@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import CsvLink from '../../Components/CsvLink'
 import DynamicTable from '../../Components/TableComponent'
 import DropDown from '../../Components/DropDown';
 import SideBar from '../../Components/SideBar';
@@ -122,7 +122,10 @@ this.clearForm();
     this.props.clearTrip();
     console.log("clear form ", this.props.showOneTripData)
   };
-  
+  handleCSVDownload = async ()=>{
+    await this.props.showAllActionTrip()
+    
+  }
   // constructor (props){
   //   super(props);
   //   this.fetchBus=this.fetchBus.bind(this);
@@ -463,9 +466,13 @@ handleOperatorChange = (event) => {
               currentPageReducer = {this.props.currentPageReducerTrip}
               count= {this.props.tripCount}
               showAll={this.props.showTrip}
-              dataCsv = {this.props.tripAllData}
-              showAllCsv = {this.props.showAllActionTrip}
+
               />
+                <button className="csv-button" onClick={this.handleCSVDownload}>
+                {this.props.tripAllData && (
+          <CsvLink data={this.props.tripAllData} />
+        )}
+  </button>
       </div>
     </div>
     );

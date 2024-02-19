@@ -26,6 +26,9 @@ export const showAllBusOperator = (pageIndex,pageSize) => {
     console.log("busoperatorAPI model")
     return api.get(`?page=${pageIndex}&size=${pageSize}`)
 };
+export const showAllCSVBusOperator = ()=>{
+    return api.get()
+}
 export const addBusOperator = (payload) =>{
     return postApi.post(postApi.baseURL,payload)
 }
