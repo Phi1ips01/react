@@ -154,13 +154,13 @@
       }
 
   .logo-topnav-img {
-    width: 50px; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
+    margin-top: 6px;
+    width: 180px; /* Adjust the width as needed */
+    max-width: 100px;
+    max-height: auto;
+    padding: 0;
   }
-  .logo-topnav h3{
-    margin:0;
-    font-size: 27px;
-  }
+
 
   .clear {clear: both;}
   .default-main {
@@ -279,13 +279,10 @@
     }
 
   .logo-img {
-    width: 200px; /* Adjust the width as needed */
+    width: 500px; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
   }
-  .logo h3{
-    margin:0;
-    font-size: 110px;
-  }
+
 
 .landing-main{
   background-color: rgba(255, 243, 243, 0.5);

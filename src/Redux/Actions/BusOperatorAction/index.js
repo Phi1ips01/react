@@ -102,7 +102,7 @@ export function showBusOperator(page,size) {
             payload: {},
         });
         try {
-            console.log("busoperatoraction success")
+            console.log("busoperatoraction success",page,size)
             const data = await showAllBusOperator(page,size);
             console.log("data", data)
             dispatch({

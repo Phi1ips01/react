@@ -52,16 +52,24 @@ class BusOperator extends Component  {
         // const formBusOperatorId = event.target.operator_id.value!==''?event.target.operator_id.value:showOneBusOperatorData.bus_operator_id
         const formName = event.target.name.value!==''?event.target.name.value:showOneBusOperatorData.name
         const formContact = event.target.contact.value!==''?event.target.contact.value:showOneBusOperatorData.contact
-        const formPaid = event.target.paid.value!==''?event.target.paid.value:showOneBusOperatorData.paid
-        const formData = {
-          // bus_operator_id:formBusOperatorId,
-          name:formName,
-          contact:formContact,
-          paid:formPaid
+        // const formData = {
+        //   // bus_operator_id:formBusOperatorId,
+        //   name:formName,
+        //   contact:formContact,
+        //   paid:formPaid
           
-        }
-        console.log("hands",formData)
+        // }
+        // console.log("hands",formData)
         if (this.props.showOneBusOperatorData && this.props.showOneBusOperatorData.id) {
+          const formPaid = event.target.paid.value!==''?event.target.paid.value:showOneBusOperatorData.paid
+
+          const formData = {
+            // bus_operator_id:formBusOperatorId,
+            name:formName,
+            contact:formContact,
+            paid:formPaid
+            
+          }
           // If there is editData in props, dispatch updateBusOperator action
           const id = this.props.showOneBusOperatorData.id
           const updatedFormData = {
@@ -70,6 +78,12 @@ class BusOperator extends Component  {
           }
           this.props.updateBusOperator(updatedFormData);
         } else {
+          const formData = {
+            // bus_operator_id:formBusOperatorId,
+            name:formName,
+            contact:formContact,
+            paid:0            
+          }
           // If no editData, dispatch postBusOperator action
           this.props.postBusOperator(formData);
         }
@@ -86,6 +100,9 @@ class BusOperator extends Component  {
         document.getElementById('paid').value = '';
         this.props.clearBusOperator();
         console.log("clear form ", this.props.showOneBusOperatorData)
+        setTimeout(() => {
+          document.getElementById('success').innerText = '';
+        }, 5000);
       };
     render(){
       console.log("render",this.props)
@@ -105,6 +122,7 @@ class BusOperator extends Component  {
             <DropDown logout={this.props.logout}/>
             <SideBar/>
            <div className="default-main">
+           <h3 id='success'></h3>
         <form onSubmit={this.handleSubmit} className="default-form">
           <h3>Enter the Bus Operator details here</h3>
 
@@ -156,6 +174,7 @@ class BusOperator extends Component  {
         showAll={this.props.showBusOperator}
         />
           <button className="csv-button" onClick={this.handleCSVDownload}>
+            Download
                 {this.props.busOperatorAllData && (
           <CsvLink data={this.props.busOperatorAllData} />
         )}

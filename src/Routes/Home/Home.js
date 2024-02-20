@@ -36,8 +36,8 @@ class Home extends Component {
 
   componentDidMount() {
     console.log("this.state componentDId",this.state)
-    this.props.showBusOperator()
-    this.props.showBus()
+    this.props.showBusOperator(0,10)
+    this.props.showBus(0,10)
 
     // this.fetchTrip();
   }
@@ -112,6 +112,8 @@ clearForm = ()=>{
 
 
   render() {
+    console.log("this.props handle",this.props)
+
     const { busOperatorData, busData, selectedOperatorId } = this.props || [];
     return (
       <div>

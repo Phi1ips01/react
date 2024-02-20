@@ -122,8 +122,8 @@ this.clearForm();
     this.props.clearTrip();
     console.log("clear form ", this.props.showOneTripData)
   };
-  handleCSVDownload = async ()=>{
-    await this.props.showAllActionTrip()
+  handleCSVDownload =  async ()=>{
+     await this.props.showAllActionTrip()
     
   }
   // constructor (props){
@@ -469,8 +469,12 @@ handleOperatorChange = (event) => {
 
               />
                 <button className="csv-button" onClick={this.handleCSVDownload}>
+                  Download
                 {this.props.tripAllData && (
-          <CsvLink data={this.props.tripAllData} />
+                  <>
+                {console.log("this.props.tripdata",this.props.tripAllData)}
+          <CsvLink data={this.props.tripAllData} name="customer" />
+          </>
         )}
   </button>
       </div>

@@ -82,6 +82,9 @@ class User extends Component {
     document.getElementById('role').value = '';
     this.props.clearUser();
     console.log("clear form ", this.props.showOneBusData)
+    setTimeout(() => {
+      document.getElementById('success').innerText = '';
+    }, 5000);
   };
   handleCSVDownload = ()=>{
     this.props.showAllActionUser()
@@ -107,7 +110,8 @@ class User extends Component {
             <DropDown logout={this.props.logout}/>
         <SideBar />
         <div className="default-main">
-          <form className="default-form" onSubmit={this.handleSubmit}>
+        <h3 id='success'></h3> 
+                 <form className="default-form" onSubmit={this.handleSubmit}>
             <h3>Enter the User details here</h3>
             <InputField
               type="text"
@@ -166,10 +170,12 @@ class User extends Component {
           showAll={this.props.showUser}
           />
            <button className="csv-button" onClick={this.handleCSVDownload}>
+            Download
                 {this.props.userAllData && (
           <CsvLink data={this.props.userAllData} />
         )}
   </button>
+  
         </div>
       </div>
     );

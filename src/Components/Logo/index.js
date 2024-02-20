@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import PropType from 'prop-types';
-import logo from '../../images/logo.png';
+import logo from '../../images/logo sigma.png';
 export default class Logo extends Component {
   render() {
     return (
@@ -8,7 +8,7 @@ export default class Logo extends Component {
 
       <div className="logo">
       <img className="logo-img" src={logo} alt='logo'/>
-      <h3>Logo</h3>
+      {/* <h3>Logo</h3> */}
   </div>
   </div>
     )

@@ -95,6 +95,9 @@ class Bus extends Component {
         // document.getElementById('bus_id').value = '';
         this.props.clearBus();
         console.log("clear form ", this.props.showOneBusData)
+        setTimeout(() => {
+          document.getElementById('success').innerText = '';
+        }, 5000);
       };
   
     
@@ -132,6 +135,7 @@ class Bus extends Component {
             <SideBar/>
             <DropDown logout={this.props.logout}/>
            <div className="default-main">
+           <h3 id='success'></h3>
         <form  onSubmit={this.handleSubmit} className="default-form">
           <h3>Enter the Bus details here</h3>
          
@@ -204,6 +208,7 @@ class Bus extends Component {
         showAllCsv = {this.props.showAllActionBus}
         />
           <button className="csv-button" onClick={this.handleCSVDownload}>
+            Download
                 {this.props.busAllData && (
           <CsvLink data={this.props.busAllData} />
         )}

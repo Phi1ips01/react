@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../../images/logo.png'
+import logo from '../../images/logo sigma.png'
 
 
 export default class ButtonElement extends Component {
@@ -11,8 +11,7 @@ export default class ButtonElement extends Component {
         <a href='/'>
         <div className="logo-topnav">
         <img className="logo-topnav-img" src={logo} alt='logo'/>
-        <h3>Logo</h3>
-        </div>
+          </div>
         </a>
           <ul>
             <br/><br/>

@@ -7,7 +7,7 @@ import train from '../../images/train.png'
 import bus from "../../images/bus.png"
 import flight from "../../images/airplane.png"
 import DropDown from '../DropDown'
-import logo from '../../images/logo.png'
+import logo from '../../images/logo sigma.png'
 export default class TopNav extends Component {
   
   render() {
@@ -21,7 +21,7 @@ export default class TopNav extends Component {
         <li className="topnav-list no-hover"><a href="/">
         <div className="logo-topnav">
       <img className="logo-topnav-img" src={logo} alt='logo'/>
-      <h3>Logo</h3>
+
       </div>
            
            </a></li>

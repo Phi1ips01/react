@@ -19,15 +19,15 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    showTrip: (params) => {
-      dispatch(showTrip(params));
+    showTrip: (page,size) => {
+      dispatch(showTrip(page,size));
     },
     postTrip: (params)=>{
       dispatch(postTrip(params))
     },
     updateSelectedOperator: (params)=>{dispatch(updateSelectedOperator(params))},
-    showBus: (params) => dispatch(showBus(params)),
-    showBusOperator: (params) => dispatch(showBusOperator(params)),
+    showBus: (page,size) => dispatch(showBus(page,size)),
+    showBusOperator: (page,size) => dispatch(showBusOperator(page,size)),
     deleteTrip: (params) =>{dispatch(deleteActionTrip(params))},
     logout:(params)=>dispatch(signOut(params))
 
