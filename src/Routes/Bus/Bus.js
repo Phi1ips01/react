@@ -135,8 +135,9 @@ class Bus extends Component {
             <SideBar/>
             <DropDown logout={this.props.logout}/>
            <div className="default-main">
-           <h3 id='success'></h3>
         <form  onSubmit={this.handleSubmit} className="default-form">
+        <h3 id='success'></h3>
+
           <h3>Enter the Bus details here</h3>
          
           <select 
@@ -210,7 +211,7 @@ class Bus extends Component {
           <button className="csv-button" onClick={this.handleCSVDownload}>
             Download
                 {this.props.busAllData && (
-          <CsvLink data={this.props.busAllData} />
+          <CsvLink data={this.props.busAllData} columns={columns}/>
         )}
   </button>
 </div>

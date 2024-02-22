@@ -25,7 +25,6 @@ import {
     } 
     from '../../Redux.constants';
 import { addTrip, showAllTrip,deleteTrip,updateTrip,showOneTrip,showAllCSVTrip } from '../../../api/tripAPI';
-import { showAllBus } from '../../../api/busAPI';
 
 export function deleteActionTrip(payload) {
     return async (dispatch) => {

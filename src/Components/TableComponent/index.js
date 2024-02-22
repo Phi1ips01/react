@@ -4,7 +4,6 @@
   import { useTable, useSortBy } from 'react-table';
   import Search from '../Search';
   import ModifyTableButton from '../ModifyTableButton';
-  import { CSVLink } from 'react-csv';
   import Pagination from 'react-bootstrap/Pagination';
 
 

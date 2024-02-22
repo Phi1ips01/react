@@ -1,6 +1,5 @@
 
 import { APIInstance } from './apiInstance';
-import { KEYS } from '../dataKeys';
 
 export const instance = new APIInstance({
     baseURL: 'bus/showAll'

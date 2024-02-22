@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 function getTripPageReducer(state) {
-    console.log("satte",state.ShowTrip.showTrip)
+    console.log("satte",state.ShowTrip)
     
     return {
         showTrip: state.ShowTrip.showTrip,

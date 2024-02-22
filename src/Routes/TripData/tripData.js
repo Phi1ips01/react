@@ -166,7 +166,6 @@ handleOperatorChange = (event) => {
 
     const testData = this.props.tripData
     const testCount = this.props.tripCount
-    const rows = testData
     console.log("test",testData,testCount)
         const data = Array.isArray(testData) ? testData : [];
     const allColumns = data.length > 0 ? Object.keys(data[0]) : [];
@@ -473,7 +472,7 @@ handleOperatorChange = (event) => {
                 {this.props.tripAllData && (
                   <>
                 {console.log("this.props.tripdata",this.props.tripAllData)}
-          <CsvLink data={this.props.tripAllData} name="customer" />
+          <CsvLink data={this.props.tripAllData} name="customer" columns={columns}/>
           </>
         )}
   </button>

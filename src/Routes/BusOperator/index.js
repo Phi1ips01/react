@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import BusOperator from './Bus_Operator';
 
-import { showBusOperator,postBusOperator, deleteActionBusOperator,setSearchTermBusOperator,showOneActionBusOperator,setTableDataBusOperator, updateActionBusOperator,clearBusOperator,signOut,setCurrentPageBusOperator,showAllActionBusOperator,updateSelectedOperator } from '../../Redux/Actions';
+import { showBusOperator,postBusOperator, deleteActionBusOperator,setSearchTermBusOperator,showOneActionBusOperator,setTableDataBusOperator, updateActionBusOperator,clearBusOperator,signOut,setCurrentPageBusOperator,showAllActionBusOperator } from '../../Redux/Actions';
 
 import { SelectState } from './Selector';
 

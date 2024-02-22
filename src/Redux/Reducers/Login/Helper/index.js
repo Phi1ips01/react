@@ -1,6 +1,5 @@
 import { KEYS } from '../../../../dataKeys';
-import Redirect from 'react-router-dom'
-import { ROUTES} from '../../../../Routes.constants';
+
 export function loginStarted(state, payload) {
   return {
     ...state,

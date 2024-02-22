@@ -10,7 +10,7 @@ export function showTripStarted(state, payload) {
 }
 
 export function showTripSuccess(state, payload) {
-  console.log('reached inside reducer');
+  console.log('reached inside reducer',payload.data.response);
   
   return {
     ...state,

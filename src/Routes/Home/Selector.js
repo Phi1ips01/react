@@ -4,8 +4,8 @@ function getTripPageReducer(state) {
     console.log("satte",state)
     return {
         showTrip: state.ShowTrip.showTrip,
-        showBus: state.ShowBus.showBus,
-        showBusOperator: state.ShowBusOperator.showBusOperator,
+        showBus: state.ShowAllBus.showAllBus,
+        showBusOperator: state.ShowAllBusOperator.showAllBusOperator,
         selectedOperatorID: state.UpdateSelectedOperatorID.selectedOperatorId
     }
 }

@@ -110,8 +110,9 @@ class User extends Component {
             <DropDown logout={this.props.logout}/>
         <SideBar />
         <div className="default-main">
-        <h3 id='success'></h3> 
+       
                  <form className="default-form" onSubmit={this.handleSubmit}>
+                 <h3 id='success'></h3> 
             <h3>Enter the User details here</h3>
             <InputField
               type="text"
@@ -172,7 +173,7 @@ class User extends Component {
            <button className="csv-button" onClick={this.handleCSVDownload}>
             Download
                 {this.props.userAllData && (
-          <CsvLink data={this.props.userAllData} />
+          <CsvLink data={this.props.userAllData} columns={columns}/>
         )}
   </button>
   

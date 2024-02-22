@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Bus from './Bus';
 
-import { showBus,postBus,showBusOperator, deleteActionBus,setSearchTermBus,setTableDataBus,clearBus,showOneActionBus,updateActionBus, signOut,setCurrentPageBus,showAllActionBus,updateSelectedOperator} from '../../Redux/Actions';
+import { showBus,postBus,showBusOperator, deleteActionBus,setSearchTermBus,setTableDataBus,clearBus,showOneActionBus,updateActionBus, signOut,setCurrentPageBus,showAllActionBus} from '../../Redux/Actions';
 
 import { SelectState } from './Selector';
 

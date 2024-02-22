@@ -122,8 +122,10 @@ class BusOperator extends Component  {
             <DropDown logout={this.props.logout}/>
             <SideBar/>
            <div className="default-main">
-           <h3 id='success'></h3>
+          
         <form onSubmit={this.handleSubmit} className="default-form">
+        <h3 id='success'></h3>
+
           <h3>Enter the Bus Operator details here</h3>
 
             <InputField
@@ -176,7 +178,7 @@ class BusOperator extends Component  {
           <button className="csv-button" onClick={this.handleCSVDownload}>
             Download
                 {this.props.busOperatorAllData && (
-          <CsvLink data={this.props.busOperatorAllData} />
+          <CsvLink data={this.props.busOperatorAllData} columns={columns}/>
         )}
   </button>
         </div>

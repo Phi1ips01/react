@@ -118,11 +118,18 @@ clearForm = ()=>{
     return (
       <div>
         <TopNav logout={this.props.logout}/>
-        <h3 id='success'></h3>
         <div className="trip-main">
             <form className="trip-form" onSubmit={this.handleSubmit}>
+            <h3 id='success'></h3>
+
               <h3>Enter the Trip details here</h3>
                 <InputField type="text" id="trip_id" name="trip_id" className="trip-form-input" placeholder={`PNR Number`}/>
+                
+                <InputField type="text" id="customer_name" name="customer_name" className="trip-form-input" placeholder="Enter the Customer Name" required/>
+                <InputField type="text" id="contact" name="contact" className="trip-form-input" placeholder="Enter the contact" required/>
+                <InputField type="text" id="alternate_contact" name="alternate_contact" className="trip-form-input" placeholder="Enter the alternate contact"/>
+                <InputField type="text" id="age" name="age" className="trip-form-input" placeholder="Enter the age" required/>
+                <InputField type="text" id="address" name="address" className="trip-form-input" placeholder="Enter the Address" required/>
                 <select
                     className='trip-select'
                     id='operator_id'
@@ -135,7 +142,7 @@ clearForm = ()=>{
                   </option>
                       {Array.isArray(busOperatorData) &&
                         busOperatorData.map((operator) => (
-                        <option key={operator.id} value={operator.id}>
+                        <option key={operator.id} value={operator.name}>
                             {operator.name}
                         </option>
                         ))}
@@ -149,7 +156,7 @@ clearForm = ()=>{
                   {Array.isArray(busData) &&
                   
                     busData
-                      .filter((bus) => bus.bus_operator_id == selectedOperatorId)
+                      .filter((bus) => bus.bus_operator_name == selectedOperatorId)
                       .map((bus) => (
                         
                         <option key={bus.id} value={bus.id}>
@@ -157,11 +164,6 @@ clearForm = ()=>{
                         </option>
                       ))}
                 </select>
-                <InputField type="text" id="customer_name" name="customer_name" className="trip-form-input" placeholder="Enter the Customer Name" required/>
-                <InputField type="text" id="contact" name="contact" className="trip-form-input" placeholder="Enter the contact" required/>
-                <InputField type="text" id="alternate_contact" name="alternate_contact" className="trip-form-input" placeholder="Enter the alternate contact"/>
-                <InputField type="text" id="age" name="age" className="trip-form-input" placeholder="Enter the age" required/>
-                <InputField type="text" id="address" name="address" className="trip-form-input" placeholder="Enter the Address" required/>
                 <InputField
                  type="date" 
                  id="date_of_journey"
