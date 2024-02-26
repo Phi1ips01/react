@@ -23,10 +23,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    showBus: (page,size) => {
-      console.log("dispatch showBus",page,size)
+    showBus: (page,size,keyword) => {
+      console.log("dispatch showBus",page,size,keyword)
 
-      dispatch(showBus(page,size))
+      dispatch(showBus(page,size,keyword))
     },
     postBus: (params) => dispatch(postBus(params)),
     showBusOperator: (page,size) => dispatch(showBusOperator(page,size)),

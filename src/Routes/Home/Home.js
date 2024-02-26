@@ -6,115 +6,69 @@ import InputButton from '../../Components/InputButton';
 import InputField from '../../Components/InputField';
 import TopNav from '../../Components/TopNav'
 class Home extends Component {
-  // state = {
-  //   loading: false,
-  //   error: false,
-  //   userList: []
-  // }
-  // componentDidMount() {
-  //   this.fetchUsers();
-  // }
-  // fetchUsers = () => {
-  //   try {
-  //     this.setState({ loading: true }, async () => {
-  //       const data = await users();
-  //       this.setState({ loading: false, error: false, userList: data.data.data });
-  //     });
-  //   } catch (error) {
-  //     /* Derive proper parse error logic based on context */
-  //     this.setState({ loading: false, error: JSON.stringify(error) });
-  //   }
-  // }
-  state = {
-    loading: false,
-    error: false,
-    showTrip: [],
-    postTrip:[],
-    showBus:[],
-    showBusOperator:[]
-  }
 
   componentDidMount() {
     console.log("this.state componentDId",this.state)
     this.props.showBusOperator(0,10)
     this.props.showBus(0,10)
-
-    // this.fetchTrip();
   }
-//   async fetchTrip() {
-//     try {
-//         await this.props.showTrip();
-//         // const tripData = this.props.showTrip.data; // Access data correctly
-//         // console.log(tripData);
-//     } catch (error) {
-//         console.error(error);
-//         // Handle error here
-//     }
-// }
 handleOperatorChange = (event) => {
   const selectedOperatorId = event.target.value;
+  const busData = this.props.busData
   console.log("this.props handle",this.props)
   console.log("hanleOpeator",selectedOperatorId)
   this.props.updateSelectedOperator(selectedOperatorId);
-
+  return busData
 };
-handleSubmit = (event)=> {
-    event.preventDefault();
-    const formData = {
-            operator_id:event.target.operator_id.value ,
-            bus_id:event.target.bus_id.value ,
-            trip_id: event.target.trip_id.value,
-            customer_name:event.target.customer_name.value,
-            contact:event.target.contact.value,
-            alternate_contact: event.target.alternate_contact.value,
-            starting_point:event.target.starting_point.value ,
-            boarding_point:event.target.boarding_point.value,
-            destination_point: event.target.destination_point.value,
-            seat_numbers:event.target.seat_numbers.value,
-            address:event.target.address.value,
-            date_of_journey:event.target.date_of_journey.value,
-            age: event.target.age.value,
-            number_of_tickets:event.target.number_of_tickets.value ,
-            total_amount: event.target.total_amount.value,
-            payment_status:(parseInt(event.target.total_amount.value)==parseInt(event.target.paid.value))?"completed":`remaining ${event.target.total_amount.value-event.target.paid.value}`,
-            paid: event.target.paid.value,
-            remarks: event.target.remarks.value,
-            agents: event.target.agents.value,
-    }
-    this.props.postTrip(formData); // Dispatch the action
-    console.log(formData,".,.,.,.,")
-    document.getElementById('success').innerText = 'Details entered successfully';
-    this.clearForm()
-}
-clearForm = ()=>{
-    document.getElementById('operator_id').value = '';
-  document.getElementById('bus_id').value = '';
-  document.getElementById('trip_id').value = '';
-  document.getElementById('customer_name').value = '';
-  document.getElementById('contact').value = '';
-  document.getElementById('alternate_contact').value = '';
-  document.getElementById('starting_point').value = '';
-  document.getElementById('boarding_point').value = '';
-  document.getElementById('destination_point').value = '';
-  document.getElementById('seat_numbers').value = '';
-  document.getElementById('address').value = '';
-  document.getElementById('date_of_journey').value = '';
-  document.getElementById('age').value = '';
-  document.getElementById('number_of_tickets').value = '';
-  document.getElementById('total_amount').value = '';
-  document.getElementById('paid').value = '';
-  document.getElementById('remarks').value = '';
-  document.getElementById('agents').value = '';
+handleSubmit = (event) => {
+  event.preventDefault();
+  const formData = {
+      operator_id: this.getFieldValue(event, 'operator_id'),
+      bus_id: this.getFieldValue(event, 'bus_id'),
+      trip_id: this.getFieldValue(event, 'trip_id'),
+      customer_name: this.getFieldValue(event, 'customer_name'),
+      contact: this.getFieldValue(event, 'contact'),
+      alternate_contact: this.getFieldValue(event, 'alternate_contact'),
+      starting_point: this.getFieldValue(event, 'starting_point'),
+      boarding_point: this.getFieldValue(event, 'boarding_point'),
+      destination_point: this.getFieldValue(event, 'destination_point'),
+      seat_numbers: this.getFieldValue(event, 'seat_numbers'),
+      address: this.getFieldValue(event, 'address'),
+      date_of_journey: this.getFieldValue(event, 'date_of_journey'),
+      age: this.getFieldValue(event, 'age'),
+      number_of_tickets: this.getFieldValue(event, 'number_of_tickets'),
+      total_amount: this.getFieldValue(event, 'total_amount'),
+      payment_status: this.getPaymentStatus(event),
+      paid: this.getFieldValue(event, 'paid'),
+      remarks: this.getFieldValue(event, 'remarks'),
+      agents: this.getFieldValue(event, 'agents'),
+  };
+  this.props.postTrip(formData); // Dispatch the action
+  document.getElementById('success').innerText = 'Details entered successfully';
+  this.clearForm();
+};
+getFieldValue = (event, fieldName) => {
+  const value = event.target[fieldName]?.value;
+  return value !== undefined && value !== null ? value : this.props.showOneTripData[fieldName] || '';
+};
+
+getPaymentStatus = (event) => {
+  const totalAmount = parseInt(event.target.total_amount.value);
+  const paidAmount = parseInt(event.target.paid.value);
+  return totalAmount === paidAmount ? 'completed' : `remaining ${totalAmount - paidAmount}`;
+};
+clearForm = () => {
+  // ['operator_id', 'bus_id', 'trip_id', 'customer_name', 'contact', 'alternate_contact',
+  //  'starting_point', 'boarding_point', 'destination_point', 'seat_numbers', 'address',
+  //  'date_of_journey', 'age', 'number_of_tickets', 'total_amount', 'paid', 'remarks', 'agents']
+  // .forEach(fieldName => {
+  //     document.getElementById(fieldName).value = '';
+  // });
   setTimeout(() => {
-    document.getElementById('success').innerText = '';
+      document.getElementById('success').innerText = '';
   }, 5000);
-  }
-
-
+};
   render() {
-    console.log("this.props handle",this.props)
-
-    const { busOperatorData, busData, selectedOperatorId } = this.props || [];
     return (
       <div>
         <TopNav logout={this.props.logout}/>
@@ -140,9 +94,9 @@ clearForm = ()=>{
                   <option value='' disabled selected>
                     Enter the Operator
                   </option>
-                      {Array.isArray(busOperatorData) &&
-                        busOperatorData.map((operator) => (
-                        <option key={operator.id} value={operator.name}>
+                      {Array.isArray(this.props.busOperatorData) &&
+                        this.props.busOperatorData.map((operator) => (
+                        <option key={operator.id} value={operator.id}>
                             {operator.name}
                         </option>
                         ))}
@@ -151,12 +105,10 @@ clearForm = ()=>{
                   <option value='' disabled selected>
                     Enter the Bus
                   </option>
-                  {console.log("busData",busData)}
-                  {console.log("busdara",selectedOperatorId)}
-                  {Array.isArray(busData) &&
-                  
-                    busData
-                      .filter((bus) => bus.bus_operator_name == selectedOperatorId)
+                  {console.log("busdata",this.props.busData)}
+                  {Array.isArray(this.props.busData) &&
+                    this.props.busData
+                      .filter((bus) => bus.bus_operator_id == this.props.selectedOperatorId)
                       .map((bus) => (
                         
                         <option key={bus.id} value={bus.id}>

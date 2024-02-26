@@ -206,7 +206,7 @@
   {
     
     
-    background-color: rgba(56, 56, 56, 0.4); /* Transparent white background */
+    background-color: rgba(56, 56, 56, 0.6); /* Transparent white background */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
@@ -356,6 +356,7 @@
   .form-group label {
     display: block;
     margin-bottom: 2px;
+    color: white;
   }
   .disabled-button
   {
@@ -387,8 +388,43 @@
 }
 .csv-button
 {
+  margin:auto;
   margin-bottom: 10%;
-  background: none;
+  padding: 10px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  background: #8d60dc;
+  color: white;
   padding: 0;
   border: none;
 }
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination-item {
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+}
+
+.pagination-item.active {
+  background-color: #007bff;
+  color: #fff;
+}
+.pagination-item:hover {
+  box-shadow: #333;
+}
+
+.pagination-item.disabled {
+  cursor: not-allowed;
+  color: #ccc;
+  border-color: #ccc;
+}
+

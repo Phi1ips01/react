@@ -1,14 +1,14 @@
 import { createSelector } from 'reselect';
 
 function getTripPageReducer(state) {
-    console.log("satte",state.ShowTrip)
+    console.log("satte",state.UpdateSelectedOperatorID.selectedOperatorId)
     
     return {
         showTrip: state.ShowTrip.showTrip,
         searchTerm:state.SearchTrip.searchTerm,
-        showBus: state.ShowBus.showBus,
-        showBusOperator: state.ShowBusOperator.showBusOperator,
-        selectedOperatorID: state.selectedOperatorID,
+        showBus: state.ShowAllBus.showAllBus,
+        showBusOperator: state.ShowAllBusOperator.showAllBusOperator,
+        selectedOperatorId: state.UpdateSelectedOperatorID.selectedOperatorId,
         updateTrip:state.updateTrip,
         showOneTrip:state.ShowOneTrip.showOneTrip,
         currentPageReducerTrip:state.CurrentPageReducerTrip.currentPage,
@@ -22,7 +22,8 @@ function mergeReducer(showTrip) {
     };
 }
 
-export const SelectState = createSelector(
+export const 
+SelectState = createSelector(
     [getTripPageReducer],
     mergeReducer
 );

@@ -21,7 +21,6 @@
     currentPageReducer,
   }) => {
     const tableData = useMemo(() => data, [data]);
-console.log("currentPageReducer",currentPageReducer)
     const {
       getTableProps,
       getTableBodyProps,
@@ -41,20 +40,9 @@ console.log("currentPageReducer",currentPageReducer)
       useSortBy
     );
     const pageSize=10
-    // showAllCsv(0,count)
-    const filteredRows = useMemo(() => {
-      if (searchData.trim()=='') return rows.values;
 
-      return rows.filter(row => {
-        return columns.some(column => {
-          const cellValue = String(row.values[column.accessor]).toLowerCase();
-          return cellValue.includes(searchData.toLowerCase());
-        });
-      });
-    }, [searchData, rows, columns]);
-    const displayRows = searchData.trim() ? filteredRows : rows;
 
-    const handlePageChange = (pageNumber) => {
+    const handlePageChange = (pageNumber,pageSize) => {
       console.log("handlepagechange",pageNumber)
       setCurrentPage(pageNumber);
       showAll(pageNumber, pageSize); // Assuming 10 items per page
@@ -90,7 +78,7 @@ console.log("currentPageReducer",currentPageReducer)
               </thead>
 
               <tbody {...getTableBodyProps()}>
-                {displayRows.map(row => {
+                {rows.map(row => {
                   prepareRow(row);
                   return (
                     <tr {...row.getRowProps()} style={{ borderBottom: '1px solid black' }}>
@@ -125,17 +113,20 @@ console.log("currentPageReducer",currentPageReducer)
               </tbody>
             </table>
           </div>
-
+                <div className='pagination-container'>
           <Pagination>
             <Pagination.Prev
               onClick={() => handlePageChange(Math.max(currentPageReducer - 1, 1))}
               disabled={currentPageReducer <= 1}
+              className='pagination-item'
+
             />
             {Array.from({ length: Math.ceil(count / pageSize) }, (_, index) => (
               <Pagination.Item
                 key={index + 1}
                 active={index + 1 === currentPageReducer}
                 onClick={() => handlePageChange(index + 1)}
+                className='pagination-item'
               >
                 {index + 1}
               </Pagination.Item>
@@ -143,8 +134,11 @@ console.log("currentPageReducer",currentPageReducer)
           <Pagination.Next
             onClick={() => handlePageChange(Math.min(currentPageReducer + 1, Math.ceil(count / pageSize)))}
             disabled={currentPageReducer === Math.ceil(count / pageSize)}
+            className='pagination-item'
+
           />
           </Pagination>
+          </div>
           {/* <CSVLink
             data={dataTable.map(({ createdAt, updatedAt, ...rest }) => rest)}
             className="btn btn-danger btn-sm"

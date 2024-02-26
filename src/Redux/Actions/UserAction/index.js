@@ -96,14 +96,14 @@ export function updateActionUser(payload) {
     };
 }
 
-export function showUser(page,size) {
+export function showUser(page,size,term) {
     return async (dispatch) => {
         dispatch({
             type: SHOW_USER_STARTED,
             payload: {},
         });
         try {
-            const data = await showAllUser(page,size);
+            const data = await showAllUser(page,size,term);
             console.log("data",data)
             dispatch({
                 type: SHOW_USER_SUCCESS,
@@ -119,11 +119,13 @@ export function showUser(page,size) {
 }
 
 export function setSearchTermUser(term) {
+    console.log("term action ",term)
     return async (dispatch) => {
       dispatch({
         type: SET_SEARCH_TERM,
         payload: term,
       });
+      dispatch(showUser(0,20,term))
     }
 }
 

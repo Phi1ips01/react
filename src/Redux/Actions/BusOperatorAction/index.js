@@ -95,15 +95,15 @@ export function updateActionBusOperator(payload) {
         }
     };
 }
-export function showBusOperator(page,size) {
+export function showBusOperator(page,size,keyword) {
     return  async (dispatch) => {
         dispatch({
             type: SHOW_BUS_OPERATOR_STARTED,
             payload: {},
         });
         try {
-            console.log("busoperatoraction success",page,size)
-            const data = await showAllBusOperator(page,size);
+            console.log("busoperatoraction success",page,size,keyword)
+            const data = await showAllBusOperator(page,size,keyword);
             console.log("data", data)
             dispatch({
                 type: SHOW_BUS_OPERATOR_SUCCESS,
@@ -152,7 +152,8 @@ export function setSearchTermBusOperator(term) {
       dispatch({
         type: SET_SEARCH_TERM,
         payload: term,
-      });
+      })
+      dispatch(showBusOperator(0,20,term))
     }
 }
 

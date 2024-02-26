@@ -25,7 +25,7 @@ const formattedDate = format(now, 'yyyyMMddHHmm');
       asyncOnClick={true}
       filename={`${formattedDate}_name`}
       data={csvData.map(({ createdAt, updatedAt, ...rest }) => rest)}
-      className="btn btn-danger btn-sm"
+      // className="btn btn-danger btn-sm"
     >
       Download CSV
     </CSVDownload>

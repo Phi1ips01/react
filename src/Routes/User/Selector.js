@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 
 function getUserPageReducer(state) {
+    console.log("user state",state.SearchUser)
     return {
         showUser:state.ShowUser.showUser,
         searchTerm:state.SearchUser.searchTerm,

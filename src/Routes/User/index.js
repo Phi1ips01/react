@@ -2,12 +2,12 @@ import { connect } from 'react-redux';
 
 import User from './user';
 
-import { showUser,postUser,deleteActionUser,setSearchTermUser,setTableDataUser, showOneActionUser,clearUser, updateActionUser,signOut,setCurrentPageUser,showAllActionUser,updateSelectedOperator} from '../../Redux/Actions';
+import { showUser,postUser,deleteActionUser,setSearchTermUser, showOneActionUser,clearUser, updateActionUser,signOut,setCurrentPageUser,showAllActionUser,updateSelectedOperator} from '../../Redux/Actions';
 
 import { SelectState } from './Selector';
 
 function mapStateToProps(state) {
-  console.log("stateuser",state.ShowUser.showUser.data)
+  
   return {
     searchData: SelectState(state).searchTerm,
     tableData: SelectState(state).tableData,
@@ -33,7 +33,6 @@ function mapDispatchToProps(dispatch) {
     },
     updateSelectedOperator: (params)=>{dispatch(updateSelectedOperator(params))},
     setSearchTermUser:(params) => dispatch(setSearchTermUser(params)),
-    setTableDataUser:(params) => dispatch(setTableDataUser(params)),
     clearUser:(params) =>dispatch(clearUser(params)),
     showOneUser: (params) => dispatch(showOneActionUser(params)),
     updateUser: (params) => dispatch(updateActionUser(params)),
