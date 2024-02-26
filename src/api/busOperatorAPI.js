@@ -22,9 +22,9 @@ const deleteApi = deleteInstance.api
 const updateApi = updateInstance.api
 const showOneApi = showOneInstance.api
 
-export const showAllBusOperator = (pageIndex,pageSize) => {
+export const showAllBusOperator = (pageIndex,pageSize,search,keyword) => {
     console.log("busoperatorAPI model")
-    return api.get(`?page=${pageIndex}&size=${pageSize}`)
+    return api.get(`?page=${pageIndex}&size=${pageSize}&search=${search?search:''}&keyword=${keyword?keyword:''}`)
 };
 export const showAllCSVBusOperator = ()=>{
     return api.get()

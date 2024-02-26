@@ -24,8 +24,8 @@ const updateApi = updateInstance.api
 const showOneApi = showOneInstance.api
 
 
-export const showAllUser = (pageIndex,pageSize) => {
-    return api.get(`?page=${pageIndex}&size=${pageSize}`)
+export const showAllUser = (pageIndex,pageSize,search,keyword) => {
+    return api.get(`?page=${pageIndex}&size=${pageSize}&search=${search?search:''}&keyword=${keyword?keyword:''}`)
         
     };
     export const showAllCSVUser = ()=>{

@@ -24,9 +24,9 @@ const deleteApi = deleteInstance.api
 const updateApi = updateInstance.api
 const showOneApi = showOneInstance.api
 
-export const showAllTrip = (pageIndex,pageSize) => {
+export const showAllTrip = (pageIndex,pageSize,search,keyword) => {
     console.log("get",pageIndex,pageSize)
-    return api.get(`?page=${pageIndex}&size=${pageSize}`)
+    return api.get(`?page=${pageIndex}&size=${pageSize}&search=${search?search:''}&keyword=${keyword?keyword:''}`)
 };
 export const showAllCSVTrip = ()=>{
     return api.get()
