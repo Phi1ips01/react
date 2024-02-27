@@ -44,6 +44,8 @@ class BusOperator extends Component  {
             id: id,
           }
           this.props.updateBusOperator(updatedFormData);
+          document.getElementById('success').innerText = 'Details updated successfully';
+
         } else {
           const formData = {
             name:formName,
@@ -51,6 +53,8 @@ class BusOperator extends Component  {
             paid:0            
           }
           this.props.postBusOperator(formData);
+          document.getElementById('success').innerText = 'Details entered successfully';
+
         }
         this.clearForm();
       };

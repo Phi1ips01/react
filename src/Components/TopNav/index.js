@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-// import { Link, withRouter } from 'react-router-dom';
-// import { ROUTES } from '../../Routes.constants';
-// import PropType from 'prop-types';
-// import style from './style.module.scss';
+
 import train from '../../images/train.png'
 import bus from "../../images/bus.png"
 import flight from "../../images/airplane.png"
 import DropDown from '../DropDown'
 import logo from '../../images/logo sigma.png'
+import { NavLink } from 'react-router-dom/cjs/react-router-dom';
 export default class TopNav extends Component {
   
   render() {
-    console.log("topnav",this.props)
     return (
       <div>
         <div className="header">
@@ -27,7 +24,11 @@ export default class TopNav extends Component {
            </a></li>
 
           <li className="topnav-list"> <a className='disabled-button' title='This feature will be available soon' disabled><img src={train} className='topnav-image' alt='train'/></a></li>
-          <li className="topnav-list"><a href="/home"> <img src={bus} className='topnav-image' alt='bus'/></a></li>
+          <li className="topnav-list">
+              <NavLink to="/home" activeClassName="active">
+                <img src={bus} className="topnav-image" alt="bus" />
+              </NavLink>
+          </li>
           <li className="topnav-list"><a className='disabled-button' title='This feature will be available soon' disabled><img src={flight} className='topnav-image' alt='flight'/></a></li>
       </ul>
       </div>
@@ -36,34 +37,3 @@ export default class TopNav extends Component {
   }
 }
 
-
-
-// function TopNav(props) {
-//   const handleLogout = () => {
-//     localStorage.clear();
-//     props.history.push(ROUTES.LOGIN);
-//   };
-//   return (
-//     <div className={style['nav-bar']}>
-//       <div className={style.navs}>
-//         <Link to={ROUTES.HOME}>
-//           Home
-//         </Link>
-//         <Link to={ROUTES.DETAILS}>
-//           Details
-//         </Link>
-//       </div>
-//       <div className={style['user-controls']}>
-//         <Link onClick={handleLogout}>
-//           Logout
-//         </Link>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default withRouter(TopNav);
-
-// TopNav.PropType = {
-//   className: PropType.string,
-// };

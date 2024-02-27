@@ -77,10 +77,13 @@ handleOperatorChange = (event) => {
   this.props.updateSelectedOperator(selectedOperatorId);
 };
 tableColumns = ()=>{
-  const data = Array.isArray(this.props.tripData) ? this.props.tripData : [];
+  const data = Array.isArray(this.props.tripData)
+  ? this.props.tripData.map(({ operator_id,bus_id, ...rest }) => rest)
+  : [];
+  
   const allColumns = data.length > 0 ? Object.keys(data[0]) : [];
   const columns = allColumns.map(column => ({
-    Header: column.charAt(0).toUpperCase() + column.slice(1).replace(/_/g, ' '), // Convert underscore to space and capitalize
+    Header: column === 'trip_id' ? 'PNR Number' : column.charAt(0).toUpperCase() + column.slice(1).replace(/_/g, ' '),
     accessor: column,
   }));
   return columns
@@ -118,7 +121,7 @@ tableColumns = ()=>{
                 </option>
                   {Array.isArray(this.props.busOperatorData) &&
                   this.props.busOperatorData.map((operator) => (                  
-                    <option key={operator.id} value={operator.name}>
+                    <option key={operator.id} value={operator.id}>
                       {operator.name}
                     </option>
                   ))}
@@ -131,9 +134,10 @@ tableColumns = ()=>{
                   Enter the Bus
                 </option>
                   {console.log("busdara",this.props.selectedOperatorID)}
-                {Array.isArray(this.propsbusData) &&
+                  {console.log("busdata",this.props.busData)}
+                {Array.isArray(this.props.busData) &&
                   this.props.busData   
-                  .filter((bus) => bus.bus_operator_name == this.props.selectedOperatorID)
+                  .filter((bus) => bus.bus_operator_id == this.props.selectedOperatorID)
                     .map((bus) => (
                       <option key={bus.id} value={bus.id}>
                         {bus.name}

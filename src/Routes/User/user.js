@@ -44,8 +44,12 @@ class User extends Component {
         id: id,
       }
       this.props.updateUser(updatedFormData);
+      document.getElementById('success').innerText = 'Details updated successfully';
+
     } else {
       this.props.postUser(formData);
+      document.getElementById('success').innerText = 'Details entered successfully';
+
     }
     this.clearForm();
   };

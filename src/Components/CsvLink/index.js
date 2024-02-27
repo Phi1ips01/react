@@ -9,7 +9,7 @@ const formattedDate = format(now, 'yyyyMMddHHmm');
   const slicedColumns = columns.slice(0, -2);
 
   const headers = slicedColumns.map(column => ({
-    label: column.Header.charAt(0).toUpperCase() + column.Header.slice(1).replace(/_/g, ' '), // Convert underscore to space and capitalize
+    label: column.Header, // Convert underscore to space and capitalize
     key: column.accessor,
   }));
   // const headers = columns.map(column => ({

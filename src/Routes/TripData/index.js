@@ -7,7 +7,7 @@ import { showAllActionBus,showAllActionBusOperator,updateSelectedOperator,setCur
 import { SelectState } from './Selector';
 
 function mapStateToProps(state) {
-  console.log("mpastate",state.UpdateSelectedOperatorID.selectedOperatorId)
+  console.log("mpastate",state.ShowAllBus.showAllBus)
   return { 
     tripData: SelectState(state).showTrip.data,
     tripCount:SelectState(state).showTrip.count,

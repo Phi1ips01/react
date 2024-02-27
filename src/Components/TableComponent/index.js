@@ -43,7 +43,7 @@
 
 
     const handlePageChange = (pageNumber,pageSize) => {
-      console.log("handlepagechange",pageNumber)
+      console.log("handlepagechange",pageNumber,pageSize)
       setCurrentPage(pageNumber);
       showAll(pageNumber, pageSize); // Assuming 10 items per page
     };
@@ -116,7 +116,7 @@
                 <div className='pagination-container'>
           <Pagination>
             <Pagination.Prev
-              onClick={() => handlePageChange(Math.max(currentPageReducer - 1, 1))}
+              onClick={() => handlePageChange(Math.max(currentPageReducer - 1, 1),pageSize)}
               disabled={currentPageReducer <= 1}
               className='pagination-item'
 
@@ -125,27 +125,20 @@
               <Pagination.Item
                 key={index + 1}
                 active={index + 1 === currentPageReducer}
-                onClick={() => handlePageChange(index + 1)}
+                onClick={() => handlePageChange(index + 1,pageSize)}
                 className='pagination-item'
               >
                 {index + 1}
               </Pagination.Item>
             ))}
           <Pagination.Next
-            onClick={() => handlePageChange(Math.min(currentPageReducer + 1, Math.ceil(count / pageSize)))}
+            onClick={() => handlePageChange(Math.min(currentPageReducer + 1, Math.ceil(count / pageSize)),pageSize)}
             disabled={currentPageReducer === Math.ceil(count / pageSize)}
             className='pagination-item'
 
           />
           </Pagination>
           </div>
-          {/* <CSVLink
-            data={dataTable.map(({ createdAt, updatedAt, ...rest }) => rest)}
-            className="btn btn-danger btn-sm"
-            onClick={handleDownload}
-          >
-            Download CSV
-          </CSVLink> */}
         </div>
       </div>
     );

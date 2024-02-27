@@ -54,8 +54,12 @@ class Bus extends Component {
             id: id,
           }
           this.props.updateBus(updatedFormData);
+          document.getElementById('success').innerText = 'Details updated successfully';
+
         } else {
           this.props.postBus(formData);
+          document.getElementById('success').innerText = 'Details entered successfully';
+
         }
         this.clearForm();
       };
@@ -68,7 +72,10 @@ class Bus extends Component {
         }, 5000);
       };    
       tableColumns = ()=>{
-        const data = Array.isArray(this.props.busData) ?  this.props.busData : [];
+        const data = Array.isArray(this.props.busData)
+  ? this.props.busData.map(({ bus_operator_id, ...rest }) => rest)
+  : [];
+
         const allColumns = data.length > 0 ? Object.keys(data[0]) : [];
         const columns = allColumns.map(column => ({
           Header: column.charAt(0).toUpperCase() + column.slice(1).replace(/_/g, ' '), // Convert underscore to space and capitalize
