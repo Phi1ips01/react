@@ -87,7 +87,7 @@ export class APIInstance {
             },
             (error) => {
                 const { response } = error;
-                if (response && response.status === 401) {
+                if ((response && response.status === 401) || (response && response.status === 403)) {
                     localStorage.clear();
                     window.location = ROUTES.LOGIN;
                 }

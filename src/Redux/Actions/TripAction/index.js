@@ -112,7 +112,7 @@ export function showTrip(pageIndex,pageSize,term) {
         });
         try {
             console.log("actiontyip",pageIndex,pageSize,term)
-
+            
             const data = await showAllTrip(pageIndex,pageSize,term);
             console.log("tripdaataaction",data)
             dispatch({
@@ -158,7 +158,7 @@ export function setSearchTermTrip(term) {
         type: SET_SEARCH_TERM,
         payload: term,
       });
-      dispatch(showTrip(0,20,term))
+      dispatch(showTrip(0,10,term))
     }
 }
 

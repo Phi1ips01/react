@@ -15,6 +15,8 @@ class TripData extends Component {
      event.preventDefault();
      const showOneTripData = this.props.showOneTripData;
      const getFormFieldValue = (fieldName) => {
+      console.log("event",event.target[fieldName].value)
+
       return event.target[fieldName].value !== '' ? event.target[fieldName].value : showOneTripData[fieldName];
   };
   const formFields = [
@@ -42,6 +44,7 @@ if (this.props.showOneTripData) {
     ...formData,
     id: id,
   };
+  console.log("update trip",this.props.showOneTripData)
   this.props.updateTrip(updatedFormData);
 } else {
   this.props.postTrip(formData);
@@ -109,6 +112,65 @@ tableColumns = ()=>{
               />
             </div>
             <div className="form-group">
+              <label htmlFor="customer_name">Customer Name</label>
+              <InputField
+                type="text"
+                id="customer_name"
+                name="customer_name"
+                className="trip-form-input"
+                placeholder={isEditMode ? this.props.showOneTripData.customer_name : "Enter the Customer Name"}
+                required={isEditMode ? false : true}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="contact">Contact</label>
+              <InputField
+                type="text"
+                id="contact"
+                name="contact"
+                className="trip-form-input"
+                placeholder={isEditMode ? this.props.showOneTripData.contact : "Enter the contact"}
+                required={isEditMode ? false : true}
+              />
+            </div>
+            </div>
+<div className="form-row">
+           
+            <div className="form-group">
+              <label htmlFor="alternate_contact">Alternate Contact</label>
+              <InputField
+                type="text"
+                id="alternate_contact"
+                name="alternate_contact"
+                className="trip-form-input"
+                placeholder={isEditMode ? this.props.showOneTripData.alternate_contact : "Enter the alternate contact"}
+              />
+              </div>
+              <div className="form-group">
+              <label htmlFor="age">Age</label>
+              <InputField
+                type="text"
+                id="age"
+                name="age"
+                className="trip-form-input"
+                placeholder={isEditMode ? this.props.showOneTripData.age : "Enter the age"}
+                required={isEditMode?false:true}
+              />
+              </div>
+            <div className="form-group">
+              <label htmlFor="address">Address</label>
+              <InputField
+                type="text"
+                id="address"
+                name="address"
+                className="trip-form-input"
+                placeholder={isEditMode ? this.props.showOneTripData.address : "Enter the Address"}
+                required={isEditMode?false:true}
+              />
+              </div>
+              </div>
+<div className="form-row">
+             <div className="form-group">
               <label htmlFor="operator_id">Operator ID</label>
               <select
                 className='trip-select'
@@ -119,6 +181,7 @@ tableColumns = ()=>{
                 <option value='' disabled selected>
                   Enter the Operator
                 </option>
+                {console.log("busOperatorData",this.props.busOperatorData)}
                   {Array.isArray(this.props.busOperatorData) &&
                   this.props.busOperatorData.map((operator) => (                  
                     <option key={operator.id} value={operator.id}>
@@ -144,65 +207,7 @@ tableColumns = ()=>{
                       </option>
                     ))}
               </select>
-            </div>
-            </div>
-<div className="form-row">
-            <div className="form-group">
-              <label htmlFor="customer_name">Customer Name</label>
-              <InputField
-                type="text"
-                id="customer_name"
-                name="customer_name"
-                className="trip-form-input"
-                placeholder={isEditMode ? this.props.showOneTripData.customer_name : "Enter the Customer Name"}
-                required={isEditMode ? false : true}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="contact">Contact</label>
-              <InputField
-                type="text"
-                id="contact"
-                name="contact"
-                className="trip-form-input"
-                placeholder={isEditMode ? this.props.showOneTripData.contact : "Enter the contact"}
-                required={isEditMode ? false : true}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="alternate_contact">Alternate Contact</label>
-              <InputField
-                type="text"
-                id="alternate_contact"
-                name="alternate_contact"
-                className="trip-form-input"
-                placeholder={isEditMode ? this.props.showOneTripData.alternate_contact : "Enter the alternate contact"}
-              />
-              </div>
-              </div>
-<div className="form-row">
-            <div className="form-group">
-              <label htmlFor="age">Age</label>
-              <InputField
-                type="text"
-                id="age"
-                name="age"
-                className="trip-form-input"
-                placeholder={isEditMode ? this.props.showOneTripData.age : "Enter the age"}
-                required={isEditMode?false:true}
-              />
-              </div>
-            <div className="form-group">
-              <label htmlFor="address">Address</label>
-              <InputField
-                type="text"
-                id="address"
-                name="address"
-                className="trip-form-input"
-                placeholder={isEditMode ? this.props.showOneTripData.address : "Enter the Address"}
-                required={isEditMode?false:true}
-              />
-              </div>
+            </div> 
             <div className="form-group">
               <label htmlFor="date_of_journey">Date of Journey</label>
               <InputField
