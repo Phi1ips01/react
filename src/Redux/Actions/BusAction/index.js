@@ -72,7 +72,7 @@ export function postBus(payload) {
 }
 
 
-export function showBus(page,size,keyword) {
+export function showBus(page,size,search,keyword) {
     return async (dispatch) => {
         dispatch({
             type: SHOW_BUS_STARTED,
@@ -80,7 +80,7 @@ export function showBus(page,size,keyword) {
         });
         try {
             console.log("reachred action")
-            const data = await showAllBus(page,size,keyword);
+            const data = await showAllBus(page,size,search,keyword);
             console.log("data",data)
             dispatch({
                 type: SHOW_BUS_SUCCESS,
@@ -118,14 +118,10 @@ export function updateActionBus(payload) {
         }
     };
 }
-export function setSearchTermBus(term) {
+export function setSearchTermBus(search,keyword) {
     
     return async (dispatch) => {
-      dispatch({
-        type: SET_SEARCH_TERM,
-        payload: term,
-      })
-      dispatch(showBus(0,20,term))
+      dispatch(showBus(0,10,search,keyword))
 
     }
 }

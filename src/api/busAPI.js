@@ -24,9 +24,9 @@ const deleteApi = deleteInstance.api
 const updateAPI = updateInstance.api
 const showOneApi = showOneInstance.api
 
-export const showAllBus = (pageIndex,pageSize,keyword) => {
+export const showAllBus = (pageIndex,pageSize,search,keyword) => {
     console.log("showallbus");
-    return api.get(`?page=${pageIndex}&size=${pageSize}&search=name&keyword=${keyword?keyword:''}`)
+    return api.get(`?page=${pageIndex}&size=${pageSize}&search=${search}&keyword=${keyword?keyword:''}`)
 };
 export const showAllCSVBus = ()=>{
     return api.get()

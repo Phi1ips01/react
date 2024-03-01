@@ -10,8 +10,8 @@
   const DynamicTable = ({
     columns,
     data,
-    searchData,
-    setSearchTerm,
+    searchColumns, 
+    handleSearch,
     deleteAction,
     showOneRow,
     showOneRowData,
@@ -19,6 +19,7 @@
     showAll,
     setCurrentPage,
     currentPageReducer,
+    
   }) => {
     const tableData = useMemo(() => data, [data]);
     const {
@@ -47,12 +48,13 @@
       setCurrentPage(pageNumber);
       showAll(pageNumber, pageSize); // Assuming 10 items per page
     };
-    
+
 
     return (
       <div className="grid grid-cols-1">
         <div className="grid-item">
-          <Search value={searchData} onChange={setSearchTerm} />
+          {console.log("table component search function columns",searchColumns)}
+          <Search onSubmit={handleSearch} columns={searchColumns}/>
 
           <div className="table-container">
             <table {...getTableProps()} className="table table-dark table-striped container w-100">

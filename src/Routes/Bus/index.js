@@ -33,7 +33,7 @@ function mapDispatchToProps(dispatch) {
     deleteBus: (params) => dispatch(deleteActionBus(params)),
     showOneBus:(params) => dispatch(showOneActionBus(params)),
     clearBus:(params)=>dispatch(clearBus(params)),
-    setSearchTermBus:(params) => dispatch(setSearchTermBus(params)),
+    setSearchTermBus:(search,keyword) => dispatch(setSearchTermBus(search,keyword)),
     setTableDataBus:(params) => dispatch(setTableDataBus(params)),
     updateBus: (params) => dispatch(updateActionBus(params)),
     logout:(params)=>dispatch(signOut(params)),

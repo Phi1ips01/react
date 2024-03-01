@@ -83,6 +83,37 @@ class Bus extends Component {
         }));
         return columns
       }
+      searchColumns = ()=>{
+        const data = Array.isArray(this.props.busData)
+        ? this.props.busData.map(({ bus_operator_name, name, ...rest }) => ({ bus_operator_name, name }))
+        : [];
+      
+        console.log("bus darta" ,data)
+        const allColumns = data.length > 0 ? Object.keys(data[0]) : [];
+        const columns = allColumns.map(column => ({
+          Header: column.charAt(0).toUpperCase() + column.slice(1).replace(/_/g, ' '), // Convert underscore to space and capitalize
+          accessor: column,
+        }));
+        return columns
+      }
+      handleSearch = (e) => {
+        e.preventDefault();
+        const searchCol = e.target.searchCol.value;
+        const searchKey = e.target.searchKey.value;
+        let operatorId=''
+        if(searchCol === "bus_operator_name")
+        {
+           operatorId = "bus_operator_id"
+        }
+        else{
+          operatorId = 'name'
+        }
+        console.log("handlesearch",operatorId,searchKey)
+
+        // Find the bus_operator_id corresponding to the selected bus_operator_name
+        
+        this.props.setSearchTermBus(operatorId, searchKey);
+      }
         render() {
 
         const isEditMode = !!this.props.showOneBusData && !!this.props.showOneBusData.id
@@ -150,8 +181,8 @@ class Bus extends Component {
         columns={this.tableColumns()} 
         data={this.props.busData} 
         deleteAction={this.props.deleteBus} 
-        searchData = {this.props.searchData} 
-        setSearchTerm ={this.props.setSearchTermBus} 
+        searchColumns = {this.searchColumns()} 
+        handleSearch ={this.handleSearch} 
         showOneRowData = {this.props.showOneBusData} 
         showOneRow = {this.props.showOneBus}
         setCurrentPage = {this.props.setCurrentPageBus}
