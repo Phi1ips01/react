@@ -152,13 +152,10 @@ export function showAllActionTrip() {
 }
 
 
-export function setSearchTermTrip(term) {
+export function setSearchTermTrip(search,keyword) {
     return async (dispatch) => {
-      dispatch({
-        type: SET_SEARCH_TERM,
-        payload: term,
-      });
-      dispatch(showTrip(0,10,term))
+
+      dispatch(showTrip(0,10,search,keyword))
     }
 }
 

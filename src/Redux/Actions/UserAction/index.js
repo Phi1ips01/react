@@ -96,14 +96,14 @@ export function updateActionUser(payload) {
     };
 }
 
-export function showUser(page,size,term) {
+export function showUser(page,size,search,keyword) {
     return async (dispatch) => {
         dispatch({
             type: SHOW_USER_STARTED,
             payload: {},
         });
         try {
-            const data = await showAllUser(page,size,term);
+            const data = await showAllUser(page,size,search,keyword);
             console.log("data",data)
             dispatch({
                 type: SHOW_USER_SUCCESS,
@@ -119,24 +119,12 @@ export function showUser(page,size,term) {
 }
 
 export function setSearchTermUser(term) {
-    console.log("term action ",term)
     return async (dispatch) => {
-      dispatch({
-        type: SET_SEARCH_TERM,
-        payload: term,
-      });
-      dispatch(showUser(0,20,term))
+
+      dispatch(showUser(0,20,'username',term))
     }
 }
 
-  export function setTableDataUser(data) {
-    return async (dispatch) => {
-      dispatch({
-        type: SET_TABLE_DATA,
-        payload: data,
-      });
-    };
-  }
   export function clearUser() {
     return {
         type: CLEAR_USER,
