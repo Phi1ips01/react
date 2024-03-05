@@ -13,7 +13,6 @@ class User extends Component {
   async fetchUser() {
     try {
        this.props.showUser(0,10);
-       this.props.setSearchTermUser('')
     } catch (error) {
       console.error(error);
     }
@@ -72,6 +71,26 @@ class User extends Component {
     }));
     return columns
   }
+  searchColumns = ()=>{
+    const data = Array.isArray(this.props.data)
+    ? this.props.data.map(({ username,email,role, ...rest }) => ({ username,email,role }))
+    : [];
+  
+    console.log("bus darta" ,this.props.data)
+    const allColumns = data.length > 0 ? Object.keys(data[0]) : [];
+    const columns = allColumns.map(column => ({
+      Header: column.charAt(0).toUpperCase() + column.slice(1).replace(/_/g, ' '), // Convert underscore to space and capitalize
+      accessor: column,
+    }));
+    return columns
+  }
+  handleSearch = (e) => {
+    e.preventDefault();
+    const searchCol = e.target.searchCol.value;
+    const searchKey = e.target.searchKey.value;
+    console.log("handlesearch",searchCol,searchKey)        
+    this.props.setSearchTermUser(searchCol, searchKey);
+  }
   render() {
         const isEditMode = !!this.props.showOneUserData && !!this.props.showOneUserData.username
     return (
@@ -126,8 +145,8 @@ class User extends Component {
           columns={this.tableColumns()} 
           data={this.props.data} 
           deleteAction={this.props.deleteActionUser} 
-          searchData = {this.props.searchData} 
-          setSearchTerm ={this.props.setSearchTermUser} 
+          searchColumns={this.searchColumns()} 
+          handleSearch ={this.handleSearch} 
           showOneRowData = {this.props.showOneUserData} 
           showOneRow = {this.props.showOneUser} 
           setCurrentPage = {this.props.setCurrentPageUser}

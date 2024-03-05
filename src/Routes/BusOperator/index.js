@@ -26,7 +26,7 @@ function mapDispatchToProps(dispatch) {
     deleteBusOperator: (params) => dispatch(deleteActionBusOperator(params)),
     showOneBusOperator: (params) => dispatch(showOneActionBusOperator(params)),
     updateBusOperator: (params) => dispatch(updateActionBusOperator(params)),
-    setSearchTermBusOperator:(params) => dispatch(setSearchTermBusOperator(params)),
+    setSearchTermBusOperator:(search,keyword) => dispatch(setSearchTermBusOperator(search,keyword)),
     clearBusOperator:(params) =>dispatch(clearBusOperator(params)),
     logout:(params)=>dispatch(signOut(params)),
     setCurrentPageBusOperator:(params)=>dispatch(setCurrentPageBusOperator(params)),

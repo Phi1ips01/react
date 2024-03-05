@@ -104,16 +104,16 @@ export function updateSelectedOperator(selectedOperatorId)
     })}
   };
 
-export function showTrip(pageIndex,pageSize,term) {
+export function showTrip(pageIndex,pageSize,search,keyword) {
     return async (dispatch) => {
         dispatch({
             type: SHOW_TRIP_STARTED,
             payload: {},
         });
         try {
-            console.log("actiontyip",pageIndex,pageSize,term)
+            console.log("actiontyip",pageIndex,pageSize,search,keyword)
             
-            const data = await showAllTrip(pageIndex,pageSize,term);
+            const data = await showAllTrip(pageIndex,pageSize,search,keyword);
             console.log("tripdaataaction",data)
             dispatch({
                 type: SHOW_TRIP_SUCCESS,

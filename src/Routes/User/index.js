@@ -32,7 +32,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(deleteActionUser(params))
     },
     updateSelectedOperator: (params)=>{dispatch(updateSelectedOperator(params))},
-    setSearchTermUser:(params) => dispatch(setSearchTermUser(params)),
+    setSearchTermUser:(search,keyword) => dispatch(setSearchTermUser(search,keyword)),
     clearUser:(params) =>dispatch(clearUser(params)),
     showOneUser: (params) => dispatch(showOneActionUser(params)),
     updateUser: (params) => dispatch(updateActionUser(params)),

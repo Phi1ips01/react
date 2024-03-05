@@ -25,7 +25,7 @@ const updateAPI = updateInstance.api
 const showOneApi = showOneInstance.api
 
 export const showAllBus = (pageIndex,pageSize,search,keyword) => {
-    console.log("showallbus");
+    console.log("showallbus",pageIndex,pageSize,search,keyword);
     return api.get(`?page=${pageIndex}&size=${pageSize}&search=${search?search:'name'}&keyword=${keyword?keyword:''}`)
 };
 export const showAllCSVBus = ()=>{

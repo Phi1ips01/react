@@ -5,12 +5,8 @@ import DropDown from '../../Components/DropDown';
 import SideBar from '../../Components/SideBar';
 import InputButton from '../../Components/InputButton';
 import InputField from '../../Components/InputField';
+import moment from 'moment';
 class TripData extends Component {
-  state = {
-    loading: false,
-    error: false,
-    showTrip: [],
-  }
   handleSubmit = (event)=> {
      event.preventDefault();
      const showOneTripData = this.props.showOneTripData;
@@ -69,8 +65,6 @@ this.clearForm();
         await this.props.showTrip(0,10);
         await this.props.showBus();
         await this.props.showBusOperator();
-        this.props.setTableDataTrip(this.props.data)
-            this.props.setSearchTermTrip('')
     } catch (error) {
         console.error(error);
     }
@@ -91,7 +85,46 @@ tableColumns = ()=>{
   }));
   return columns
 }
+searchColumns = ()=>{
+  const data = Array.isArray(this.props.tripData)
+  ? this.props.tripData.map(({ operator_name,bus_name,date_of_journey, ...rest }) => ({ operator_name,bus_name,date_of_journey }))
+  : [];
+
+  console.log("bus darta" ,this.props.data)
+  const allColumns = data.length > 0 ? Object.keys(data[0]) : [];
+  const columns = allColumns.map(column => ({
+    Header: column.charAt(0).toUpperCase() + column.slice(1).replace(/_/g, ' '), // Convert underscore to space and capitalize
+    accessor: column,
+  }));
+  return columns
+}
+handleSearch = (e) => {
+  e.preventDefault();
+  let searchCol = e.target.searchCol.value;
+  let searchKey = e.target.searchKey.value;
+  let operatorId = ''
+  if(searchCol === "operator_name")
+  {
+     operatorId = "operator_id"
+  }
+  else if(searchCol === "bus_name")
+  {
+    operatorId = "bus_id"
+  }
+  else if(searchCol === 'date_of_journey')
+  {
+    operatorId = searchCol
+    const formattedDate = moment(searchKey, 'YYYY-MM-DD').format('YYYY-MM-DD');
+    searchKey = formattedDate
+  }
+  else{
+    operatorId = searchCol
+  }
+  console.log("handlesearch",operatorId,searchKey)        
+  this.props.setSearchTermTrip(operatorId, searchKey);
+}
   render() {
+      console.log("this.props.tripdatra",this.props.tripData)
         const isEditMode = !!this.props.showOneTripData && !!this.props.showOneTripData.trip_id
     return (
       <div>
@@ -340,8 +373,8 @@ tableColumns = ()=>{
               columns={this.tableColumns()} 
               data={this.props.tripData} 
               deleteAction={this.props.deleteTrip} 
-              searchData = {this.props.searchData}
-              setSearchTerm ={this.props.setSearchTermTrip} 
+              searchColumns = {this.searchColumns()}
+              handleSearch ={this.handleSearch} 
               showOneRowData = {this.props.showOneTripData} 
               showOneRow = {this.props.showOneTrip}
               setCurrentPage = {this.props.setCurrentPageTrip}

@@ -7,7 +7,7 @@ import { showBus,postBus,showBusOperator, deleteActionBus,setSearchTermBus,setTa
 import { SelectState } from './Selector';
 
 function mapStateToProps(state) {
-  console.log("mapstatetoprops bus", state.ShowAllBus)
+  console.log("mapstatetoprops bus", state.ShowBusOperator)
   return {
     busData: SelectState(state).showBus.data,
     showBusOperatorData: SelectState(state).showBusOperator.data, // Add this line
@@ -23,10 +23,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    showBus: (page,size,keyword) => {
-      console.log("dispatch showBus",page,size,keyword)
+    showBus: (page,size,search,keyword) => {
+      console.log("dispatch showBus",page,size,search,keyword)
 
-      dispatch(showBus(page,size,keyword))
+      dispatch(showBus(page,size,search,keyword))
     },
     postBus: (params) => dispatch(postBus(params)),
     showBusOperator: (page,size) => dispatch(showBusOperator(page,size)),

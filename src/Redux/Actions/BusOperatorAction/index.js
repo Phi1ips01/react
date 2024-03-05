@@ -104,7 +104,7 @@ export function showBusOperator(page,size,search,keyword) {
         try {
             console.log("busoperatoraction success",page,size,search,keyword)
             const data = await showAllBusOperator(page,size,search,keyword);
-            console.log("data", data)
+            console.log("databusoperator", data)
             dispatch({
                 type: SHOW_BUS_OPERATOR_SUCCESS,
                 payload: data,

@@ -33,7 +33,7 @@ function mapDispatchToProps(dispatch) {
       console.log("mdpstate",page,size)
       dispatch(showTrip(page,size,keyword));
     },
-    setSearchTermTrip : (params) => dispatch(setSearchTermTrip(params)),
+    setSearchTermTrip : (search,keyword) => dispatch(setSearchTermTrip(search,keyword)),
     setTableDataTrip:(params) => dispatch(setTableDataTrip(params)),
     updateSelectedOperator: (params)=>{dispatch(updateSelectedOperator(params))},
     showBus: () => dispatch(showAllActionBus()),

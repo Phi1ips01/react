@@ -8,13 +8,12 @@ import CsvLink from '../../Components/CsvLink'
 
 class Bus extends Component {
     componentDidMount() {
-        this.props.showBusOperator();
+        this.props.showBusOperator(0,20);
       this.fetchBus();
     }
        async fetchBus() {
         try {
             await this.props.showBus(0,10);
-            this.props.setSearchTermBus('')
         } catch (error) {
             console.error(error);
             // Handle error here

@@ -18,8 +18,6 @@ import {
     SHOW_ALL_USER_SUCCESS,
     SHOW_ALL_USER_STARTED,
     SET_CURRENT_PAGE,
-    SET_SEARCH_TERM,
-    SET_TABLE_DATA,
     CLEAR_USER
 } from '../../Redux.constants';
 import { addUser, showAllUser,deleteUser,updateUser,showOneUser,showAllCSVUser } from '../../../api/userAPI';
@@ -118,10 +116,10 @@ export function showUser(page,size,search,keyword) {
     };
 }
 
-export function setSearchTermUser(term) {
+export function setSearchTermUser(search,keyword) {
     return async (dispatch) => {
 
-      dispatch(showUser(0,20,'username',term))
+      dispatch(showUser(0,20,search,keyword))
     }
 }
 

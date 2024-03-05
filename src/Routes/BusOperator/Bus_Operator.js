@@ -13,7 +13,6 @@ class BusOperator extends Component  {
       async fetchBusOperator() {
         try {
             await this.props.showBusOperator(0,10);
-            await this.props.setSearchTermBusOperator('')
         } catch (error) {
             console.error(error);
         }
@@ -75,8 +74,29 @@ class BusOperator extends Component  {
         }));
         return columns
       }
+      searchColumns = ()=>{
+        const data = Array.isArray(this.props.data)
+        ? this.props.data.map(({ name, ...rest }) => ({ name }))
+        : [];
+      
+        console.log("bus darta" ,this.props.data)
+        const allColumns = data.length > 0 ? Object.keys(data[0]) : [];
+        const columns = allColumns.map(column => ({
+          Header: column.charAt(0).toUpperCase() + column.slice(1).replace(/_/g, ' '), // Convert underscore to space and capitalize
+          accessor: column,
+        }));
+        return columns
+      }
+      handleSearch = (e) => {
+        e.preventDefault();
+        const searchCol = e.target.searchCol.value;
+        const searchKey = e.target.searchKey.value;
+        console.log("handlesearch",searchCol,searchKey)        
+        this.props.setSearchTermBusOperator(searchCol, searchKey);
+      }
     render(){
         const isEditMode = !!this.props.showOneBusOperatorData && !!this.props.showOneBusOperatorData.id;
+        console.log("busoperatordarta", this.props.busOperatorData)
     return (
         <div>
             <DropDown logout={this.props.logout}/>
@@ -121,8 +141,8 @@ class BusOperator extends Component  {
         columns={this.tableColumns()} 
         data={this.props.data} 
         deleteAction={this.props.deleteBusOperator} 
-        searchData = {this.props.searchData} 
-        setSearchTerm ={this.props.setSearchTermBusOperator} 
+        searchColumns = {this.searchColumns()} 
+        handleSearch ={this.handleSearch} 
         showOneRowData = {this.props.showOneBusOperatorData} 
         showOneRow = {this.props.showOneBusOperator}
         setCurrentPage = {this.props.setCurrentPageBusOperator}
