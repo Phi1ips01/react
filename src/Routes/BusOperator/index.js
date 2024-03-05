@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import BusOperator from './Bus_Operator';
 
-import { showBusOperator,postBusOperator, deleteActionBusOperator,setSearchTermBusOperator,showOneActionBusOperator,setTableDataBusOperator, updateActionBusOperator,clearBusOperator,signOut,setCurrentPageBusOperator,showAllActionBusOperator } from '../../Redux/Actions';
+import { showBusOperator,postBusOperator, deleteActionBusOperator,setSearchTermBusOperator,showOneActionBusOperator, updateActionBusOperator,clearBusOperator,signOut,setCurrentPageBusOperator,showAllActionBusOperator } from '../../Redux/Actions';
 
 import { SelectState } from './Selector';
 
@@ -27,7 +27,6 @@ function mapDispatchToProps(dispatch) {
     showOneBusOperator: (params) => dispatch(showOneActionBusOperator(params)),
     updateBusOperator: (params) => dispatch(updateActionBusOperator(params)),
     setSearchTermBusOperator:(params) => dispatch(setSearchTermBusOperator(params)),
-    setTableDataBusOperator:(params) => dispatch(setTableDataBusOperator(params)),
     clearBusOperator:(params) =>dispatch(clearBusOperator(params)),
     logout:(params)=>dispatch(signOut(params)),
     setCurrentPageBusOperator:(params)=>dispatch(setCurrentPageBusOperator(params)),
