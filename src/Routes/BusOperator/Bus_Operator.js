@@ -94,6 +94,9 @@ class BusOperator extends Component  {
         console.log("handlesearch",searchCol,searchKey)        
         this.props.setSearchTermBusOperator(searchCol, searchKey);
       }
+      handleClear = () => {
+        this.props.setSearchTermBusOperator("", "");
+      };
     render(){
         const isEditMode = !!this.props.showOneBusOperatorData && !!this.props.showOneBusOperatorData.id;
         console.log("busoperatordarta", this.props.busOperatorData)
@@ -143,6 +146,7 @@ class BusOperator extends Component  {
         deleteAction={this.props.deleteBusOperator} 
         searchColumns = {this.searchColumns()} 
         handleSearch ={this.handleSearch} 
+        handleClear = {this.handleClear}
         showOneRowData = {this.props.showOneBusOperatorData} 
         showOneRow = {this.props.showOneBusOperator}
         setCurrentPage = {this.props.setCurrentPageBusOperator}

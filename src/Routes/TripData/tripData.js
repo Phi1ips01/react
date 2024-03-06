@@ -5,7 +5,6 @@ import DropDown from '../../Components/DropDown';
 import SideBar from '../../Components/SideBar';
 import InputButton from '../../Components/InputButton';
 import InputField from '../../Components/InputField';
-import moment from 'moment';
 class TripData extends Component {
   handleSubmit = (event)=> {
      event.preventDefault();
@@ -32,7 +31,7 @@ class TripData extends Component {
   });
   formData.payment_status = parseInt(formData.total_amount) === parseInt(formData.paid)
     ? 'completed'
-    : `remaining ${formData.total_amount - formData.paid}`;
+    : `pending ${formData.total_amount - formData.paid}`;
   
 if (this.props.showOneTripData) {
   const id = this.props.showOneTripData.id;
@@ -87,7 +86,7 @@ tableColumns = ()=>{
 }
 searchColumns = ()=>{
   const data = Array.isArray(this.props.tripData)
-  ? this.props.tripData.map(({ operator_name,bus_name,date_of_journey, ...rest }) => ({ operator_name,bus_name,date_of_journey }))
+  ? this.props.tripData.map(({ operator_name,bus_name,date_of_journey,customer_name,payment_status, ...rest }) => ({ operator_name,bus_name,date_of_journey,customer_name,payment_status }))
   : [];
 
   console.log("bus darta" ,this.props.data)
@@ -111,18 +110,21 @@ handleSearch = (e) => {
   {
     operatorId = "bus_id"
   }
-  else if(searchCol === 'date_of_journey')
-  {
-    operatorId = searchCol
-    const formattedDate = moment(searchKey, 'YYYY-MM-DD').format('YYYY-MM-DD');
-    searchKey = formattedDate
-  }
+  
   else{
     operatorId = searchCol
   }
   console.log("handlesearch",operatorId,searchKey)        
   this.props.setSearchTermTrip(operatorId, searchKey);
 }
+ handleClear = (e) => {
+this.props.setSearchTermTrip('','')
+  // Clear the input field value
+  document.getElementById('searchKey').value = '';
+  // Reset the select element to its default value
+  document.getElementById('searchCol').value = '';
+};
+
   render() {
       console.log("this.props.tripdatra",this.props.tripData)
         const isEditMode = !!this.props.showOneTripData && !!this.props.showOneTripData.trip_id
@@ -375,6 +377,7 @@ handleSearch = (e) => {
               deleteAction={this.props.deleteTrip} 
               searchColumns = {this.searchColumns()}
               handleSearch ={this.handleSearch} 
+              handleClear = {this.handleClear}
               showOneRowData = {this.props.showOneTripData} 
               showOneRow = {this.props.showOneTrip}
               setCurrentPage = {this.props.setCurrentPageTrip}

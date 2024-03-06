@@ -55,7 +55,7 @@ getFieldValue = (event, fieldName) => {
 getPaymentStatus = (event) => {
   const totalAmount = parseInt(event.target.total_amount.value);
   const paidAmount = parseInt(event.target.paid.value);
-  return totalAmount === paidAmount ? 'completed' : `remaining ${totalAmount - paidAmount}`;
+  return totalAmount === paidAmount ? 'completed' : `pending ${totalAmount - paidAmount}`;
 };
 clearForm = () => {
   // ['operator_id', 'bus_id', 'trip_id', 'customer_name', 'contact', 'alternate_contact',
@@ -92,7 +92,7 @@ clearForm = () => {
                     required
                 >
                   <option value='' disabled selected>
-                    Enter the Operator
+                    Enter the Operator*
                   </option>
                       {Array.isArray(this.props.busOperatorData) &&
                         this.props.busOperatorData.map((operator) => (
@@ -103,7 +103,7 @@ clearForm = () => {
                  </select>
                 <select className='trip-select' id='bus_id' name='bus_id' required>
                   <option value='' disabled selected>
-                    Enter the Bus
+                    Enter the Bus*
                   </option>
                   {console.log("busdata",this.props.busData)}
                   {Array.isArray(this.props.busData) &&
@@ -129,7 +129,7 @@ clearForm = () => {
                 <InputField type="text" id="destination_point" name="destination_point" className="trip-form-input" placeholder="Enter the Destination..." required/>
                 <InputField type="text" id="boarding_point" name="boarding_point" className="trip-form-input" placeholder="Enter the Bording Point" required/>
                 <InputField type="text" id="number_of_tickets" name="number_of_tickets" className="trip-form-input" placeholder="Enter the Number of Tickets" required/>
-                <InputField type="text" id="seat_numbers" name="seat_numbers" className="trip-form-input" placeholder="Enter the Seat Number" required/>
+                <InputField type="text" id="seat_numbers" name="seat_numbers" className="trip-form-input" placeholder="Enter the Seat Number"s/>
                 <InputField type="text" id="total_amount" name="total_amount" className="trip-form-input" placeholder="Enter the total amount.." required/>
                 <InputField type="text" id="paid" name="paid" className="trip-form-input" placeholder="Enter the paid amount.." required/>
                 <InputField type="text" id="remarks" name="remarks" className="trip-form-input" placeholder="Any Remarks.."/>

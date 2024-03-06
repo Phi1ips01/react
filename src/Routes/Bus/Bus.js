@@ -111,6 +111,9 @@ class Bus extends Component {
         
         this.props.setSearchTermBus(operatorId, searchKey);
       }
+      handleClear = () => {
+        this.props.setSearchTermBus("", "");
+      };
         render() {
 
         const isEditMode = !!this.props.showOneBusData && !!this.props.showOneBusData.id
@@ -146,7 +149,7 @@ class Bus extends Component {
             className="default-form-input"
             placeholder={isEditMode ? this.props.showOneBusData.name : "Enter the Name"}
             required = {isEditMode ? false : true}
-          />
+          />``
           <select 
           name="type" 
           id="type" 
@@ -180,6 +183,7 @@ class Bus extends Component {
         deleteAction={this.props.deleteBus} 
         searchColumns = {this.searchColumns()} 
         handleSearch ={this.handleSearch} 
+        handleClear = {this.handleClear}
         showOneRowData = {this.props.showOneBusData} 
         showOneRow = {this.props.showOneBus}
         setCurrentPage = {this.props.setCurrentPageBus}

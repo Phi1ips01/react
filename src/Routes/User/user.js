@@ -91,6 +91,9 @@ class User extends Component {
     console.log("handlesearch",searchCol,searchKey)        
     this.props.setSearchTermUser(searchCol, searchKey);
   }
+  handleClear = () => {
+    this.props.setSearchTermUser("", "");
+  };
   render() {
         const isEditMode = !!this.props.showOneUserData && !!this.props.showOneUserData.username
     return (
@@ -147,6 +150,7 @@ class User extends Component {
           deleteAction={this.props.deleteActionUser} 
           searchColumns={this.searchColumns()} 
           handleSearch ={this.handleSearch} 
+          handleClear = {this.handleClear}
           showOneRowData = {this.props.showOneUserData} 
           showOneRow = {this.props.showOneUser} 
           setCurrentPage = {this.props.setCurrentPageUser}

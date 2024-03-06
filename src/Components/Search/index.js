@@ -1,13 +1,17 @@
 // Search.js
 import React from 'react';
 
-const Search = ({ onSubmit,columns }) => {
-    return(
-      
-      <div className='search'>
+const Search = ({ onSubmit, onClear, columns }) => {
+  const handleClear = (e) => {
+    e.preventDefault();
+    onClear();
+  };
+
+  return (
+    <div className='search'>
       <form onSubmit={onSubmit}>
-        <select name='searchCol' id='searchCol' className='search-dropdown'>
-          <option value="">Select column</option>
+        <select className='search-dropdown' name='searchCol' id='searchCol'>
+          <option value="" disabled>Search Column</option>
           {columns.map(column => (
             <option key={column.accessor} value={column.accessor}>{column.Header}</option>
           ))}
@@ -26,7 +30,11 @@ const Search = ({ onSubmit,columns }) => {
           </svg>
         </button>
       </form>
+      <button type='button' className='clear-button' onClick={handleClear}>
+        Clear
+      </button>
     </div>
-)}
+  );
+};
 
 export default Search;

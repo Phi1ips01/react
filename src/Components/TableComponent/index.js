@@ -12,6 +12,7 @@
     data,
     searchColumns, 
     handleSearch,
+    handleClear,
     deleteAction,
     showOneRow,
     showOneRowData,
@@ -54,7 +55,7 @@
       <div className="grid grid-cols-1">
         <div className="grid-item">
           {console.log("table component search function columns",searchColumns)}
-          <Search onSubmit={handleSearch} columns={searchColumns}/>
+          <Search onSubmit={handleSearch} columns={searchColumns} onClear={handleClear}/>
 
           <div className="table-container">
             <table {...getTableProps()} className="table table-dark table-striped container w-100">
