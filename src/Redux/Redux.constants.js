@@ -111,7 +111,7 @@ export const CLEAR_TRIP = "CLEAR_TRIP"
 export const CLEAR_USER = "CLEAR_USER"
 
 export const LOGOUT = "LOGOUT"
-
+export const GET_TOTAL_BUS_OPERATOR = "GET_TOTAL_BUS_OPERATOR"
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
 export const SHOW_ALL_TRIP_FAILED = "SHOW_ALL_TRIP_FAILED"

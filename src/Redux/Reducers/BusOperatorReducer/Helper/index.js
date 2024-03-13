@@ -244,3 +244,11 @@ export function CurrentPageReducerBusOperator(state, payload) {
     currentPage:payload
   };
 }
+
+export function getTotalTaReducerBusOperator(state,payload){
+  return{
+    ...state,
+    total_ta:payload.data.response.total_ta,
+    total_profit:payload.data.response.total_profit
+  }
+}

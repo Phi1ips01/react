@@ -13,6 +13,7 @@ class BusOperator extends Component  {
       async fetchBusOperator() {
         try {
             await this.props.showBusOperator(0,10);
+            await this.props.setTotalAmountAndProfit()
         } catch (error) {
             console.error(error);
         }
@@ -138,7 +139,7 @@ class BusOperator extends Component  {
               <button type="button" className="default-form-clear" onClick={this.clearForm}>
                 Clear
               </button>
-            )}
+            )}  
         </form>
         <DynamicTable 
         columns={this.tableColumns()} 
@@ -154,6 +155,10 @@ class BusOperator extends Component  {
         count= {this.props.busOperatorCount}
         showAll={this.props.showBusOperator}
         />
+        <div className="totals-box">
+            <div>Total Amount: {this.props.total_ta}</div>
+            <div>Total Profit: {this.props.total_profit}</div>
+          </div>
           <button className="csv-button" onClick={this.handleCSVDownload}>
             Download
                 {this.props.busOperatorAllData && (

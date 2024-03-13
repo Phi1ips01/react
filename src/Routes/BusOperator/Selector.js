@@ -9,6 +9,8 @@ function getBusOperatorPageReducer(state) {
         showOneBusOperator: state.ShowOneBusOperator.showOneBusOperator,
         currentPageReducerBusOperator:state.CurrentPageReducerBusOperator.currentPage,
         showAllBusOperator: state.ShowAllBusOperator.showAllBusOperator,
+        total_ta:state.getTotalTaAndProfit.total_ta,
+        total_profit:state.getTotalTaAndProfit.total_profit
         }
     }
 function mergeReducer(showBusOperator) {

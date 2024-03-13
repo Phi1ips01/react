@@ -33,5 +33,6 @@ export const INITIAL_STATE = {
     data: {}
   },
   currentPage:1,
-  
+  total_ta:0,
+  total_profit:0,
 }

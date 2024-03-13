@@ -86,7 +86,7 @@ tableColumns = ()=>{
 }
 searchColumns = ()=>{
   const data = Array.isArray(this.props.tripData)
-  ? this.props.tripData.map(({ operator_name,bus_name,date_of_journey,customer_name,payment_status, ...rest }) => ({ operator_name,bus_name,date_of_journey,customer_name,payment_status }))
+  ? this.props.tripData.map(({ operator_name,bus_name,date_of_journey,customer_name,payment_status,contact, ...rest }) => ({ operator_name,bus_name,date_of_journey,customer_name,payment_status,contact }))
   : [];
 
   console.log("bus darta" ,this.props.data)
@@ -292,16 +292,27 @@ this.props.setSearchTermTrip('','')
               </div>
               </div>
 <div className="form-row">
+<div className="form-group">
+    <label htmlFor="boarding_time">Boarding Time</label>
+    <InputField
+      type="text"
+      id="boarding_time"
+      name="boarding_time"
+      className="trip-form-input"
+      placeholder={isEditMode ? this.props.showOneTripData.boarding_time : "Enter the boarding_time.."}
+    />
+  </div>
             <div className="form-group">
               <label htmlFor="number_of_tickets">Number of Tickets</label>
-              <InputField
-                type="text"
-                id="number_of_tickets"
-                name="number_of_tickets"
-                className="trip-form-input"
-                placeholder={isEditMode ? this.props.showOneTripData.number_of_tickets : "Enter the Number of Tickets"}
-                required={isEditMode?false:true}
-              />
+              <select id="number_of_tickets" name="number_of_tickets" className="trip-form-input" >
+                <option value='' disabled selected>
+                    Enter the Number of Tickets*
+                  </option>
+                  {[...Array(50)].map((_, index) => (
+
+                    <option key={index + 1} value={index + 1}>{index + 1}</option>
+                  ))}
+                </select>
               </div>
             <div className="form-group">
               <label htmlFor="seat_numbers">Seat Numbers</label>
@@ -314,7 +325,9 @@ this.props.setSearchTermTrip('','')
                 required={isEditMode?false:true}
               />
               </div>
-              <div className="form-group">
+              </div>
+        <div className="form-row">
+        <div className="form-group">
                 <label htmlFor="total_amount">Total Amount</label>
               <InputField
                 type="text"
@@ -325,8 +338,6 @@ this.props.setSearchTermTrip('','')
                 required={isEditMode?false:true}
               />
               </div>
-              </div>
-<div className="form-row">
   <div className="form-group">
     <label htmlFor="paid">Paid</label>
     <InputField
@@ -338,16 +349,7 @@ this.props.setSearchTermTrip('','')
       required={isEditMode ? false : true}
     />
   </div>
-  <div className="form-group">
-    <label htmlFor="remarks">Any Remarks</label>
-    <InputField
-      type="text"
-      id="remarks"
-      name="remarks"
-      className="trip-form-input"
-      placeholder={isEditMode ? this.props.showOneTripData.remarks : "Any Remarks.."}
-    />
-  </div>
+  
   <div className="form-group">
     <label htmlFor="agents">Agents</label>
     <InputField

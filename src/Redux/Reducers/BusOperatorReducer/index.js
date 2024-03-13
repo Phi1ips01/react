@@ -20,7 +20,8 @@ SHOW_ALL_BUS_OPERATOR_SUCCESS,
 SET_CURRENT_PAGE,
 SET_SEARCH_TERM,
 SET_TABLE_DATA,
-CLEAR_BUS_OPERATOR
+CLEAR_BUS_OPERATOR,
+GET_TOTAL_BUS_OPERATOR
 } from '../../Redux.constants';
 import {
   showBusOperatorFailed,
@@ -44,6 +45,7 @@ import {
   showAllBusOperatorStarted,
   showAllBusOperatorSuccess,
   clearBusOperator,
+  getTotalTaReducerBusOperator
 } from './Helper';
 import { INITIAL_STATE } from './initialState';
 
@@ -146,3 +148,14 @@ export function ShowAllBusOperator(state = INITIAL_STATE, action) {
       return { ...state };
   }
 }
+
+export function getTotalTaAndProfit(state = INITIAL_STATE, action){
+  switch(action.type){
+    case GET_TOTAL_BUS_OPERATOR:
+      return getTotalTaReducerBusOperator(state,action.payload)
+    default:
+      return{ ...state}
+    }
+
+}
+//reducer for getTotalBusOperator

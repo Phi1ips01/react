@@ -18,11 +18,11 @@ import {
     SHOW_ALL_BUS_OPERATOR_SUCCESS,
     SHOW_ALL_BUS_OPERATOR_STARTED,
     SET_CURRENT_PAGE,
-    SET_SEARCH_TERM,
+    GET_TOTAL_BUS_OPERATOR,
     SET_TABLE_DATA,
     CLEAR_BUS_OPERATOR
     } from '../../Redux.constants';
-import { addBusOperator, showAllBusOperator,deleteBusOperator, updateBusOperator,showOneBusOperator,showAllCSVBusOperator } from '../../../api/busOperatorAPI';
+import { addBusOperator, showAllBusOperator,deleteBusOperator, updateBusOperator,showOneBusOperator,showAllCSVBusOperator,getTotalBusOperator } from '../../../api/busOperatorAPI';
 
 export function deleteActionBusOperator(payload) {
     return async (dispatch) => {
@@ -150,6 +150,17 @@ export function showOneActionBusOperator(payload) {
 export function setSearchTermBusOperator(search,keyword) {
     return async (dispatch) => {
       dispatch(showBusOperator(0,20,search,keyword))
+    }
+}
+export function setTotalAmountAndProfit(){
+    return async (dispatch)=>{
+        console.log("setTotalAmount ACtion")
+        const data = await getTotalBusOperator()
+        console.log("setTotalAmount data", data)
+            dispatch({
+                type: GET_TOTAL_BUS_OPERATOR,
+                payload: data,
+            });
     }
 }
 

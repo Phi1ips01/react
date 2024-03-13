@@ -16,12 +16,20 @@ export const updateInstance =new APIInstance({
 export const showOneInstance = new APIInstance({
     baseURL: 'busOperator/showOne'
 })
+export const getTotalInstance = new APIInstance({
+    baseURL: 'busOperator/getTotal'
+})
 const api = instance.api;
 const postApi = postInstance.api
 const deleteApi = deleteInstance.api
 const updateApi = updateInstance.api
 const showOneApi = showOneInstance.api
+const getTotalApi = getTotalInstance.api
 
+export const getTotalBusOperator = () =>{
+    console.log("gettotal api pro")
+    return getTotalApi.get()
+}
 export const showAllBusOperator = (pageIndex,pageSize,search,keyword) => {
     console.log("busoperatorAPI model")
     return api.get(`?page=${pageIndex}&size=${pageSize}&search=${search?search:'name'}&keyword=${keyword?keyword:''}`)

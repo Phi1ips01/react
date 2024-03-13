@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-
-// import { users } from '../../api/users';
-// import DynamicTable from '../../Components/TableComponent'
 import InputButton from '../../Components/InputButton';
 import InputField from '../../Components/InputField';
 import TopNav from '../../Components/TopNav'
+import MyModal from '../../Components/Modal';
 class Home extends Component {
-
+  state = {
+    showModal: false,
+  };
   componentDidMount() {
-    console.log("this.state componentDId",this.state)
-    this.props.showBusOperator(0,10)
-    this.props.showBus(0,10)
+    this.props.showBusOperator()
+    this.props.showBus()
   }
 handleOperatorChange = (event) => {
   const selectedOperatorId = event.target.value;
@@ -40,12 +39,12 @@ handleSubmit = (event) => {
       total_amount: this.getFieldValue(event, 'total_amount'),
       payment_status: this.getPaymentStatus(event),
       paid: this.getFieldValue(event, 'paid'),
-      remarks: this.getFieldValue(event, 'remarks'),
+      boarding_time: this.getFieldValue(event, 'boarding_time'),
       agents: this.getFieldValue(event, 'agents'),
   };
   this.props.postTrip(formData); // Dispatch the action
-  document.getElementById('success').innerText = 'Details entered successfully';
-  this.clearForm();
+  // this.clearForm();
+  this.setState({ formData, showModal: true }); // Show the modal
 };
 getFieldValue = (event, fieldName) => {
   const value = event.target[fieldName]?.value;
@@ -58,16 +57,80 @@ getPaymentStatus = (event) => {
   return totalAmount === paidAmount ? 'completed' : `pending ${totalAmount - paidAmount}`;
 };
 clearForm = () => {
-  // ['operator_id', 'bus_id', 'trip_id', 'customer_name', 'contact', 'alternate_contact',
-  //  'starting_point', 'boarding_point', 'destination_point', 'seat_numbers', 'address',
-  //  'date_of_journey', 'age', 'number_of_tickets', 'total_amount', 'paid', 'remarks', 'agents']
-  // .forEach(fieldName => {
-  //     document.getElementById(fieldName).value = '';
-  // });
+  ['operator_id', 'bus_id', 'trip_id', 'customer_name', 'contact', 'alternate_contact',
+   'starting_point', 'boarding_point', 'destination_point', 'seat_numbers', 'address',
+   'date_of_journey', 'age', 'number_of_tickets', 'total_amount', 'paid', 'remarks', 'agents']
+  .forEach(fieldName => {
+      document.getElementById(fieldName).value = '';
+  });
   setTimeout(() => {
       document.getElementById('success').innerText = '';
   }, 5000);
 };
+handleCloseModal = () => {
+  this.setState({ showModal: false }); // Close the modal
+};
+handlePrintBill = () => {
+  const { customer_name, contact, date_of_journey, starting_point, destination_point, boarding_point, boarding_time, number_of_tickets, total_amount, paid, age, address, trip_id, seat_numbers } = this.state.formData;
+
+  const bus = this.props.busData.find(bus => bus.id === this.state.formData.bus_id);
+
+  const billContent = `
+      Customer Name: ${customer_name}
+      Contact: ${contact}
+      Date of Journey: ${date_of_journey}
+      Number of Tickets: ${number_of_tickets}
+      Age: ${age}
+      Address: ${address}
+      PNR Number: ${trip_id}
+      ${seat_numbers ? `Seat Numbers: ${seat_numbers}` : ''}
+      
+      Route: ${starting_point} - ${destination_point}
+      Boarding Point: ${boarding_point}
+      Boarding Time: ${boarding_time}
+      Bus Name: ${bus ? bus.name : ''}
+      
+      Total Amount: ${total_amount}
+      Paid: ${paid}
+  `;
+
+
+  console.log(billContent);
+
+  // Open a new window to print the bill content
+  const printWindow = window.open('', '_blank');
+  printWindow.document.open();
+  printWindow.document.write(`
+    <html>
+      <head>
+        <title>Print Bill</title>
+        <style>
+          body {
+            padding:30px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+          }
+        </style>
+      </head>
+      <body>
+        <pre>${billContent}</pre>
+        <script>
+          // Automatically close the print window after printing
+          window.onload = function() {
+            window.print();
+            
+          };
+        </script>
+      </body>
+    </html>
+  `);
+  printWindow.document.close();
+};
+
+
+handleSendWhatsAppMessage = ()=>{
+  console.log("send whatsapp message")
+}
   render() {
     return (
       <div>
@@ -82,8 +145,13 @@ clearForm = () => {
                 <InputField type="text" id="customer_name" name="customer_name" className="trip-form-input" placeholder="Enter the Customer Name" required/>
                 <InputField type="text" id="contact" name="contact" className="trip-form-input" placeholder="Enter the contact" required/>
                 <InputField type="text" id="alternate_contact" name="alternate_contact" className="trip-form-input" placeholder="Enter the alternate contact"/>
-                <InputField type="text" id="age" name="age" className="trip-form-input" placeholder="Enter the age" required/>
-                <InputField type="text" id="address" name="address" className="trip-form-input" placeholder="Enter the Address" required/>
+                <select id="age" name="age" className="trip-select" required>
+                  <option value="">Select Age</option>
+                  {[...Array(100)].map((_, index) => (
+                    <option key={index + 1} value={index + 1}>{index + 1}</option>
+                  ))}
+                </select>             
+                   <InputField type="text" id="address" name="address" className="trip-form-input" placeholder="Enter the Address" required/>
                 <select
                     className='trip-select'
                     id='operator_id'
@@ -128,15 +196,28 @@ clearForm = () => {
                 <InputField type="text" id="starting_point" name="starting_point" className="trip-form-input" placeholder="Enter the starting point..." required/>
                 <InputField type="text" id="destination_point" name="destination_point" className="trip-form-input" placeholder="Enter the Destination..." required/>
                 <InputField type="text" id="boarding_point" name="boarding_point" className="trip-form-input" placeholder="Enter the Bording Point" required/>
-                <InputField type="text" id="number_of_tickets" name="number_of_tickets" className="trip-form-input" placeholder="Enter the Number of Tickets" required/>
-                <InputField type="text" id="seat_numbers" name="seat_numbers" className="trip-form-input" placeholder="Enter the Seat Number"s/>
+                <InputField type="text" id="boarding_time" name="boarding_time" className="trip-form-input" placeholder="Enter the Boarding Time.."/>
+                <select id="number_of_tickets" name="number_of_tickets" className="trip-form-input" >
+                <option value='' disabled selected>
+                    Enter the Number of Tickets*
+                  </option>
+                  {[...Array(50)].map((_, index) => (
+
+                    <option key={index + 1} value={index + 1}>{index + 1}</option>
+                  ))}
+                </select>
+                <InputField type="text" id="seat_numbers" name="seat_numbers" className="trip-form-input" placeholder="Enter the Seat Number"/>
                 <InputField type="text" id="total_amount" name="total_amount" className="trip-form-input" placeholder="Enter the total amount.." required/>
                 <InputField type="text" id="paid" name="paid" className="trip-form-input" placeholder="Enter the paid amount.." required/>
-                <InputField type="text" id="remarks" name="remarks" className="trip-form-input" placeholder="Any Remarks.."/>
                 <InputField type="text" id="agents" name="agents" className="trip-form-input" placeholder="Enter if any agents present.."/>
                 <InputButton className="trip-form-submit" value="Submit"/>
             </form>
-            
+            <MyModal
+            show={this.state.showModal}
+            handleClose={this.handleCloseModal}
+            handlePrintBill={this.handlePrintBill}
+            handleSendWhatsAppMessage={this.handleSendWhatsAppMessage}
+          />
         </div>
       </div>
     );

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import BusOperator from './Bus_Operator';
 
-import { showBusOperator,postBusOperator, deleteActionBusOperator,setSearchTermBusOperator,showOneActionBusOperator, updateActionBusOperator,clearBusOperator,signOut,setCurrentPageBusOperator,showAllActionBusOperator } from '../../Redux/Actions';
+import { showBusOperator,postBusOperator, deleteActionBusOperator,setSearchTermBusOperator,showOneActionBusOperator, updateActionBusOperator,clearBusOperator,signOut,setCurrentPageBusOperator,showAllActionBusOperator,setTotalAmountAndProfit } from '../../Redux/Actions';
 
 import { SelectState } from './Selector';
 
@@ -16,6 +16,8 @@ function mapStateToProps(state) {
     currentPageReducerBusOperator:SelectState(state).currentPageReducerBusOperator,
     busOperatorAllData: SelectState(state).showAllBusOperator.data,
     busOperatorCount:SelectState(state).showBusOperator.count,
+    total_ta:SelectState(state).total_ta,
+    total_profit:SelectState(state).total_profit
   };
 }
 
@@ -33,7 +35,8 @@ function mapDispatchToProps(dispatch) {
     showAllActionBusOperator:()=>{
       console.log("dispatch showBus")
       dispatch(showAllActionBusOperator())
-    }
+    },
+    setTotalAmountAndProfit:()=>dispatch(setTotalAmountAndProfit())
 
   }
   };

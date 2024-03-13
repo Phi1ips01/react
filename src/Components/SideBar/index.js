@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from '../../images/logo sigma.png'
 
 
-export default class ButtonElement extends Component {
+export default class SideBar extends Component {
   render() {
     return (
       <div>
