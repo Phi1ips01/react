@@ -5,6 +5,7 @@ import DynamicTable from '../../Components/TableComponent';
 import SideBar from '../../Components/SideBar'
 import DropDown from '../../Components/DropDown'
 import CsvLink from '../../Components/CsvLink'
+import FormInput from '../../Components/FormInputComponent';
 
 class Bus extends Component {
     componentDidMount() {
@@ -106,8 +107,6 @@ class Bus extends Component {
           operatorId = 'name'
         }
         console.log("handlesearch",operatorId,searchKey)
-
-        // Find the bus_operator_id corresponding to the selected bus_operator_name
         
         this.props.setSearchTermBus(operatorId, searchKey);
       }
@@ -119,15 +118,17 @@ class Bus extends Component {
         const isEditMode = !!this.props.showOneBusData && !!this.props.showOneBusData.id
     return (
         <div>
-            
-            <SideBar/>
             <DropDown logout={this.props.logout}/>
+            <SideBar/>
+            
            <div className="default-main">
-        <form  onSubmit={this.handleSubmit} className="default-form">
+        <form  onSubmit={this.handleSubmit}>
+        <div class="text">
+            Bus Details
+            </div>
+            <div class="default-form-row">
         <h3 id='success'></h3>
-
-          <h3>Enter the Bus details here</h3>
-         
+        <div className="input-data">
           <select 
           className='default-select' 
           id="operator_id" 
@@ -142,14 +143,21 @@ class Bus extends Component {
                 );
               })}
         </select>
-        <InputField
-            type="text"
-            id="name"
-            name="name"
-            className="default-form-input"
-            placeholder={isEditMode ? this.props.showOneBusData.name : "Enter the Name"}
-            required = {isEditMode ? false : true}
-          />``
+        <div className="underline"></div>
+            </div>
+          <FormInput
+             id="name"
+             name="name"
+             className="default-form-input"
+             placeholder={isEditMode ? this.props.showOneBusData.name : "Enter the Name"}
+             required = {isEditMode ? false : true}
+           />
+           
+          </div> 
+
+          <div class="default-form-row">
+
+            <div className="input-data">
           <select 
           name="type" 
           id="type" 
@@ -161,14 +169,16 @@ class Bus extends Component {
                 <option value="Full AC">FUll AC</option>
                 <option value="Second Seater">Second Seater</option>
             </select>
-            <InputField
-              type="text"
+            <div className="underline"></div>
+            </div>
+            <FormInput
               id="share"
               name="share"
               className="default-form-input"
               placeholder={isEditMode ? this.props.showOneBusData.share : "Enter the share in %"}
               required = {isEditMode ? false : true}
-            />        
+            />
+            </div>
            
             <InputButton type="submit" id="inputButton" className="default-form-submit" value={!isEditMode ? 'Submit' : 'Update'}/>
             {isEditMode && (
@@ -177,6 +187,8 @@ class Bus extends Component {
               </button>
             )}
         </form>
+        </div>
+
         <DynamicTable 
         columns={this.tableColumns()} 
         data={this.props.busData} 
@@ -199,7 +211,6 @@ class Bus extends Component {
           <CsvLink data={this.props.busAllData} columns={this.tableColumns()}/>
         )}
   </button>
-</div>
         </div>
     ); 
 };

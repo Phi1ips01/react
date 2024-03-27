@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import InputButton from '../../Components/InputButton';
-import InputField from '../../Components/InputField';
 import TopNav from '../../Components/TopNav'
 import MyModal from '../../Components/Modal';
+import DropDown from '../../Components/DropDown';
+import FormInput from '../../Components/FormInputComponent';
+import './home.css'
+
 class Home extends Component {
   state = {
     showModal: false,
@@ -11,6 +14,7 @@ class Home extends Component {
     this.props.showBusOperator()
     this.props.showBus()
   }
+  
 handleOperatorChange = (event) => {
   const selectedOperatorId = event.target.value;
   const busData = this.props.busData
@@ -70,11 +74,12 @@ clearForm = () => {
 handleCloseModal = () => {
   this.setState({ showModal: false }); // Close the modal
 };
-handlePrintBill = () => {
-  const { customer_name, contact, date_of_journey, starting_point, destination_point, boarding_point, boarding_time, number_of_tickets, total_amount, paid, age, address, trip_id, seat_numbers } = this.state.formData;
+handlePrintBill =  () => {
+  const { customer_name, contact, date_of_journey, bus_id,starting_point, destination_point, boarding_point, boarding_time, number_of_tickets, total_amount, paid, age, address, trip_id, seat_numbers } = this.state.formData;
 
-  const bus = this.props.busData.find(bus => bus.id === this.state.formData.bus_id);
-
+  const bus =  this.props.busData.find(bus => bus.id == bus_id);
+  console.log("bus handleprint",this.state.formData)
+  console.log("handle print",bus.name)
   const billContent = `
       Customer Name: ${customer_name}
       Contact: ${contact}
@@ -127,32 +132,43 @@ handlePrintBill = () => {
   printWindow.document.close();
 };
 
-
 handleSendWhatsAppMessage = ()=>{
   console.log("send whatsapp message")
 }
   render() {
     return (
       <div>
-        <TopNav logout={this.props.logout}/>
-        <div className="trip-main">
-            <form className="trip-form" onSubmit={this.handleSubmit}>
-            <h3 id='success'></h3>
+        <DropDown logout={this.props.logout}/>
+        <TopNav />
 
-              <h3>Enter the Trip details here</h3>
-                <InputField type="text" id="trip_id" name="trip_id" className="trip-form-input" placeholder={`PNR Number`}/>
-                
-                <InputField type="text" id="customer_name" name="customer_name" className="trip-form-input" placeholder="Enter the Customer Name" required/>
-                <InputField type="text" id="contact" name="contact" className="trip-form-input" placeholder="Enter the contact" required/>
-                <InputField type="text" id="alternate_contact" name="alternate_contact" className="trip-form-input" placeholder="Enter the alternate contact"/>
-                <select id="age" name="age" className="trip-select" required>
-                  <option value="">Select Age</option>
+
+<div class="container">
+            <form onSubmit={this.handleSubmit}>
+            {/* <h3 id='success'></h3> */}
+            <div class="text">
+            Customer Details
+            </div>
+            <div class="form-row">
+              <FormInput id="trip_id" name="trip_id" className="trip-form-input" placeholder={`PNR Number`}/>
+              <FormInput id="customer_name" name="customer_name" className="trip-form-input" placeholder="Enter the Customer Name" required/>
+              <FormInput id="contact" name="contact" className="trip-form-input" placeholder="Enter the contact" required/>
+              <FormInput id="alternate_contact" name="alternate_contact" className="trip-form-input" placeholder="Enter the alternate contact"/>
+            </div>
+            <div class="form-row">
+            <div className="input-data">
+            <select id="age" name="age" className="trip-select" required>
+                  <option value="">Enter the age</option>
                   {[...Array(100)].map((_, index) => (
                     <option key={index + 1} value={index + 1}>{index + 1}</option>
                   ))}
-                </select>             
-                   <InputField type="text" id="address" name="address" className="trip-form-input" placeholder="Enter the Address" required/>
-                <select
+                </select>
+               <div className="underline"></div>
+            </div>
+         
+              
+              <FormInput id="address" name="address" className="trip-form-input" placeholder="Enter the Address" required/>
+              <div className="input-data">
+              <select
                     className='trip-select'
                     id='operator_id'
                     name='operator_id'
@@ -160,7 +176,7 @@ handleSendWhatsAppMessage = ()=>{
                     required
                 >
                   <option value='' disabled selected>
-                    Enter the Operator*
+                    Enter the Bus Operator
                   </option>
                       {Array.isArray(this.props.busOperatorData) &&
                         this.props.busOperatorData.map((operator) => (
@@ -169,9 +185,12 @@ handleSendWhatsAppMessage = ()=>{
                         </option>
                         ))}
                  </select>
-                <select className='trip-select' id='bus_id' name='bus_id' required>
+               <div className="underline"></div>
+            </div>
+            <div className="input-data">
+            <select className='trip-select' id='bus_id' name='bus_id' required>
                   <option value='' disabled selected>
-                    Enter the Bus*
+                    Enter the Bus
                   </option>
                   {console.log("busdata",this.props.busData)}
                   {Array.isArray(this.props.busData) &&
@@ -184,33 +203,49 @@ handleSendWhatsAppMessage = ()=>{
                         </option>
                       ))}
                 </select>
-                <InputField
+               <div className="underline"></div>
+            </div>
+            </div>
+            <div class="form-row">
+            <div className="input-data">
+              <input  
                  type="date" 
                  id="date_of_journey"
                  name="date_of_journey" 
-                 className="trip-form-input" 
+                 className="trip-form-input trip-date" 
                  placeholder="Enter journey date" 
                  required="required"
                  min={new Date().toISOString().split('T')[0]} 
                  />
-                <InputField type="text" id="starting_point" name="starting_point" className="trip-form-input" placeholder="Enter the starting point..." required/>
-                <InputField type="text" id="destination_point" name="destination_point" className="trip-form-input" placeholder="Enter the Destination..." required/>
-                <InputField type="text" id="boarding_point" name="boarding_point" className="trip-form-input" placeholder="Enter the Bording Point" required/>
-                <InputField type="text" id="boarding_time" name="boarding_time" className="trip-form-input" placeholder="Enter the Boarding Time.."/>
-                <select id="number_of_tickets" name="number_of_tickets" className="trip-form-input" >
+                 <div className="underline"></div>
+            </div>
+              <FormInput id="starting_point" name="starting_point" className="trip-form-input" placeholder="Enter the starting point..." required/>
+              <FormInput id="destination_point" name="destination_point" className="trip-form-input" placeholder="Enter the Destination..." required/>
+              <FormInput id="boarding_point" name="boarding_point" className="trip-form-input" placeholder="Enter the Bording Point" required/>
+            </div>
+            <div class="form-row">
+              <FormInput id="boarding_time" name="boarding_time" className="trip-form-input" placeholder="Enter the Boarding Time.." required/>
+              <div className="input-data">
+              <select id="number_of_tickets" name="number_of_tickets" className='trip-select' required>
                 <option value='' disabled selected>
-                    Enter the Number of Tickets*
+                  Enter the Number of Tickets
                   </option>
                   {[...Array(50)].map((_, index) => (
 
                     <option key={index + 1} value={index + 1}>{index + 1}</option>
                   ))}
                 </select>
-                <InputField type="text" id="seat_numbers" name="seat_numbers" className="trip-form-input" placeholder="Enter the Seat Number"/>
-                <InputField type="text" id="total_amount" name="total_amount" className="trip-form-input" placeholder="Enter the total amount.." required/>
-                <InputField type="text" id="paid" name="paid" className="trip-form-input" placeholder="Enter the paid amount.." required/>
-                <InputField type="text" id="agents" name="agents" className="trip-form-input" placeholder="Enter if any agents present.."/>
-                <InputButton className="trip-form-submit" value="Submit"/>
+               <div className="underline"></div>
+            </div>
+              <FormInput id="seat_numbers" name="seat_numbers" className="trip-form-input" placeholder="Enter the Seat Number"/>
+              <FormInput id="total_amount" name="total_amount" className="trip-form-input" placeholder="Enter the total amount.." required/>
+            </div>
+            <div class="form-row">
+              <FormInput id="paid" name="paid" className="trip-form-input" placeholder="Enter the paid amount.." required/>
+              <FormInput id="agents" name="agents" className="trip-form-input" placeholder="Enter if any agents present.."/>
+              <InputButton className="trip-form-submit" value="Submit"/>
+
+            </div>
             </form>
             <MyModal
             show={this.state.showModal}

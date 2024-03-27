@@ -58,7 +58,7 @@
           <Search onSubmit={handleSearch} columns={searchColumns} onClear={handleClear}/>
 
           <div className="table-container">
-            <table {...getTableProps()} className="table table-dark table-striped container w-100">
+            <table {...getTableProps()} className="table table-striped  ">
               <thead>
                 {headerGroups.map(headerGroup => (
                   <tr {...headerGroup.getHeaderGroupProps()}>

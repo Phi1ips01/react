@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
-import logo from '../../images/logo sigma.png'
-
+import './sidebar.css'
 
 export default class SideBar extends Component {
   render() {
     return (
       <div>
-        
-        <div className="sidenav">
-        <a href='/'>
-        <div className="logo-topnav">
-        <img className="logo-topnav-img" src={logo} alt='logo'/>
-          </div>
-        </a>
+       <div className="sidenav">
           <ul>
-            <br/><br/>
-            <li><a href='/tripData'>Trip Data</a></li>
-            <li><a href="/bus">Bus</a></li>
-            <li><a href="/busOperator">Bus Operator</a></li>
-            <li><a href="/user">User</a></li>
-            {/* <li><a href="/operatorUpdate">Operator Update</a></li> */}
+            <li><a href='/tripData'>CUSTOMER DATA</a></li>
+            <li><a href="/bus">BUS</a></li>
+            <li><a href="/busOperator">BUS OPERATOR</a></li>
+            <li><a href="/user">USER</a></li>
           </ul>
         </div>
       </div>

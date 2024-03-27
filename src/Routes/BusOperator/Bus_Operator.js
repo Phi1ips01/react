@@ -6,6 +6,7 @@ import DropDown from '../../Components/DropDown'
 import { Component } from 'react';
 import DynamicTable from '../../Components/TableComponent'
 import CsvLink from '../../Components/CsvLink'
+import FormInput from '../../Components/FormInputComponent';
 class BusOperator extends Component  {
       componentDidMount() {
         this.fetchBusOperator();
@@ -106,33 +107,37 @@ class BusOperator extends Component  {
             <DropDown logout={this.props.logout}/>
             <SideBar/>
            <div className="default-main">
-        <form onSubmit={this.handleSubmit} className="default-form">
+        <form onSubmit={this.handleSubmit}>
+        <div class="text">
+            Bus Operator Details
+            </div>
         <h3 id='success'></h3>
-          <h3>Enter the Bus Operator details here</h3>
-            <InputField
-              type="text"
+          <div class="default-form-row">
+          <FormInput
               id="name"
               name="name"
               className="default-form-input"
               placeholder={isEditMode?this.props.showOneBusOperatorData.name:"Enter the Name"}
-              required={isEditMode?false:true}             
-            />
-            <InputField
-              type="text"
+              required={isEditMode?false:true}
+              />
+            <FormInput
               id="contact"
               name="contact"
               className="default-form-input"
               placeholder={isEditMode?this.props.showOneBusOperatorData.contact:"Enter the contact"}
               required={isEditMode?false:true}              
             />
-            <InputField
-              type="text"
-              id="paid"
-              name="paid"
-              className="default-form-input"
-              placeholder={isEditMode?this.props.showOneBusOperatorData.paid:"amount paid(disabled for new entry)"}
-              disabled={isEditMode?false:true}              
+
+          </div> 
+          <div class="default-form-row">
+          <FormInput
+               id="paid"
+               name="paid"
+               className="default-form-input"
+               placeholder={isEditMode?this.props.showOneBusOperatorData.paid:"amount paid(disabled for new entry)"}
+               disabled={isEditMode?false:true}              
             />
+          </div>  
 
             <InputButton type="submit" id="inputButton" className="default-form-submit" value={!isEditMode ? 'Submit' : 'Update'}/>
             {isEditMode && (
@@ -141,6 +146,8 @@ class BusOperator extends Component  {
               </button>
             )}  
         </form>
+        </div>
+
         <DynamicTable 
         columns={this.tableColumns()} 
         data={this.props.data} 
@@ -155,6 +162,8 @@ class BusOperator extends Component  {
         count= {this.props.busOperatorCount}
         showAll={this.props.showBusOperator}
         />
+        <div className='csv-totalbox'>
+      
         <div className="totals-box">
             <div>Total Amount: {this.props.total_ta}</div>
             <div>Total Profit: {this.props.total_profit}</div>
@@ -165,7 +174,7 @@ class BusOperator extends Component  {
           <CsvLink data={this.props.busOperatorAllData} columns={this.tableColumns()}/>
         )}
   </button>
-        </div>
+          </div>
         </div>
     );
 };

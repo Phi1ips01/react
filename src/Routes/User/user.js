@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import DynamicTable from '../../Components/TableComponent';
 import SideBar from '../../Components/SideBar';
 import DropDown from '../../Components/DropDown';
-import InputField from '../../Components/InputField';
 import InputButton from '../../Components/InputButton';
 import CsvLink from '../../Components/CsvLink'
+import FormInput from '../../Components/FormInputComponent';
 
 class User extends Component {
   componentDidMount() {
@@ -100,42 +100,45 @@ class User extends Component {
       <div>
             <DropDown logout={this.props.logout}/>
         <SideBar />
+
         <div className="default-main">
-                 <form className="default-form" onSubmit={this.handleSubmit}>
-                 <h3 id='success'></h3> 
-            <h3>Enter the User details here</h3>
-            <InputField
-              type="text"
-              id="username"
-              name="username"
-              className="default-form-input"
-              placeholder={isEditMode ? this.props.showOneUserData.username : "Enter the username.."}
-              required={isEditMode ? false : true}
-            />
-            <InputField
-              type="text"
+        <form onSubmit={this.handleSubmit}>
+        <div class="text">
+            User Details
+            </div>
+        <h3 id='success'></h3>
+          <div class="default-form-row">
+          <FormInput
+               id="username"
+               name="username"
+               className="default-form-input"
+               placeholder={isEditMode ? this.props.showOneUserData.username : "Enter the username.."}
+               required={isEditMode ? false : true}
+              />
+            <FormInput
               id="email"
               name="email"
               className="default-form-input"
               placeholder={isEditMode ? this.props.showOneUserData.email : "Enter the Email.."}
-              required={isEditMode ? false : true}
+              required={isEditMode ? false : true}       
             />
-            <InputField
-              type="password"
-              id="password"
-              name="password"
-              className="default-form-input"
-              placeholder={isEditMode ? this.props.showOneUserData.password : "Enter the password"}
-              required={isEditMode ? false : true}
-            /><br/>
-            <InputField
-              type="text"
+          </div> 
+          <div class="default-form-row">
+          <FormInput
+               id="password"
+               name="password"
+               className="default-form-input"
+               placeholder={isEditMode ? this.props.showOneUserData.password : "Enter the password"}
+               required={isEditMode ? false : true}
+              />
+            <FormInput
               id="role"
               name="role"
               className="default-form-input"
               placeholder={isEditMode ? this.props.showOneUserData.role : "Enter the role"}
               required={isEditMode ? false : true}
             />
+          </div> 
             <InputButton type="submit" id="inputButton" className="default-form-submit" value={!isEditMode ? 'Submit' : 'Update'}/>
             {isEditMode && (
               <button type="button" className="default-form-clear" onClick={this.clearForm}>    
@@ -143,6 +146,8 @@ class User extends Component {
               </button>
             )}
           </form>
+          </div>
+
           {console.log("suwe",this.props)}
           <DynamicTable 
           columns={this.tableColumns()} 
@@ -164,7 +169,6 @@ class User extends Component {
           <CsvLink data={this.props.userAllData} columns={this.tableColumns()}/>
         )}
   </button>
-        </div>
       </div>
     );
   }

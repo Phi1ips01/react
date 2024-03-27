@@ -14,11 +14,11 @@ const postApi = postInstance.api
 export const showAllOperatorUpdate = (payload) => {
     return api.get(api.baseURL).then((response) => {
         console.log("Response:", response.data);
-        return response.data; // Assuming data is within response.data
+        return response.data; 
       })
       .catch((error) => {
         console.error("Error:", error);
-        throw error; // Re-throw to handle in calling code
+        throw error; 
       });
 };
 export const addOperatorUpdate = (payload) =>{

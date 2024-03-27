@@ -5,6 +5,7 @@ import DropDown from '../../Components/DropDown';
 import SideBar from '../../Components/SideBar';
 import InputButton from '../../Components/InputButton';
 import InputField from '../../Components/InputField';
+import FormInput from '../../Components/FormInputComponent';
 class TripData extends Component {
   handleSubmit = (event)=> {
      event.preventDefault();
@@ -130,16 +131,20 @@ this.props.setSearchTermTrip('','')
         const isEditMode = !!this.props.showOneTripData && !!this.props.showOneTripData.trip_id
     return (
       <div>
+        <DropDown logout={this.props.logout}/>
+            <SideBar/>
       {isEditMode && (
-      <div className='default-main'>
-        <form className="default-form" onSubmit={this.handleSubmit}>
+      <div class="container">
+        <form onSubmit={this.handleSubmit}>
               <h3>Enter the Trip details to be Updated</h3>
 {console.log("this.props",this.props)}
+
+
+
 <div className="form-row">
               <div className="form-group">
               <label htmlFor="trip_id">PNR Number</label>
-              <InputField
-                type="text"
+              <FormInput
                 id="trip_id"
                 name="trip_id"
                 className="trip-form-input"
@@ -148,8 +153,7 @@ this.props.setSearchTermTrip('','')
             </div>
             <div className="form-group">
               <label htmlFor="customer_name">Customer Name</label>
-              <InputField
-                type="text"
+              <FormInput
                 id="customer_name"
                 name="customer_name"
                 className="trip-form-input"
@@ -159,8 +163,7 @@ this.props.setSearchTermTrip('','')
             </div>
             <div className="form-group">
               <label htmlFor="contact">Contact</label>
-              <InputField
-                type="text"
+              <FormInput
                 id="contact"
                 name="contact"
                 className="trip-form-input"
@@ -168,23 +171,20 @@ this.props.setSearchTermTrip('','')
                 required={isEditMode ? false : true}
               />
             </div>
-            </div>
-<div className="form-row">
-           
             <div className="form-group">
               <label htmlFor="alternate_contact">Alternate Contact</label>
-              <InputField
-                type="text"
+              <FormInput
                 id="alternate_contact"
                 name="alternate_contact"
                 className="trip-form-input"
                 placeholder={isEditMode ? this.props.showOneTripData.alternate_contact : "Enter the alternate contact"}
               />
               </div>
+            </div>
+<div className="form-row">
               <div className="form-group">
               <label htmlFor="age">Age</label>
-              <InputField
-                type="text"
+              <FormInput
                 id="age"
                 name="age"
                 className="trip-form-input"
@@ -194,8 +194,7 @@ this.props.setSearchTermTrip('','')
               </div>
             <div className="form-group">
               <label htmlFor="address">Address</label>
-              <InputField
-                type="text"
+              <FormInput
                 id="address"
                 name="address"
                 className="trip-form-input"
@@ -203,10 +202,9 @@ this.props.setSearchTermTrip('','')
                 required={isEditMode?false:true}
               />
               </div>
-              </div>
-<div className="form-row">
-             <div className="form-group">
+              <div className="form-group">
               <label htmlFor="operator_id">Operator ID</label>
+              <div className="input-data">
               <select
                 className='trip-select'
                 id='operator_id'
@@ -224,9 +222,12 @@ this.props.setSearchTermTrip('','')
                     </option>
                   ))}
               </select>
+              <div className="underline"></div>
+            </div>
             </div>
             <div className="form-group">
               <label htmlFor="bus_id">Bus</label>
+              <div className="input-data">
               <select className='trip-select' id='bus_id' name='bus_id'>
                 <option value='' disabled selected>
                   Enter the Bus
@@ -242,10 +243,17 @@ this.props.setSearchTermTrip('','')
                       </option>
                     ))}
               </select>
+              <div className="underline"></div>
+            </div>
             </div> 
+              </div>
+<div className="form-row">
+             
+          
             <div className="form-group">
               <label htmlFor="date_of_journey">Date of Journey</label>
-              <InputField
+              <div className="input-data">
+              <input
                 type="date"
                 id="date_of_journey"
                 name="date_of_journey"
@@ -254,13 +262,12 @@ this.props.setSearchTermTrip('','')
                 required={isEditMode?false:true}
                 min={new Date().toISOString().split('T')[0]} 
               />
+            </div>
+            <div className="underline"></div>
               </div>
-              </div>
-<div className="form-row">
               <div className="form-group">
                 <label htmlFor="starting_point">Starting Point</label>
-              <InputField
-                type="text"
+              <FormInput
                 id="starting_point"
                 name="starting_point"
                 className="trip-form-input"
@@ -270,8 +277,7 @@ this.props.setSearchTermTrip('','')
               </div>
             <div className="form-group">
               <label htmlFor="destination_point">Destination Point</label>
-              <InputField
-                type="text"
+              <FormInput
                 id="destination_point"
                 name="destination_point"
                 className="trip-form-input"
@@ -281,8 +287,7 @@ this.props.setSearchTermTrip('','')
               </div>
             <div className="form-group">
               <label htmlFor="boarding_point">Boarding Point</label>
-              <InputField
-                type="text"
+              <FormInput
                 id="boarding_point"
                 name="boarding_point"
                 className="trip-form-input"
@@ -294,8 +299,7 @@ this.props.setSearchTermTrip('','')
 <div className="form-row">
 <div className="form-group">
     <label htmlFor="boarding_time">Boarding Time</label>
-    <InputField
-      type="text"
+    <FormInput
       id="boarding_time"
       name="boarding_time"
       className="trip-form-input"
@@ -304,7 +308,8 @@ this.props.setSearchTermTrip('','')
   </div>
             <div className="form-group">
               <label htmlFor="number_of_tickets">Number of Tickets</label>
-              <select id="number_of_tickets" name="number_of_tickets" className="trip-form-input" >
+              <div className="input-data">
+              <select id="number_of_tickets" name="number_of_tickets" className="trip-select" >
                 <option value='' disabled selected>
                     Enter the Number of Tickets*
                   </option>
@@ -313,11 +318,12 @@ this.props.setSearchTermTrip('','')
                     <option key={index + 1} value={index + 1}>{index + 1}</option>
                   ))}
                 </select>
+                <div className="underline"></div>
+            </div>
               </div>
             <div className="form-group">
               <label htmlFor="seat_numbers">Seat Numbers</label>
-              <InputField
-                type="text"
+              <FormInput
                 id="seat_numbers"
                 name="seat_numbers"
                 className="trip-form-input"
@@ -325,12 +331,9 @@ this.props.setSearchTermTrip('','')
                 required={isEditMode?false:true}
               />
               </div>
-              </div>
-        <div className="form-row">
-        <div className="form-group">
+              <div className="form-group">
                 <label htmlFor="total_amount">Total Amount</label>
-              <InputField
-                type="text"
+              <FormInput
                 id="total_amount"
                 name="total_amount"
                 className="trip-form-input"
@@ -338,10 +341,12 @@ this.props.setSearchTermTrip('','')
                 required={isEditMode?false:true}
               />
               </div>
+              </div>
+        <div className="form-row">
+        
   <div className="form-group">
     <label htmlFor="paid">Paid</label>
-    <InputField
-      type="text"
+    <FormInput
       id="paid"
       name="paid"
       className="trip-form-input"
@@ -352,8 +357,7 @@ this.props.setSearchTermTrip('','')
   
   <div className="form-group">
     <label htmlFor="agents">Agents</label>
-    <InputField
-      type="text"
+    <FormInput
       id="agents"
       name="agents"
       className="trip-form-input"
@@ -370,9 +374,8 @@ this.props.setSearchTermTrip('','')
             </form>
       </div>
       )}
-       <DropDown logout={this.props.logout}/>
-            <SideBar/>
-            <div className="default-main">
+       
+            
             <DynamicTable 
               columns={this.tableColumns()} 
               data={this.props.tripData} 
@@ -397,7 +400,6 @@ this.props.setSearchTermTrip('','')
           </>
         )}
   </button>
-      </div>
     </div>
     );
   }

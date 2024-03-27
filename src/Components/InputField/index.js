@@ -3,11 +3,10 @@
 
   export default class InputField extends Component {
     render() {
-                {/* {this.props.required && <div className='asterisk'>*</div>} */}
 
       return (
           <input
-            type={this.props.type}
+            type={"text"}
             placeholder={`${this.props.placeholder}${!!this.props.required ? "*":""}`}
             name={this.props.name}
             onChange={this.props.onChange}
